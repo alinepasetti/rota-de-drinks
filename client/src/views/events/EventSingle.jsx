@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class EventSingle extends Component {
   render() {
-    return <div>Home view</div>;
+    return <div>Events single view</div>;
   }
 }
 
