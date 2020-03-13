@@ -13,9 +13,22 @@ const schema = new mongoose.Schema({
   location: String,
   tags: [String],
   price: Number,
-  badge: mongoose.Schema.Types.ObjectId,
-  stops: [mongoose.Schema.Types.ObjectId],
-  attendees: [mongoose.Schema.Types.ObjectId]
+  badge: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Badge'
+  },
+  stops: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Stop'
+    }
+  ],
+  attendees: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ]
 });
 
 module.exports = mongoose.model('Event', schema);

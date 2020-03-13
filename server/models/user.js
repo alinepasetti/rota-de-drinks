@@ -35,14 +35,20 @@ const schema = new mongoose.Schema(
     events: [
       {
         eventId: {
-          type: mongoose.Schema.Types.ObjectId
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Event'
         },
         completed: {
           type: Boolean
         }
       }
     ],
-    badges: [mongoose.Schema.Types.ObjectId]
+    badges: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Badge'
+      }
+    ]
   },
   {
     timestamps: {
