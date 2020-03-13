@@ -1,0 +1,55 @@
+[
+  {
+    "_id": 123,
+    "name": "Halloween with no costume",
+    "imgURL": "https://source.unsplash.com/PeDrafNlY2Y",
+    "description": "nice things about this event",
+    "location": "Lisbon",
+    "tags": ["spooky", "creative"],
+    "price": 2900,
+    "badge": "badge123",
+    "stops": [
+      {
+        "_id": "123",
+        "name": "Tabacaria do Zé",
+        "imgURL": "https://source.unsplash.com/PeDrafNlY2Y",
+        "address": "Calçada dos Barbadinhos",
+        "location": { "coordinates": [39.8, 22.7] },
+        "activity": "drink",
+        "next": 2
+      },
+      {
+        "name": "Restaurante da Graça",
+        "imgURL": "https://source.unsplash.com/PeDrafNlY2Y",
+        "address": "Calçada dos Barbadinhos",
+        "location": { "coordinates": [39.8, 22.7] },
+        "activity": "drink",
+        "next": 2
+      },
+      {
+        "name": "Barracão da Maria",
+        "imgURL": "https://source.unsplash.com/PeDrafNlY2Y",
+        "address": "Calçada dos Barbadinhos",
+        "location": { "coordinates": [39.8, 22.7] },
+        "activity": "drink",
+        "next": 2
+      }
+    ],
+    "attendees": [
+      { "name": "John", "picture": "https://source.unsplash.com/160x90/?person" },
+      { "name": "Filipa", "picture": "https://source.unsplash.com/160x90/?person" }
+    ]
+  },
+  {
+    "_id": 123,
+    "name": "Hades' Party",
+    "imgURL": "https://source.unsplash.com/PeDrafNlY2Y",
+    "description": "please come to Brazil",
+    "location": "Rio de Janeiro",
+    "tags": ["funny", "casual"],
+    "price": 2100,
+    "badge": "badge123",
+    "stops": ["stop1", "stop3", "stop3"],
+    "attendees": ["Maria"]
+  }
+]

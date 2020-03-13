@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -36,3 +40,90 @@
     transform: rotate(360deg);
   }
 }
+
+// Home page
+
+.home__header {
+  height: 15em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.event__list {
+  display: flex;
+  flex-wrap: wrap;
+  > h2 {
+    width: 100%;
+  }
+  > a {
+    margin: 0.5em auto;
+  }
+}
+
+.event__card {
+  width: 45%;
+  margin: 0.5em;
+  text-decoration: none;
+  color: inherit;
+  img {
+    width: 100%;
+  }
+}
+
+// event single page
+
+.event__single__page header,
+.experience__intro__page header {
+  position: relative;
+  > h1 {
+    position: absolute;
+    top: 4em;
+    color: white;
+  }
+  img {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+}
+
+.event__single__page {
+  height: 1000px;
+  .tags__section > span {
+    margin-right: 1em;
+  }
+  > p {
+    text-align: left;
+    margin: 1em;
+  }
+  .atendees__section {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    > div {
+      width: 20%;
+      img {
+        width: 4em;
+        height: 4em;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+  }
+  button {
+    width: 100%;
+    background-color: rgb(38, 126, 38);
+    padding: 1em;
+    border: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.125em;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+// experience intro page

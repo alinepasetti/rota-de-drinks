@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
   },
   imgURL: String,
   description: String,
-  location: String,
+  location: String, 
   tags: [String],
   price: Number,
   badge: {
