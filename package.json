@@ -1,0 +1,20 @@
+{
+  "name": "rota-de-drinks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinepasetti/rota-de-drinks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alinepasetti/rota-de-drinks/issues"
+  },
+  "homepage": "https://github.com/alinepasetti/rota-de-drinks#readme"
+}
