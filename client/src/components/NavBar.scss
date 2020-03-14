@@ -1,0 +1,28 @@
+.nav-bar {
+  display: flex;
+  a,
+  button {
+    display: flex;
+    align-items: center;
+    padding: 1em 0;
+    margin: 0 0.5em;
+    text-decoration: none;
+    color: inherit;
+  }
+  button {
+    border: 0;
+    background-color: transparent;
+    font-size: inherit;
+  }
+}
+
+// .profile__picture {
+//   width: 2em;
+//   height: 2em;
+//   border-radius: 50%;
+//   overflow: hidden;
+//   display: inline-flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-right: 0.5em;
+// }

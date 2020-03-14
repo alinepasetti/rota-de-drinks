@@ -9,9 +9,10 @@ import ExperienceIntroView from './views/experience/ExperienceIntro';
 import ExperienceStepView from './views/experience/ExperienceStep';
 import ExperienceFinishView from './views/experience/ExperienceFinish';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 import SignInView from './views/authentication/SignIn';
 import SignUpView from './views/authentication/SignUp';
-// import ProtectedRoute from './components/ProtectedRoute';
+import { loadLoggedUserInformation } from './services/user';
 
 class App extends Component {
   constructor() {
@@ -19,19 +20,16 @@ class App extends Component {
     this.state = {
       user: null
     };
+    this.updateUserInformation = this.updateUserInformation.bind(this);
   }
 
-  componentDidMount() {
-    // loadUserInformation()
-    //   .then(user => {
-    //     this.updateUserInformation(user);
-    //     this.setState({
-    //       loaded: true
-    //     });
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //   });
+  async componentDidMount() {
+    try {
+      const loggedUser = await loadLoggedUserInformation();
+      this.updateUserInformation(loggedUser);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   updateUserInformation(user) {
@@ -46,19 +44,28 @@ class App extends Component {
         <NavBar user={this.state.user} updateUserInformation={this.updateUserInformation} />
         <Switch>
           <Route path="/" exact component={HomeView} />
-          <Route
+          <ProtectedRoute
             path="/sign-in"
             exact
-            component={SignInView}
-            updateUserInformation={this.updateUserInformation}
+            authorized={!this.state.user}
+            redirect={'/'}
+            render={props => (
+              <SignInView {...props} updateUserInformation={this.updateUserInformation} />
+            )}
+          />
+          <ProtectedRoute
+            path="/sign-up"
+            authorized={!this.state.user}
+            redirect={'/'}
+            render={props => (
+              <SignUpView {...props} updateUserInformation={this.updateUserInformation} />
+            )}
           />
           <Route
-            path="/sign-up"
+            path="/profile/:userId"
             exact
-            component={SignUpView}
-            updateUserInformation={this.updateUserInformation}
+            render={props => <ProfileView user={this.state.user} {...props} />}
           />
-          <Route path="/profile" exact component={ProfileView} />
           <Route path="/events" exact component={EventsListView} />
           <Route path="/event/:eventId" exact component={EventSingleView} />
           <Route path="/event/:eventId/experience/intro" exact component={ExperienceIntroView} />
