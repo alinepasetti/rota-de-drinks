@@ -20,7 +20,6 @@ class EventSingle extends Component {
     const userEvents = user ? user.events : [];
     userEvents.map(event => {
       if (event.eventId.toString() === eventId.toString()) {
-        console.log('there was a match');
         userSavedEvent = true;
       }
     });
