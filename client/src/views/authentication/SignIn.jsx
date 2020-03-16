@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { signIn } from './../../services/authentication';
+import './Authentication.scss';
 
 class SignInView extends Component {
   constructor(props) {
@@ -37,8 +38,7 @@ class SignInView extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="email">Email</label>
+        <form onSubmit={this.handleFormSubmission} className="authentication__form">
           <input
             id="email"
             name="email"
@@ -46,8 +46,8 @@ class SignInView extends Component {
             placeholder="Email"
             onChange={this.handleInputChange}
             value={this.state.email}
+            aria-label="Email"
           />
-          <label htmlFor="password">Password</label>
           <input
             id="password"
             name="password"
@@ -55,6 +55,7 @@ class SignInView extends Component {
             placeholder="Password"
             onChange={this.handleInputChange}
             value={this.state.password}
+            aria-label="Password"
           />
           <button>Sign In</button>
         </form>

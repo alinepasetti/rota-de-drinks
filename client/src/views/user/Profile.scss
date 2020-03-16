@@ -1,9 +1,47 @@
-// .public__section {}
-
-.profile__picture img {
-  width: 5em;
-  height: 5em;
-  border-radius: 50%;
+.profile {
+  max-width: 30em;
+  width: 100%;
+  padding: 1em;
+  .public__section {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__picture {
+    margin: 0;
+    img {
+      width: 5em;
+      height: 5em;
+      border-radius: 50%;
+    }
+  }
+  h2 {
+    margin: 0.5em 0;
+  }
 }
 
-// .private__section {}
+.editprofile__form {
+  max-width: 30em;
+  width: 100%;
+  padding: 1em;
+  margin: 0 auto;
+  text-align: left !important;
+  label {
+    font-size: 0.8em;
+  }
+  input {
+    width: 100%;
+    margin: 0.5em 0 1em 0;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 0.5em;
+    font-size: inherit;
+  }
+  button {
+    width: 100%;
+    padding: 0.7em 1em;
+    background-color: lightgray;
+    font-size: inherit;
+    border-radius: 3px;
+    color: black;
+  }
+}

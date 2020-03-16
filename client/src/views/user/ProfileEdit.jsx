@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { editUserInformation } from '../../services/user';
+import './Profile.scss';
 
 class ProfileEditView extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class ProfileEditView extends Component {
           <img src={user.picture} alt={user.firstName} />
         </figure>
 
-        <form onSubmit={this.handleFormSubmission}>
+        <form onSubmit={this.handleFormSubmission} className="editprofile__form">
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -109,7 +110,7 @@ class ProfileEditView extends Component {
             id="city"
             name="city"
             type="text"
-            placeholder="City"
+            placeholder="Where do you live?"
             onChange={this.handleInputChange}
             value={this.state.city}
           />
@@ -118,7 +119,7 @@ class ProfileEditView extends Component {
             id="about"
             name="about"
             type="text"
-            placeholder="About"
+            placeholder="Write something about yourself"
             onChange={this.handleInputChange}
             value={this.state.about}
           />

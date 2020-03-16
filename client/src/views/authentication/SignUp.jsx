@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { signUp } from './../../services/authentication';
+import './Authentication.scss';
 
 class SignUpView extends Component {
   constructor(props) {
@@ -41,8 +42,7 @@ class SignUpView extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmission}>
-          <label htmlFor="firstName">First Name</label>
+        <form onSubmit={this.handleFormSubmission} className="authentication__form">
           <input
             id="firstName"
             name="firstName"
@@ -50,8 +50,8 @@ class SignUpView extends Component {
             placeholder="First Name"
             onChange={this.handleInputChange}
             value={this.state.firstName}
+            aria-label="First Name"
           />
-          <label htmlFor="lastName">Last Name</label>
           <input
             id="lastName"
             name="lastName"
@@ -59,8 +59,8 @@ class SignUpView extends Component {
             placeholder="Last Name"
             onChange={this.handleInputChange}
             value={this.state.lastName}
+            aria-label="Last Name"
           />
-          <label htmlFor="email">Email</label>
           <input
             id="email"
             name="email"
@@ -68,8 +68,9 @@ class SignUpView extends Component {
             placeholder="Email"
             onChange={this.handleInputChange}
             value={this.state.email}
+            aria-label="Email"
           />
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password">Password</label> */}
           <input
             id="password"
             name="password"
@@ -77,6 +78,7 @@ class SignUpView extends Component {
             placeholder="Password"
             onChange={this.handleInputChange}
             value={this.state.password}
+            aria-label="Password"
           />
           {this.state.password && this.state.password.length < 8 && (
             <small>Password is too short!</small>

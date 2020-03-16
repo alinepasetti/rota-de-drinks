@@ -31,7 +31,7 @@ class ProfileView extends Component {
     // console.log('loggedUser', loggedUser);
 
     return (
-      <div>
+      <div className="profile">
         <div className="public__section">
           {profileOwner && (
             <Fragment>
