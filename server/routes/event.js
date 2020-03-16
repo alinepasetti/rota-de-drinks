@@ -2,7 +2,7 @@
 
 const { Router } = require('express');
 const Event = require('./../models/event');
-const Spot = require('./../models/spot');
+const Stop = require('./../models/stop');
 
 const router = new Router();
 
@@ -32,22 +32,22 @@ router.post('/create-new', async (req, res, next) => {
     stopLng3
   } = req.body;
 
-  let spot1, spot2, spot3;
+  let stop1, stop2, stop3;
 
-  const spotsData = {
-    spot1: {
+  const stopsData = {
+    stop1: {
       name: stopName,
       imgURL: stopImgURL,
       address: stopAddress,
       location: { coordinates: [stopLat, stopLng] }
     },
-    spot2: {
+    stop2: {
       name: stopName2,
       imgURL: stopImgURL2,
       address: stopAddress2,
       location: { coordinates: [stopLat2, stopLng2] }
     },
-    spot3: {
+    stop3: {
       name: stopName3,
       imgURL: stopImgURL3,
       address: stopAddress3,
@@ -55,14 +55,14 @@ router.post('/create-new', async (req, res, next) => {
     }
   };
 
-  const spot1Exists = await Spot.findOne({ name: spotsData.spot1.name });
-  spot1Exists ? (spot1 = spot1Exists) : (spot1 = await Spot.create(spotsData.spot1));
+  const stop1Exists = await Stop.findOne({ name: stopsData.stop1.name });
+  stop1Exists ? (stop1 = stop1Exists) : (stop1 = await Stop.create(stopsData.stop1));
 
-  const spot2Exists = await Spot.findOne({ name: spotsData.spot2.name });
-  spot2Exists ? (spot2 = spot2Exists) : (spot2 = await Spot.create(spotsData.spot2));
+  const stop2Exists = await Stop.findOne({ name: stopsData.stop2.name });
+  stop2Exists ? (stop2 = stop2Exists) : (stop2 = await Stop.create(stopsData.stop2));
 
-  const spot3Exists = await Spot.findOne({ name: spotsData.spot3.name });
-  spot3Exists ? (spot3 = spot3Exists) : (spot3 = await Spot.create(spotsData.spot3));
+  const stop3Exists = await Stop.findOne({ name: stopsData.stop3.name });
+  stop3Exists ? (stop3 = stop3Exists) : (stop3 = await Stop.create(stopsData.stop3));
 
   const event = await Event.create({
     name,
@@ -71,7 +71,7 @@ router.post('/create-new', async (req, res, next) => {
     location,
     tags,
     price,
-    stops: [spot1._id, spot2._id, spot3._id]
+    stops: [stop1._id, stop2._id, stop3._id]
   });
 
   // event.populate()

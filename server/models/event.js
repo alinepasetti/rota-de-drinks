@@ -20,7 +20,7 @@ const schema = new mongoose.Schema({
   stops: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Spot'
+      ref: 'Stop'
     }
   ],
   attendees: [

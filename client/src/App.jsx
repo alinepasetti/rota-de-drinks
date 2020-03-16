@@ -89,7 +89,7 @@ class App extends Component {
           />
           <Route path="/event/:eventId/experience/intro" exact component={ExperienceIntroView} />
           <Route path="/event/:eventId/experience/finish" exact component={ExperienceFinishView} />
-          <Route path="/event/:eventId/experience/:spotId" exact component={ExperienceStepView} />
+          <Route path="/event/:eventId/experience/:stopId" exact component={ExperienceStepView} />
         </Switch>
       </div>
     );

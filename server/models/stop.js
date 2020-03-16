@@ -35,4 +35,4 @@ const schema = new mongoose.Schema({
 
 schema.index({ location: '2dsphere' });
 
-module.exports = mongoose.model('Spot', schema);
+module.exports = mongoose.model('Stop', schema);
