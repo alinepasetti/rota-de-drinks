@@ -4,8 +4,16 @@ const { Router } = require('express');
 const router = new Router();
 const User = require('./../models/user');
 
-router.get('/loggedUser', (req, res, next) => {
-  res.json({ user: req.user || null });
+router.get('/loggedUser', async (req, res, next) => {
+  let user;
+  req.user
+    ? (user = await User.findById(req.user._id).populate({
+        path: 'events.eventId',
+        model: 'Event'
+      }))
+    : null;
+
+  res.json({ user });
 });
 
 router.get('/profile/:userId', async (req, res, next) => {
