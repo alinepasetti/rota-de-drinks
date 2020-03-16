@@ -14,7 +14,6 @@ class EventList extends Component {
   }
   async fetchData() {
     const events = await findAllEvents();
-    console.log('view', events);
     this.setState({ events });
   }
   render() {

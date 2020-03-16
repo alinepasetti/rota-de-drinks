@@ -14,7 +14,6 @@ const createNewEvent = async data => {
 const findAllEvents = async () => {
   const result = await instance.get('/');
   const events = result.data.events;
-  console.log('service', events);
   return events;
 };
 
