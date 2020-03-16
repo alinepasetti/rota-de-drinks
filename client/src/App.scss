@@ -127,3 +127,18 @@
 }
 
 // experience intro page
+
+// Create event form
+.create-event__form {
+  max-width: 30em;
+  width: 100%;
+  padding: 1em;
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 0.5em;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 0.5em;
+  }
+}

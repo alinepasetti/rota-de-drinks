@@ -5,6 +5,7 @@ import HomeView from './views/Home';
 import ProfileView from './views/user/Profile';
 import EventsListView from './views/events/EventsList';
 import EventSingleView from './views/events/EventSingle';
+import CreateEventView from './views/events/CreateEvent';
 import ExperienceIntroView from './views/experience/ExperienceIntro';
 import ExperienceStepView from './views/experience/ExperienceStep';
 import ExperienceFinishView from './views/experience/ExperienceFinish';
@@ -67,7 +68,12 @@ class App extends Component {
             render={props => <ProfileView user={this.state.user} {...props} />}
           />
           <Route path="/events" exact component={EventsListView} />
-          <Route path="/event/:eventId" exact component={EventSingleView} />
+          <Route path="/events/create" exact component={CreateEventView} />
+          <Route
+            path="/event/:eventId"
+            exact
+            render={props => <EventSingleView user={this.state.user} {...props} />}
+          />
           <Route path="/event/:eventId/experience/intro" exact component={ExperienceIntroView} />
           <Route path="/event/:eventId/experience/finish" exact component={ExperienceFinishView} />
           <Route path="/event/:eventId/experience/:spotId" exact component={ExperienceStepView} />

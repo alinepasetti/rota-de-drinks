@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import EventCard from './../components/EventCard';
-import Events from './../event-mock-data.json';
+import { findAllEvents } from './../services/event';
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      events: []
+    };
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  async fetchData() {
+    const events = await findAllEvents();
+    console.log('view', events);
+    this.setState({ events });
+  }
   render() {
     return (
       <div>
@@ -13,7 +27,7 @@ class Home extends Component {
         </header>
         <section className="event__list">
           <h2>Popular Events</h2>
-          {Events.map(event => (
+          {this.state.events.map(event => (
             <EventCard key={event.name} event={event} />
           ))}
           <Link to="/events">See all events</Link>

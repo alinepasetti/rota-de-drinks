@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
-import Events from './../../event-mock-data.json';
+import { findAllEvents } from './../../services/event';
 import EventCard from './../../components/EventCard';
 
 class EventList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      events: []
+    };
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  async fetchData() {
+    const events = await findAllEvents();
+    console.log('view', events);
+    this.setState({ events });
+  }
   render() {
     return (
       <div>
         <h1>Events List</h1>
         <section className="event__list">
-          {Events.map(event => (
+          {this.state.events.map(event => (
             <EventCard key={event.name} event={event} />
           ))}
         </section>
