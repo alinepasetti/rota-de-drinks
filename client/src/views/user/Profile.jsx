@@ -62,12 +62,14 @@ class ProfileView extends Component {
               {loggedUser.events.map(event => {
                 if (!event.completed) {
                   return (
-                    <Fragment>
-                      <div className="event__card">
-                        <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                        <p>{event.eventId.name}</p>
-                      </div>
-                    </Fragment>
+                    <Link
+                      to={`/event/${event.eventId._id}`}
+                      className="event__card"
+                      key={event.eventId._id}
+                    >
+                      <img src={event.eventId.imgURL} alt={event.eventId.name} />
+                      <p>{event.eventId.name}</p>
+                    </Link>
                   );
                 }
               })}
@@ -75,12 +77,14 @@ class ProfileView extends Component {
               {loggedUser.events.map(event => {
                 if (event.completed) {
                   return (
-                    <Fragment>
-                      <div className="event__card">
-                        <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                        <p>{event.eventId.name}</p>
-                      </div>
-                    </Fragment>
+                    <Link
+                      to={`/event/${event.eventId._id}`}
+                      className="event__card"
+                      key={event.eventId._id}
+                    >
+                      <img src={event.eventId.imgURL} alt={event.eventId.name} />
+                      <p>{event.eventId.name}</p>
+                    </Link>
                   );
                 }
               })}
