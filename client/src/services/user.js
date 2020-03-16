@@ -16,15 +16,17 @@ const loadLoggedUserInformation = async () => {
   return user;
 };
 
-// const editUserInformation = async data => {
-//   // console.log(data);
-//   const form = new FormData();
-//   form.append('name', data.name);
-//   form.append('email', data.email);
-//   form.append('picture', data.picture);
-//   const result = await instance.patch('/user-information', form);
-//   const user = result.data.user;
-//   return user;
-// };
+const editUserInformation = async data => {
+  const form = new FormData();
+  form.append('firstName', data.firstName);
+  form.append('lastName', data.lastName);
+  form.append('email', data.email);
+  form.append('city', data.city);
+  form.append('about', data.about);
+  form.append('picture', data.picture);
+  const result = await instance.patch(`/profile/${data.userId}/edit`, form);
+  const user = result.data.user;
+  return user;
+};
 
-export { loadUserInformation, loadLoggedUserInformation };
+export { loadUserInformation, loadLoggedUserInformation, editUserInformation };
