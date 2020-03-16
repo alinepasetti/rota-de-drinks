@@ -132,10 +132,3 @@ class ProfileEditView extends Component {
 }
 
 export default ProfileEditView;
-
-// {{#if userHasInfo.about}}
-//   <label for="input-about">About Me</label>
-//   <textarea id="input-about" name="about">{{user.about}}</textarea>
-// {{else}}
-//   <label for="input-about">About Me</label>
-//   <textarea id="input-about" name="about">Write something about yourself</textarea>

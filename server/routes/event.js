@@ -31,24 +31,39 @@ router.post('/create-new', async (req, res, next) => {
     stopLat3,
     stopLng3
   } = req.body;
-  const spot = await Spot.create({
-    name: stopName,
-    imgURL: stopImgURL,
-    address: stopAddress,
-    location: { coordinates: [stopLat, stopLng] }
-  });
-  const spot2 = await Spot.create({
-    name: stopName2,
-    imgURL: stopImgURL2,
-    address: stopAddress2,
-    location: { coordinates: [stopLat2, stopLng2] }
-  });
-  const spot3 = await Spot.create({
-    name: stopName3,
-    imgURL: stopImgURL3,
-    address: stopAddress3,
-    location: { coordinates: [stopLat3, stopLng3] }
-  });
+
+  let spot1, spot2, spot3;
+
+  const spotsData = {
+    spot1: {
+      name: stopName,
+      imgURL: stopImgURL,
+      address: stopAddress,
+      location: { coordinates: [stopLat, stopLng] }
+    },
+    spot2: {
+      name: stopName2,
+      imgURL: stopImgURL2,
+      address: stopAddress2,
+      location: { coordinates: [stopLat2, stopLng2] }
+    },
+    spot3: {
+      name: stopName3,
+      imgURL: stopImgURL3,
+      address: stopAddress3,
+      location: { coordinates: [stopLat3, stopLng3] }
+    }
+  };
+
+  const spot1Exists = await Spot.findOne({ name: spotsData.spot1.name });
+  spot1Exists ? (spot1 = spot1Exists) : (spot1 = await Spot.create(spotsData.spot1));
+
+  const spot2Exists = await Spot.findOne({ name: spotsData.spot2.name });
+  spot2Exists ? (spot2 = spot2Exists) : (spot2 = await Spot.create(spotsData.spot2));
+
+  const spot3Exists = await Spot.findOne({ name: spotsData.spot3.name });
+  spot3Exists ? (spot3 = spot3Exists) : (spot3 = await Spot.create(spotsData.spot3));
+
   const event = await Event.create({
     name,
     imgURL,
@@ -56,8 +71,9 @@ router.post('/create-new', async (req, res, next) => {
     location,
     tags,
     price,
-    stops: [spot._id, spot2._id, spot3._id]
+    stops: [spot1._id, spot2._id, spot3._id]
   });
+
   // event.populate()
   res.json({ event });
 });
