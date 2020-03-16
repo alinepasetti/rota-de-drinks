@@ -3,6 +3,7 @@ import './App.scss';
 import { Route, Link, Switch } from 'react-router-dom';
 import HomeView from './views/Home';
 import ProfileView from './views/user/Profile';
+import ProfileEditView from './views/user/ProfileEdit';
 import EventsListView from './views/events/EventsList';
 import EventSingleView from './views/events/EventSingle';
 import ExperienceIntroView from './views/experience/ExperienceIntro';
@@ -59,6 +60,18 @@ class App extends Component {
             redirect={'/'}
             render={props => (
               <SignUpView {...props} updateUserInformation={this.updateUserInformation} />
+            )}
+          />
+          <ProtectedRoute
+            path="/profile/:userId/edit"
+            authorized={this.state.user}
+            redirect={'/sign-in'}
+            render={props => (
+              <ProfileEditView
+                {...props}
+                updateUserInformation={this.updateUserInformation}
+                user={this.state.user}
+              />
             )}
           />
           <Route

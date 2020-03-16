@@ -59,7 +59,17 @@ class ProfileView extends Component {
           {profileOwner && loggedUser && profileOwner._id === loggedUser._id && (
             <Fragment>
               <h3>Next Events</h3>
+              {/* {loggedUser.events.map(event => {
+                if(!event.completed) {
+                return event.name;
+                }
+              })} */}
               <h3>Past Events</h3>
+              {/* {loggedUser.events.map(event => {
+                if(event.completed) {
+                return event.name;
+                }
+              })} */}
               <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>
             </Fragment>
           )}
