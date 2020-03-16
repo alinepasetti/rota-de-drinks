@@ -75,4 +75,16 @@ router.get('/:eventId', async (req, res, next) => {
   res.json({ event });
 });
 
+// Route to save user into attendees array
+router.patch('/:eventId/add-attendee/:userId', async (req, res, next) => {
+  const { eventId, userId } = req.params;
+  const event = await Event.findByIdAndUpdate(
+    eventId,
+    { $push: { attendees: userId } },
+    { new: true }
+  );
+  res.json({ event });
+  // event.attendees.push(userId).save();
+});
+
 module.exports = router;

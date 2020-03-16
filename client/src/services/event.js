@@ -22,5 +22,10 @@ const findOneEvent = async eventId => {
   const event = result.data.event;
   return event;
 };
+const findOneEventAndAddAttendee = async (eventId, userId) => {
+  const result = await instance.patch(`/${eventId}/add-attendee/${userId}`);
+  const event = result.data.event;
+  return event;
+};
 
-export { createNewEvent, findAllEvents, findOneEvent };
+export { createNewEvent, findAllEvents, findOneEvent, findOneEventAndAddAttendee };

@@ -29,4 +29,15 @@ const editUserInformation = async data => {
   return user;
 };
 
-export { loadUserInformation, loadLoggedUserInformation, editUserInformation };
+const findOneUserAndAddEvent = async (userId, eventId) => {
+  console.log('service', userId, eventId);
+  const user = await instance.patch(`/${userId}/add-event/${eventId}`);
+  return user;
+};
+
+export {
+  loadUserInformation,
+  loadLoggedUserInformation,
+  editUserInformation,
+  findOneUserAndAddEvent
+};

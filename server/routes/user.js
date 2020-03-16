@@ -46,4 +46,17 @@ router.patch('/profile/:userId/edit', uploader.single('picture'), async (req, re
   }
 });
 
+router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
+  let { userId, eventId } = req.params;
+  console.log('userID:', userId, 'event:', eventId);
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $push: { events: { eventId: eventId, completed: false } }
+    },
+    { new: true }
+  );
+  res.json({ user });
+});
+
 module.exports = router;

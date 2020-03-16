@@ -112,12 +112,13 @@
       }
     }
   }
-  button {
+  .button {
     width: 100%;
     background-color: rgb(38, 126, 38);
     padding: 1em;
     border: 0;
     color: white;
+    text-decoration: none;
     text-transform: uppercase;
     font-size: 1.125em;
     position: fixed;

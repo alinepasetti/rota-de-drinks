@@ -39,7 +39,8 @@ const schema = new mongoose.Schema(
           ref: 'Event'
         },
         completed: {
-          type: Boolean
+          type: Boolean,
+          default: false
         }
       }
     ],
