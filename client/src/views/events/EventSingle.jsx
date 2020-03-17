@@ -12,14 +12,15 @@ class EventSingle extends Component {
     };
     this.saveEvent = this.saveEvent.bind(this);
   }
-  async componentDidMount() {
-    await this.fetchData();
-    const eventId = this.props.match.params.eventId;
+  componentDidMount() {
+    this.fetchData();
+    const currentEventId = this.props.match.params.eventId;
     const user = this.props.user;
-    let userSavedEvent = false;
+    let userSavedEvent;
     const userEvents = user ? user.events : [];
+
     userEvents.map(event => {
-      if (event.eventId.toString() === eventId.toString()) {
+      if (event.eventId._id.toString() === currentEventId.toString()) {
         userSavedEvent = true;
       }
     });
@@ -77,11 +78,16 @@ class EventSingle extends Component {
                 {(event.price / 100).toFixed(2)}$ | Buy
               </Link>
             )) ||
-              (userHasEvent && <div>Heeey</div>) || (
+              (userHasEvent && (
+                <Link to={`/event/${this.state.event._id}/experience/intro`} className="button">
+                  Start Experience
+                </Link>
+              )) ||
+              (!userHasEvent && (
                 <a onClick={this.saveEvent} className="button">
                   {(event.price / 100).toFixed(2)}$ | Buy
                 </a>
-              )}
+              ))}
           </Fragment>
         )) ||
           ''}

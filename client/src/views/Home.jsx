@@ -32,8 +32,8 @@ class Home extends Component {
               {this.state.events.map(event => (
                 <EventCard key={event.name} event={event} />
               ))}
-              <Link to="/events">See all events</Link>
             </section>
+            <Link to="/events">See all events</Link>
           </Fragment>
         )) ||
           ''}
