@@ -6,22 +6,33 @@ class ExperienceIntro extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: null
+      event: null,
+      userHasEvent: false
     };
   }
 
-  async componentDidMount() {
-    await this.fetchData();
+  componentDidMount() {
+    this.fetchData();
   }
 
   async fetchData() {
     const eventId = this.props.match.params.eventId;
     const event = await findOneEvent(eventId);
     this.setState({ event });
+
+    const user = this.props.user;
+    if (user) {
+      user.events.map(item => {
+        if (item.eventId && item.eventId._id === eventId) {
+          this.setState({ userHasEvent: true });
+        }
+      });
+    }
   }
 
   render() {
     const event = this.state.event;
+    const userHasEvent = this.state.userHasEvent;
 
     return (
       <div className="event__single__page">
@@ -38,11 +49,21 @@ class ExperienceIntro extends Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua.
             </p>
-            <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
+            {/* <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
               Start
-            </Link>
+            </Link> */}
           </Fragment>
         )}
+        {(event && userHasEvent && (
+          <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
+            Start
+          </Link>
+        )) ||
+          (event && !userHasEvent && (
+            <Link to={`/event/${event._id}`} className="button">
+              Buy event
+            </Link>
+          ))}
       </div>
     );
   }
