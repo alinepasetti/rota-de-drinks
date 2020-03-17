@@ -135,7 +135,9 @@ router.get('/', async (req, res, next) => {
 // route to find one specific event
 router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
-  const event = await Event.findById(eventId).populate('attendees');
+  const event = await Event.findById(eventId)
+    .populate('attendees')
+    .populate('stops');
   res.json({ event });
 });
 
@@ -147,6 +149,14 @@ router.patch('/:eventId/add-attendee/:userId', async (req, res, next) => {
     { $push: { attendees: userId } },
     { new: true }
   );
+  res.json({ event });
+});
+
+// Route to experience intro
+router.get('/:eventId/experience/intro', async (req, res, next) => {
+  const { eventId } = req.params;
+  const event = await Event.findById(eventId);
+  console.log(event);
   res.json({ event });
 });
 

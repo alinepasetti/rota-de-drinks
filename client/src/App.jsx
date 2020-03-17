@@ -8,7 +8,7 @@ import EventsListView from './views/events/EventsList';
 import EventSingleView from './views/events/EventSingle';
 import CreateEventView from './views/events/CreateEvent';
 import ExperienceIntroView from './views/experience/ExperienceIntro';
-import ExperienceStepView from './views/experience/ExperienceStep';
+import ExperienceStopView from './views/experience/ExperienceStop';
 import ExperienceFinishView from './views/experience/ExperienceFinish';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -57,6 +57,7 @@ class App extends Component {
           />
           <ProtectedRoute
             path="/sign-up"
+            exact
             authorized={!this.state.user}
             redirect={'/'}
             render={props => (
@@ -65,6 +66,7 @@ class App extends Component {
           />
           <ProtectedRoute
             path="/profile/:userId/edit"
+            exact
             authorized={this.state.user}
             redirect={'/sign-in'}
             render={props => (
@@ -87,9 +89,16 @@ class App extends Component {
             exact
             render={props => <EventSingleView user={this.state.user} {...props} />}
           />
+          {/* <ProtectedRoute
+            path="/event/:eventId/experience/intro"
+            exact
+            authorized={this.state.user}
+            redirect={'/sign-in'}
+            render={props => <ExperienceIntroView {...props} user={this.state.user} />}
+          /> */}
           <Route path="/event/:eventId/experience/intro" exact component={ExperienceIntroView} />
           <Route path="/event/:eventId/experience/finish" exact component={ExperienceFinishView} />
-          <Route path="/event/:eventId/experience/:stopId" exact component={ExperienceStepView} />
+          <Route path="/event/:eventId/experience/:stopId" exact component={ExperienceStopView} />
         </Switch>
       </div>
     );

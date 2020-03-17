@@ -1,17 +1,46 @@
-import React, { Component } from 'react';
-import Events from './../../event-mock-data.json';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { findOneEvent } from './../../services/event';
 
 class ExperienceIntro extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      event: null
+    };
+  }
+
+  async componentDidMount() {
+    await this.fetchData();
+  }
+
+  async fetchData() {
+    const eventId = this.props.match.params.eventId;
+    const event = await findOneEvent(eventId);
+    this.setState({ event });
+  }
+
   render() {
+    const event = this.state.event;
+
     return (
-      <div className="experience__intro__page">
-        <header>
-          <h1>{Events[0].name}</h1>
-          <img src={Events[0].imgURL} alt={Events[0].name} />
-        </header>
-        <p>WELCOME TO THIS EXPERIENCE! text with instructions</p>
-        <Link to={`/event/${Events[0]._id}/experience/${Events[0].stops[0]._id}`}>Start</Link>
+      <div className="event__single__page">
+        {event && (
+          <Fragment>
+            <header>
+              <h1>{event.name}</h1>
+              <img src={event.imgURL} alt={event.name} />
+            </header>
+            <p>
+              <strong>WELCOME!</strong>
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua.
+            </p>
+            <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`}>Start</Link>
+          </Fragment>
+        )}
       </div>
     );
   }
