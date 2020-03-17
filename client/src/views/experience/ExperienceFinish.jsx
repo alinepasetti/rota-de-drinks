@@ -10,8 +10,8 @@ class ExperienceFinish extends Component {
     };
     this.finishExperience = this.finishExperience.bind(this);
   }
-  async componentDidMount() {
-    await this.fetchData();
+  componentDidMount() {
+    this.fetchData();
   }
 
   async fetchData() {
@@ -20,12 +20,11 @@ class ExperienceFinish extends Component {
     this.setState({ event });
   }
   finishExperience() {
-    console.log('click')
+    console.log('click');
   }
 
   render() {
     const event = this.state.event;
-
     return (
       <div>
         {event && (
