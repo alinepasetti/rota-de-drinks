@@ -157,11 +157,10 @@ router.patch('/:eventId/add-attendee/:userId', async (req, res, next) => {
 });
 
 // Route to experience intro
-router.get('/:eventId/experience/intro', async (req, res, next) => {
-  const { eventId } = req.params;
-  const event = await Event.findById(eventId);
-  console.log(event);
-  res.json({ event });
-});
+// router.get('/:eventId/experience/intro', async (req, res, next) => {
+//   const { eventId } = req.params;
+//   const event = await Event.findById(eventId);
+//   res.json({ event });
+// });
 
 module.exports = router;
