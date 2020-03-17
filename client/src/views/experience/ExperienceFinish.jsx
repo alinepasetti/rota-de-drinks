@@ -32,13 +32,13 @@ class ExperienceFinish extends Component {
     const event = this.state.event;
 
     return (
-      <div>
+      <div className="experience__finish__page">
         {event && (
           <Fragment>
             <h1>Congratulations! </h1>
             <h3>You have finished this experience!!</h3>
             <img src={event.badge.imgURL} alt={event.badge.name} />
-            <h3>{event.badge.name}</h3>
+            <p>{event.badge.name}</p>
             <Link to="/" className="button" onClick={this.finishExperience}>
               Add to my profile
             </Link>

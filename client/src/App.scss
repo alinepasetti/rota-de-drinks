@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 
-.App {
-  text-align: center;
-}
+// .App {
+//   text-align: center;
+// }
 
 .App-logo {
   height: 40vmin;
@@ -78,11 +78,18 @@
 .experience__intro__page header,
 .experience__stop__page header {
   position: relative;
-  > h1 {
+  > .experience__title {
     margin-left: 1em;
     position: absolute;
     bottom: 0.5em;
     color: white;
+    > h5,
+    h1 {
+      margin: 0 0 0.5em 1rem;
+    }
+    > h1 {
+      margin-bottom: 1.5em;
+    }
   }
   img {
     width: 100%;
@@ -95,10 +102,18 @@
 }
 
 .event__single__page {
-  height: 1000px;
-  .tags__section > span {
-    margin-right: 1em;
+  padding-bottom: 3.75em;
+  h4 {
+    text-align: left;
+    margin: 1em;
   }
+  .tags__section {
+    text-align: center;
+    > span {
+      margin-right: 1em;
+    }
+  }
+
   > p,
   h3 {
     text-align: left;
@@ -109,6 +124,12 @@
     display: flex;
     flex-wrap: wrap;
     padding: 1em;
+    @media screen and (min-width: 430px) {
+      align-items: flex-start;
+      > div {
+        max-width: 4.75em;
+      }
+    }
     > div {
       width: 20%;
       img {
@@ -132,10 +153,40 @@
     position: fixed;
     bottom: 0;
     left: 0;
+    text-align: center;
   }
 }
 
-// experience intro page
+// experience finish page
+.experience__finish__page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  .button {
+    width: 90%;
+    max-width: 28.12em;
+    background-color: rgb(38, 126, 38);
+    padding: 1em;
+    border: 0;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.125em;
+    text-align: center;
+    position: sticky;
+    bottom: 1.25em;
+    margin-top: auto;
+  }
+  img {
+    width: 50%;
+    margin: 1em auto;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
 
 // Create event form
 .create-event__form {
@@ -160,8 +211,10 @@
   }
   .experience__stop__activity {
     margin: 1em 1em 2em 1em;
+    display: flex;
+    justify-content: space-between;
     img {
-      width: 100%;
+      width: 50%;
       height: 250px;
       object-fit: cover;
     }

@@ -33,25 +33,28 @@ class ProfileView extends Component {
     return (
       <div className="profile">
         <div className="public__section">
-          {profileOwner && (
-            <Fragment>
-              <figure className="profile__picture">
-                <img src={profileOwner.picture} alt={profileOwner.firstName} />
-              </figure>
-              <h2>
-                {profileOwner.firstName} {profileOwner.lastName}
-              </h2>
-              <span>{profileOwner.email}</span>
-            </Fragment>
-          )}
-          {profileOwner && profileOwner.city && <span>{profileOwner.city}</span>}
-          {profileOwner && profileOwner.about && <span>{profileOwner.about}</span>}
+          <div>
+            {profileOwner && (
+              <Fragment>
+                <figure className="profile__picture">
+                  <img src={profileOwner.picture} alt={profileOwner.firstName} />
+                </figure>
+                <h2>
+                  {profileOwner.firstName} {profileOwner.lastName}
+                </h2>
+                <span>{profileOwner.email}</span>
+              </Fragment>
+            )}
+            {profileOwner && profileOwner.city && <p>{profileOwner.city}</p>}
+            {profileOwner && profileOwner.about && <p>{profileOwner.about}</p>}
+          </div>
+
           {profileOwner && profileOwner.badges.length > 0 && (
             <Fragment>
               <h3>Badges</h3>
               {profileOwner.badges.map(badge => {
                 return (
-                  <div key={badge.name}>
+                  <div className="badge__item" key={badge.name}>
                     <img src={badge.imgURL} alt={badge.name} />
                     <p>{badge.name}</p>
                   </div>

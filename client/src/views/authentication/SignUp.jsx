@@ -43,6 +43,7 @@ class SignUpView extends Component {
     return (
       <div>
         <form onSubmit={this.handleFormSubmission} className="authentication__form">
+          <h1>Get started absolutely free.</h1>
           <input
             id="firstName"
             name="firstName"

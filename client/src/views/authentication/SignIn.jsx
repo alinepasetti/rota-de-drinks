@@ -38,7 +38,9 @@ class SignInView extends Component {
   render() {
     return (
       <div>
+      
         <form onSubmit={this.handleFormSubmission} className="authentication__form">
+        <h1>Sign in to your account</h1>
           <input
             id="email"
             name="email"

@@ -28,7 +28,7 @@ class ExperienceIntro extends Component {
         {event && (
           <Fragment>
             <header>
-              <h1>{event.name}</h1>
+              <h1 className="experience__title">{event.name}</h1>
               <img src={event.imgURL} alt={event.name} />
             </header>
             <p>

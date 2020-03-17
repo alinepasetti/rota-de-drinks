@@ -54,16 +54,20 @@ class EventSingle extends Component {
         {(event && (
           <Fragment>
             <header>
-              <h1>{event.name}</h1>
+              <h1 className="experience__title">{event.name}</h1>
               <img src={event.imgURL} alt={event.name} />
             </header>
             <div className="tags__section">
               {event.tags.map(tag => (
-                <span key={tag}>{tag}</span>
+                <span key={tag}>#{tag}</span>
               ))}
             </div>
+            <h4>General Info</h4>
             <p>{event.description}</p>
-            <p>Location: {event.location}</p>
+            <p>
+              <strong>Location:</strong> {event.location}
+            </p>
+            <h4>Who's joining</h4>
             <section className="atendees__section">
               {event.attendees &&
                 event.attendees.map(attendee => {
@@ -75,6 +79,17 @@ class EventSingle extends Component {
                   );
                 })}
             </section>
+            <h4>What's planned</h4>
+            <section className="map__section">
+              <ul>
+                {event.stops.map(stop => (
+                  <li key={stop.name}>
+                    {stop.name} - {stop.address}
+                  </li>
+                ))}
+              </ul>
+            </section>
+
             {(!user && (
               <Link to="/sign-up" className="button">
                 {(event.price / 100).toFixed(2)}$ | Buy
@@ -86,11 +101,7 @@ class EventSingle extends Component {
                 </Link>
               )) ||
               (!userHasEvent && (
-                <Link
-                  to={`/event/${this.state.event._id}`}
-                  onClick={this.saveEvent}
-                  className="button"
-                >
+                <Link onClick={this.saveEvent} className="button">
                   {(event.price / 100).toFixed(2)}$ | Buy
                 </Link>
               ))}

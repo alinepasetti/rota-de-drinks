@@ -70,11 +70,12 @@ class ProfileEditView extends Component {
     const user = this.props.user;
     return (
       <div>
-        <figure className="profile__picture">
+        {/*</div>{<figure className="profile__picture">
           <img src={user.picture} alt={user.firstName} />
-        </figure>
+    </figure>*/ }
 
         <form onSubmit={this.handleFormSubmission} className="editprofile__form">
+          <h1>Edit your profile:</h1>
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
