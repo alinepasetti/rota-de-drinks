@@ -97,15 +97,19 @@ class App extends Component {
                 redirect={'/sign-in'}
                 render={props => <ExperienceIntroView {...props} user={this.state.user} />}
               />
-              <Route
+              <ProtectedRoute
                 path="/event/:eventId/experience/finish"
                 exact
-                render={props => <ExperienceFinishView user={this.state.user} {...props} />}
+                authorized={this.state.user}
+                redirect={'/sign-in'}
+                render={props => <ExperienceFinishView {...props} user={this.state.user} />}
               />
-              <Route
+              <ProtectedRoute
                 path="/event/:eventId/experience/:stopId"
                 exact
-                component={ExperienceStopView}
+                authorized={this.state.user}
+                redirect={'/sign-in'}
+                render={props => <ExperienceStopView {...props} user={this.state.user} />}
               />
               <Route
                 path="/event/:eventId"
