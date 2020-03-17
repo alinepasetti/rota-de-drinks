@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
- 
+
 class ExperienceIntro extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +38,9 @@ class ExperienceIntro extends Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua.
             </p>
-            <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`}>Start</Link>
+            <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
+              Start
+            </Link>
           </Fragment>
         )}
       </div>

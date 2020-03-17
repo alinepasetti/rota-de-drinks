@@ -69,13 +69,18 @@ class ExperienceStop extends Component {
               <h3>Map</h3>
               {/* incluir google maps */}
             </div>
-            <Link to={`/event/${event._id}/experience/intro`}>Back</Link>
-            <Link
-              to={`/event/${event._id}/experience/${event.stops[1]._id}`}
-              onClick={this.nextPage}
-            >
-              Next
-            </Link>
+            <div className="experience__stop__buttons">
+              <Link to={`/event/${event._id}/experience/intro`} className="previous__button">
+                Back
+              </Link>
+              <Link
+                to={`/event/${event._id}/experience/${event.stops[1]._id}`}
+                onClick={this.nextPage}
+                className="next__button"
+              >
+                Next
+              </Link>
+            </div>
           </Fragment>
         )}
         {event && page === 1 && (
@@ -101,18 +106,22 @@ class ExperienceStop extends Component {
               <h3>Map</h3>
               {/* incluir google maps */}
             </div>
-            <Link
-              to={`/event/${event._id}/experience/${event.stops[0]._id}`}
-              onClick={this.previousPage}
-            >
-              Back
-            </Link>
-            <Link
-              to={`/event/${event._id}/experience/${event.stops[2]._id}`}
-              onClick={this.nextPage}
-            >
-              Next
-            </Link>
+            <div className="experience__stop__buttons">
+              <Link
+                to={`/event/${event._id}/experience/${event.stops[0]._id}`}
+                onClick={this.previousPage}
+                className="previous__button"
+              >
+                Back
+              </Link>
+              <Link
+                to={`/event/${event._id}/experience/${event.stops[2]._id}`}
+                onClick={this.nextPage}
+                className="next__button"
+              >
+                Next
+              </Link>
+            </div>
           </Fragment>
         )}
         {event && page === 2 && (
@@ -138,13 +147,18 @@ class ExperienceStop extends Component {
               <h3>Map</h3>
               {/* incluir google maps */}
             </div>
-            <Link
-              to={`/event/${event._id}/experience/${event.stops[1]._id}`}
-              onClick={this.previousPage}
-            >
-              Back
-            </Link>
-            <Link to={`/event/${event._id}/experience/finish`}>Next</Link>
+            <div className="experience__stop__buttons">
+              <Link
+                to={`/event/${event._id}/experience/${event.stops[1]._id}`}
+                onClick={this.previousPage}
+                className="previous__button"
+              >
+                Back
+              </Link>
+              <Link to={`/event/${event._id}/experience/finish`} className="next__button">
+                Next
+              </Link>
+            </div>
           </Fragment>
         )}
       </div>
