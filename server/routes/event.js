@@ -3,6 +3,8 @@
 const { Router } = require('express');
 const Event = require('./../models/event');
 const Stop = require('./../models/stop');
+const Activity = require('./../models/activity');
+const Badge = require('./../models/badge');
 
 const router = new Router();
 
@@ -43,6 +45,12 @@ router.post('/create-new', async (req, res, next) => {
     activityImgURL3
   } = req.body;
 
+  // defining the variables of the event badge
+  const badge = await Badge.create({
+    name: badgeName,
+    imgURL: badgeImgURL
+  });
+
   // defining the variables for each activity
   const activityData = {
     activity1: {
@@ -62,6 +70,10 @@ router.post('/create-new', async (req, res, next) => {
     }
   };
 
+  const activity1 = await Activity.create(activityData.activity1);
+  const activity2 = await Activity.create(activityData.activity2);
+  const activity3 = await Activity.create(activityData.activity3);
+
   // defining the variables for each stop
   let stop1, stop2, stop3;
 
@@ -70,19 +82,22 @@ router.post('/create-new', async (req, res, next) => {
       name: stopName,
       imgURL: stopImgURL,
       address: stopAddress,
-      location: { coordinates: [stopLng, stopLat] }
+      location: { coordinates: [stopLng, stopLat] },
+      activity: activity1._id
     },
     stop2: {
       name: stopName2,
       imgURL: stopImgURL2,
       address: stopAddress2,
-      location: { coordinates: [stopLng2, stopLat2] }
+      location: { coordinates: [stopLng2, stopLat2] },
+      activity: activity2._id
     },
     stop3: {
       name: stopName3,
       imgURL: stopImgURL3,
       address: stopAddress3,
-      location: { coordinates: [stopLng3, stopLat3] }
+      location: { coordinates: [stopLng3, stopLat3] },
+      activity: activity3._id
     }
   };
 
@@ -104,6 +119,7 @@ router.post('/create-new', async (req, res, next) => {
     location,
     tags,
     price,
+    badge: badge._id,
     stops: [stop1._id, stop2._id, stop3._id]
   });
 
@@ -132,7 +148,6 @@ router.patch('/:eventId/add-attendee/:userId', async (req, res, next) => {
     { new: true }
   );
   res.json({ event });
-  // event.attendees.push(userId).save();
 });
 
 module.exports = router;

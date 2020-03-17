@@ -218,6 +218,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLat"
             id="stopLat"
             placeholder="Latitude"
@@ -226,6 +227,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLng"
             id="stopLng"
             placeholder="Longitude"
@@ -252,7 +254,7 @@ class createEvent extends Component {
             name="activityImgURL"
             id="activityImgURL"
             placeholder="Activity's Image"
-            value={this.state.stopAddress}
+            value={this.state.activityImgURL}
             onChange={this.changeInput}
           />
 
@@ -280,6 +282,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLat2"
             id="stopLat2"
             placeholder="Latitude"
@@ -288,6 +291,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLng2"
             id="stopLng2"
             placeholder="Longitude"
@@ -341,6 +345,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLat3"
             id="stopLat3"
             placeholder="Latitude"
@@ -349,6 +354,7 @@ class createEvent extends Component {
           />
           <input
             type="number"
+            step="any"
             name="stopLng3"
             id="stopLng3"
             placeholder="Longitude"
