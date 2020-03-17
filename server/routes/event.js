@@ -87,7 +87,7 @@ router.get('/', async (req, res, next) => {
 // route to find one specific event
 router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
-  const event = await Event.findById(eventId);
+  const event = await Event.findById(eventId).populate('attendees');
   res.json({ event });
 });
 
