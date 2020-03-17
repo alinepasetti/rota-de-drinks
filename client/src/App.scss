@@ -75,7 +75,8 @@
 // event single page
 
 .event__single__page header,
-.experience__intro__page header {
+.experience__intro__page header,
+.experience__stop__page header {
   position: relative;
   > h1 {
     margin-left: 1em;
@@ -98,7 +99,8 @@
   .tags__section > span {
     margin-right: 1em;
   }
-  > p {
+  > p,
+  h3 {
     text-align: left;
     margin: 1em;
   }
@@ -147,5 +149,24 @@
     border: 1px solid lightgray;
     border-radius: 3px;
     padding: 0.5em;
+  }
+}
+
+// experience stop page
+.experience__stop__page {
+  text-align: left;
+  .experience__stop__information {
+    margin: 1em 1em 2em 1em;
+  }
+  .experience__stop__activity {
+    margin: 1em 1em 2em 1em;
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+  }
+  .experience__stop__map {
+    margin: 1em 1em 2em 1em;
   }
 }

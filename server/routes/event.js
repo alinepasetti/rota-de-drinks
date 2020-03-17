@@ -137,8 +137,11 @@ router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
   const event = await Event.findById(eventId)
     .populate('attendees')
-    .populate('stops')
-    .populate('badge');
+    .populate('badge')
+    .populate({
+      path: 'stops',
+      populate: { path: 'activity' }
+    });
   res.json({ event });
 });
 
@@ -154,11 +157,10 @@ router.patch('/:eventId/add-attendee/:userId', async (req, res, next) => {
 });
 
 // Route to experience intro
-router.get('/:eventId/experience/intro', async (req, res, next) => {
-  const { eventId } = req.params;
-  const event = await Event.findById(eventId);
-  console.log(event);
-  res.json({ event });
-});
+// router.get('/:eventId/experience/intro', async (req, res, next) => {
+//   const { eventId } = req.params;
+//   const event = await Event.findById(eventId);
+//   res.json({ event });
+// });
 
 module.exports = router;
