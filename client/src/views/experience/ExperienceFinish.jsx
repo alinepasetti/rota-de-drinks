@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
 import { findOneUserAndCompleteEventToTrue } from './../../services/user';
 import './../../App.scss';
@@ -36,11 +37,11 @@ class ExperienceFinish extends Component {
           <Fragment>
             <h1>Congratulations! </h1>
             <h3>You have finished this experience!!</h3>
-            <img src={event.badge.imgURL} />
+            <img src={event.badge.imgURL} alt={event.badge.name} />
             <h3>{event.badge.name}</h3>
-            <a className="button" onClick={this.finishExperience}>
+            <Link to="/" className="button" onClick={this.finishExperience}>
               Add to my profile
-            </a>
+            </Link>
           </Fragment>
         )}
       </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import HomeView from './views/Home';
 import ProfileView from './views/user/Profile';
 import ProfileEditView from './views/user/ProfileEdit';

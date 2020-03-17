@@ -23,6 +23,7 @@ class EventSingle extends Component {
         if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
           userSavedEvent = true;
         }
+        return userSavedEvent;
       });
     }
     this.setState({ userSavedEvent });
@@ -85,9 +86,13 @@ class EventSingle extends Component {
                 </Link>
               )) ||
               (!userHasEvent && (
-                <a onClick={this.saveEvent} className="button">
+                <Link
+                  to={`/event/${this.state.event._id}`}
+                  onClick={this.saveEvent}
+                  className="button"
+                >
                   {(event.price / 100).toFixed(2)}$ | Buy
-                </a>
+                </Link>
               ))}
           </Fragment>
         )) ||

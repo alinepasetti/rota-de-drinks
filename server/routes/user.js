@@ -20,7 +20,7 @@ router.get('/profile/:userId', async (req, res, next) => {
   const { userId } = req.params;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).populate('badges');
     res.json({ user });
   } catch (error) {
     next(error);

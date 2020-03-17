@@ -49,9 +49,14 @@ class ProfileView extends Component {
           {profileOwner && profileOwner.badges.length > 0 && (
             <Fragment>
               <h3>Badges</h3>
-              {/* {profileOwner.badges.map(badge => {
-                return badge.name;
-              })} */}
+              {profileOwner.badges.map(badge => {
+                return (
+                  <div key={badge.name}>
+                    <img src={badge.imgURL} alt={badge.name} />
+                    <p>{badge.name}</p>
+                  </div>
+                );
+              })}
             </Fragment>
           )}
         </div>
