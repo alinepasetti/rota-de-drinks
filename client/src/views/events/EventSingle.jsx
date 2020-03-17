@@ -62,16 +62,15 @@ class EventSingle extends Component {
             <p>{event.description}</p>
             <p>Location: {event.location}</p>
             <section className="atendees__section">
-              {(event.attendee &&
+              {event.attendees &&
                 event.attendees.map(attendee => {
                   return (
-                    <div key={attendee.name}>
-                      <img src={attendee.picture} alt={attendee.name} />
-                      <p>{attendee.name}</p>
+                    <div key={attendee._id}>
+                      <img src={attendee.picture} alt={attendee.firstName} />
+                      <p>{attendee.firstName}</p>
                     </div>
                   );
-                })) ||
-                ' '}
+                })}
             </section>
             {(!user && (
               <Link to="/sign-up" className="button">
