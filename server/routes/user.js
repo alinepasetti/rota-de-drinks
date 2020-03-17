@@ -29,6 +29,7 @@ router.get('/profile/:userId', async (req, res, next) => {
 
 const uploader = require('./../multer-configure');
 
+// Route to edit user profile and upload the picture profile
 router.patch('/profile/:userId/edit', uploader.single('picture'), async (req, res, next) => {
   const userId = req.user._id;
   const { firstName, lastName, email, city, about } = req.body;
@@ -54,6 +55,7 @@ router.patch('/profile/:userId/edit', uploader.single('picture'), async (req, re
   }
 });
 
+// Route to associate the sabed event to the user profile
 router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
   let { userId, eventId } = req.params;
   console.log('userID:', userId, 'event:', eventId);
@@ -66,5 +68,9 @@ router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
   );
   res.json({ user });
 });
+
+// router.patch('/profile/:userId/edit', async (req, res, next) => {
+//   let { userId, eventId } = req.params;
+// });
 
 module.exports = router;

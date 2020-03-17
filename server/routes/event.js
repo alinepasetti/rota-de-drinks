@@ -137,7 +137,8 @@ router.get('/:eventId', async (req, res, next) => {
   const { eventId } = req.params;
   const event = await Event.findById(eventId)
     .populate('attendees')
-    .populate('stops');
+    .populate('stops')
+    .populate('badge');
   res.json({ event });
 });
 
