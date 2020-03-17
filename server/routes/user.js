@@ -58,7 +58,6 @@ router.patch('/profile/:userId/edit', uploader.single('picture'), async (req, re
 // Route to associate the sabed event to the user profile
 router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
   let { userId, eventId } = req.params;
-  console.log('userID:', userId, 'event:', eventId);
   const user = await User.findByIdAndUpdate(
     userId,
     {
@@ -69,8 +68,25 @@ router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
   res.json({ user });
 });
 
-// router.patch('/profile/:userId/edit', async (req, res, next) => {
-//   let { userId, eventId } = req.params;
-// });
+router.patch('/:userId/finish-event/:eventId/:badgeId', async (req, res, next) => {
+  let { userId, eventId, badgeId } = req.params;
+
+  let user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $pull: { events: { eventId: eventId } },
+      $push: { badges: badgeId }
+    },
+    { new: true }
+  );
+  user = await User.findByIdAndUpdate(
+    userId,
+    {
+      $push: { events: { eventId: eventId, completed: true } }
+    },
+    { new: true }
+  );
+  res.json({ user });
+});
 
 module.exports = router;

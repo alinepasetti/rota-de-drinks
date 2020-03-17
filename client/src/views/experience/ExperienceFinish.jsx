@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { findOneEvent } from './../../services/event';
+import { findOneUserAndCompleteEventToTrue } from './../../services/user';
 import './../../App.scss';
 
 class ExperienceFinish extends Component {
@@ -19,12 +20,16 @@ class ExperienceFinish extends Component {
     const event = await findOneEvent(eventId);
     this.setState({ event });
   }
-  finishExperience() {
-    console.log('click');
+  async finishExperience() {
+    const userId = this.props.user._id;
+    const eventId = this.props.match.params.eventId;
+    const badgeId = this.state.event ? this.state.event.badge._id : '';
+    await findOneUserAndCompleteEventToTrue(userId, eventId, badgeId);
   }
 
   render() {
     const event = this.state.event;
+
     return (
       <div>
         {event && (

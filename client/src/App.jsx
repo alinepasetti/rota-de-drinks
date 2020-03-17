@@ -97,7 +97,11 @@ class App extends Component {
             render={props => <ExperienceIntroView {...props} user={this.state.user} />}
           /> */}
           <Route path="/event/:eventId/experience/intro" exact component={ExperienceIntroView} />
-          <Route path="/event/:eventId/experience/finish" exact component={ExperienceFinishView} />
+          <Route
+            path="/event/:eventId/experience/finish"
+            exact
+            render={props => <ExperienceFinishView user={this.state.user} {...props} />}
+          />
           <Route path="/event/:eventId/experience/:stopId" exact component={ExperienceStopView} />
         </Switch>
       </div>

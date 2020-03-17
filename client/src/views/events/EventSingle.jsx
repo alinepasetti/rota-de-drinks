@@ -18,12 +18,13 @@ class EventSingle extends Component {
     const user = this.props.user;
     let userSavedEvent;
     const userEvents = user ? user.events : [];
-
-    userEvents.map(event => {
-      if (event.eventId._id.toString() === currentEventId.toString()) {
-        userSavedEvent = true;
-      }
-    });
+    if (user) {
+      userEvents.map(event => {
+        if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
+          userSavedEvent = true;
+        }
+      });
+    }
     this.setState({ userSavedEvent });
   }
 

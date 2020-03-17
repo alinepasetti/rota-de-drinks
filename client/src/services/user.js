@@ -35,9 +35,16 @@ const findOneUserAndAddEvent = async (userId, eventId) => {
   return user;
 };
 
+const findOneUserAndCompleteEventToTrue = async (userId, eventId, badgeId) => {
+  console.log('service', userId, eventId, badgeId);
+  const user = await instance.patch(`/${userId}/finish-event/${eventId}/${badgeId}`);
+  return user;
+};
+
 export {
   loadUserInformation,
   loadLoggedUserInformation,
   editUserInformation,
-  findOneUserAndAddEvent
+  findOneUserAndAddEvent,
+  findOneUserAndCompleteEventToTrue
 };
