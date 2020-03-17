@@ -6,8 +6,11 @@ class ExperienceStop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: null
+      event: null,
+      page: 0
     };
+    this.nextPage = this.nextPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
   }
 
   async componentDidMount() {
@@ -17,15 +20,33 @@ class ExperienceStop extends Component {
   async fetchData() {
     const eventId = this.props.match.params.eventId;
     const event = await findOneEvent(eventId);
-    console.log(event);
     this.setState({ event });
+  }
+
+  nextPage() {
+    this.setState(previousState => {
+      return {
+        page: previousState.page + 1
+      };
+    });
+  }
+
+  previousPage() {
+    this.setState(previousState => {
+      return {
+        page: previousState.page - 1
+      };
+    });
   }
 
   render() {
     const event = this.state.event;
+    const page = this.state.page;
+    console.log(page);
+
     return (
       <div className="experience__stop__page">
-        {event && (
+        {event && page === 0 && (
           <Fragment>
             <header>
               <h1>{event.name}</h1>
@@ -48,7 +69,82 @@ class ExperienceStop extends Component {
               <h3>Map</h3>
               {/* incluir google maps */}
             </div>
-            <Link to={`/event/${event._id}/experience/${event.stops[1]._id}`}>Next</Link>
+            <Link to={`/event/${event._id}/experience/intro`}>Back</Link>
+            <Link
+              to={`/event/${event._id}/experience/${event.stops[1]._id}`}
+              onClick={this.nextPage}
+            >
+              Next
+            </Link>
+          </Fragment>
+        )}
+        {event && page === 1 && (
+          <Fragment>
+            <header>
+              <h1>{event.name}</h1>
+              <img src={event.imgURL} alt={event.name} />
+            </header>
+            <div className="experience__stop__information">
+              <p>
+                <strong>{event.stops[1].name}</strong>
+              </p>
+              <p>{event.stops[1].address}</p>
+            </div>
+            <div className="experience__stop__activity">
+              <p>
+                <strong>{event.stops[1].activity.name}</strong>
+              </p>
+              <p>{event.stops[1].activity.instructions}</p>
+              <img src={event.stops[1].activity.imgURL} alt={event.stops[1].activity.name} />
+            </div>
+            <div className="experience__stop__map">
+              <h3>Map</h3>
+              {/* incluir google maps */}
+            </div>
+            <Link
+              to={`/event/${event._id}/experience/${event.stops[0]._id}`}
+              onClick={this.previousPage}
+            >
+              Back
+            </Link>
+            <Link
+              to={`/event/${event._id}/experience/${event.stops[2]._id}`}
+              onClick={this.nextPage}
+            >
+              Next
+            </Link>
+          </Fragment>
+        )}
+        {event && page === 2 && (
+          <Fragment>
+            <header>
+              <h1>{event.name}</h1>
+              <img src={event.imgURL} alt={event.name} />
+            </header>
+            <div className="experience__stop__information">
+              <p>
+                <strong>{event.stops[2].name}</strong>
+              </p>
+              <p>{event.stops[2].address}</p>
+            </div>
+            <div className="experience__stop__activity">
+              <p>
+                <strong>{event.stops[2].activity.name}</strong>
+              </p>
+              <p>{event.stops[2].activity.instructions}</p>
+              <img src={event.stops[2].activity.imgURL} alt={event.stops[2].activity.name} />
+            </div>
+            <div className="experience__stop__map">
+              <h3>Map</h3>
+              {/* incluir google maps */}
+            </div>
+            <Link
+              to={`/event/${event._id}/experience/${event.stops[1]._id}`}
+              onClick={this.previousPage}
+            >
+              Back
+            </Link>
+            <Link to={`/event/${event._id}/experience/finish`}>Next</Link>
           </Fragment>
         )}
       </div>
