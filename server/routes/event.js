@@ -15,23 +15,54 @@ router.post('/create-new', async (req, res, next) => {
     location,
     tags,
     price,
+    badgeName,
+    badgeImgURL,
     stopName,
     stopImgURL,
     stopAddress,
     stopLat,
     stopLng,
+    activityName,
+    activityInstructions,
+    activityImgURL,
     stopName2,
     stopImgURL2,
     stopAddress2,
     stopLat2,
     stopLng2,
+    activityName2,
+    activityInstructions2,
+    activityImgURL2,
     stopName3,
     stopImgURL3,
     stopAddress3,
     stopLat3,
-    stopLng3
+    stopLng3,
+    activityName3,
+    activityInstructions3,
+    activityImgURL3
   } = req.body;
 
+  // defining the variables for each activity
+  const activityData = {
+    activity1: {
+      name: activityName,
+      instructions: activityInstructions,
+      imgURL: activityImgURL
+    },
+    activity2: {
+      name: activityName2,
+      instructions: activityInstructions2,
+      imgURL: activityImgURL2
+    },
+    activity3: {
+      name: activityName3,
+      instructions: activityInstructions3,
+      imgURL: activityImgURL3
+    }
+  };
+
+  // defining the variables for each stop
   let stop1, stop2, stop3;
 
   const stopsData = {
@@ -39,22 +70,23 @@ router.post('/create-new', async (req, res, next) => {
       name: stopName,
       imgURL: stopImgURL,
       address: stopAddress,
-      location: { coordinates: [stopLat, stopLng] }
+      location: { coordinates: [stopLng, stopLat] }
     },
     stop2: {
       name: stopName2,
       imgURL: stopImgURL2,
       address: stopAddress2,
-      location: { coordinates: [stopLat2, stopLng2] }
+      location: { coordinates: [stopLng2, stopLat2] }
     },
     stop3: {
       name: stopName3,
       imgURL: stopImgURL3,
       address: stopAddress3,
-      location: { coordinates: [stopLat3, stopLng3] }
+      location: { coordinates: [stopLng3, stopLat3] }
     }
   };
 
+  // checking if the stops were already created in the DB
   const stop1Exists = await Stop.findOne({ name: stopsData.stop1.name });
   stop1Exists ? (stop1 = stop1Exists) : (stop1 = await Stop.create(stopsData.stop1));
 
@@ -64,6 +96,7 @@ router.post('/create-new', async (req, res, next) => {
   const stop3Exists = await Stop.findOne({ name: stopsData.stop3.name });
   stop3Exists ? (stop3 = stop3Exists) : (stop3 = await Stop.create(stopsData.stop3));
 
+  // creating the event and associating the stops within it
   const event = await Event.create({
     name,
     imgURL,
@@ -74,7 +107,6 @@ router.post('/create-new', async (req, res, next) => {
     stops: [stop1._id, stop2._id, stop3._id]
   });
 
-  // event.populate()
   res.json({ event });
 });
 

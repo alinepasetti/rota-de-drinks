@@ -11,21 +11,32 @@ class createEvent extends Component {
       location: '',
       tags: '',
       price: '',
+      badgeName: '',
+      badgeImgURL: '',
       stopName: '',
       stopImgURL: '',
       stopAddress: '',
       stopLat: '',
       stopLng: '',
+      activityName: '',
+      activityInstructions: '',
+      activityImgURL: '',
       stopName2: '',
       stopImgURL2: '',
       stopAddress2: '',
       stopLat2: '',
       stopLng2: '',
+      activityName2: '',
+      activityInstructions2: '',
+      activityImgURL2: '',
       stopName3: '',
       stopImgURL3: '',
       stopAddress3: '',
       stopLat3: '',
-      stopLng3: ''
+      stopLng3: '',
+      activityName3: '',
+      activityInstructions3: '',
+      activityImgURL3: ''
     };
     this.changeInput = this.changeInput.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -40,21 +51,32 @@ class createEvent extends Component {
       description,
       location,
       price,
+      badgeName,
+      badgeImgURL,
       stopName,
       stopImgURL,
       stopAddress,
       stopLat,
       stopLng,
+      activityName,
+      activityInstructions,
+      activityImgURL,
       stopName2,
       stopImgURL2,
       stopAddress2,
       stopLat2,
       stopLng2,
+      activityName2,
+      activityInstructions2,
+      activityImgURL2,
       stopName3,
       stopImgURL3,
       stopAddress3,
       stopLat3,
-      stopLng3
+      stopLng3,
+      activityName3,
+      activityInstructions3,
+      activityImgURL3
     } = this.state;
     const data = {
       name,
@@ -63,21 +85,32 @@ class createEvent extends Component {
       location,
       tags,
       price: Number(price),
+      badgeName,
+      badgeImgURL,
       stopName,
       stopImgURL,
       stopAddress,
       stopLat: Number(stopLat),
       stopLng: Number(stopLng),
+      activityName,
+      activityInstructions,
+      activityImgURL,
       stopName2,
       stopImgURL2,
       stopAddress2,
       stopLat2,
       stopLng2,
+      activityName2,
+      activityInstructions2,
+      activityImgURL2,
       stopName3,
       stopImgURL3,
       stopAddress3,
       stopLat3,
-      stopLng3
+      stopLng3,
+      activityName3,
+      activityInstructions3,
+      activityImgURL3
     };
     try {
       await createNewEvent({
@@ -145,6 +178,22 @@ class createEvent extends Component {
             onChange={this.changeInput}
           />
 
+          <h3>Event badge</h3>
+          <input
+            name="badgeName"
+            id="badgeName"
+            placeholder="Badge name"
+            value={this.state.badgeName}
+            onChange={this.changeInput}
+          />
+          <input
+            name="badgeImgURL"
+            id="badgeImgURL"
+            placeholder="Badge image"
+            value={this.state.badgeImgURL}
+            onChange={this.changeInput}
+          />
+
           <h2>About 1st stop</h2>
           <input
             name="stopName"
@@ -183,6 +232,30 @@ class createEvent extends Component {
             value={this.state.stopLng}
             onChange={this.changeInput}
           />
+
+          <h3>Activity within stop 1</h3>
+          <input
+            name="activityName"
+            id="activityName"
+            placeholder="Activity Name"
+            value={this.state.activityName}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityInstructions"
+            id="activityInstructions"
+            placeholder="Instructions"
+            value={this.state.activityInstructions}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityImgURL"
+            id="activityImgURL"
+            placeholder="Activity's Image"
+            value={this.state.stopAddress}
+            onChange={this.changeInput}
+          />
+
           <h2>About 2nd stop</h2>
           <input
             name="stopName2"
@@ -221,6 +294,29 @@ class createEvent extends Component {
             value={this.state.stopLng2}
             onChange={this.changeInput}
           />
+          <h3>Activity within stop 2</h3>
+          <input
+            name="activityName2"
+            id="activityName2"
+            placeholder="Activity Name"
+            value={this.state.activityName2}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityInstructions2"
+            id="activityInstructions2"
+            placeholder="Instructions"
+            value={this.state.activityInstructions2}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityImgURL2"
+            id="activityImgURL2"
+            placeholder="Activity's Image"
+            value={this.state.activityImgURL2}
+            onChange={this.changeInput}
+          />
+
           <h2>About 3rd stop</h2>
           <input
             name="stopName3"
@@ -257,6 +353,29 @@ class createEvent extends Component {
             id="stopLng3"
             placeholder="Longitude"
             value={this.state.stopLng3}
+            onChange={this.changeInput}
+          />
+
+          <h3>Activity within stop 3</h3>
+          <input
+            name="activityName3"
+            id="activityName3"
+            placeholder="Activity Name"
+            value={this.state.activityName3}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityInstructions3"
+            id="activityInstructions3"
+            placeholder="Instructions"
+            value={this.state.activityInstructions3}
+            onChange={this.changeInput}
+          />
+          <input
+            name="activityImgURL3"
+            id="activityImgURL3"
+            placeholder="Activity's Image"
+            value={this.state.activityImgURL3}
             onChange={this.changeInput}
           />
           <button>Create event</button>

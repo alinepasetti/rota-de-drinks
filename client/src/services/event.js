@@ -3,7 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
   baseURL: '/api/event'
 });
-
+ 
 // service to connect create new event FE and BE
 const createNewEvent = async data => {
   const result = await instance.post('/create-new', data);
