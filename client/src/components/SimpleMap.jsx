@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = () => (
+  <img
+    className="map__pin"
+    src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
+  />
+);
 
 class SimpleMap extends Component {
   constructor(props) {
@@ -14,19 +19,20 @@ class SimpleMap extends Component {
   }
   static defaultProps = {
     center: {
-      lat: -27.0016,
-      lng: -48.6379
+      lat: 38.726946,
+      lng: -9.142685
     },
-    zoom: 13
+    zoom: 11
   };
   componentDidMount() {
     this.stopsLng();
-    this.stopsLng();
+    this.stopsLat();
+    return this.setState({ latCenter: this.state.lat[0] });
   }
-  async stopsLng() {
+  stopsLng() {
     const lng = [];
 
-    await this.props.stops.map(stop => {
+    this.props.stops.map(stop => {
       lng.push(stop.location.coordinates[0].$numberDecimal);
     });
     return this.setState({ lng: lng });
@@ -34,23 +40,31 @@ class SimpleMap extends Component {
   stopsLat() {
     const lat = [];
     this.props.stops.map(stop => {
-      lat.push(stop.location.coordinates[0].$numberDecimal);
+      lat.push(stop.location.coordinates[1].$numberDecimal);
     });
-    return this.setState({ lat });
+    return this.setState({ lat: lat });
   }
   render() {
+    const lat1 = this.state.lat[0];
+    const lng1 = this.state.lng[0];
+    const lat2 = this.state.lat[1];
+    const lng2 = this.state.lng[1];
+    const lat3 = this.state.lat[2];
+    const lng3 = this.state.lng[2];
+
     return (
       <div className="simple__map">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          {this.state.lng.length > 0 &&
-            this.state.lng.map(stop => (
-              <AnyReactComponent lat={stop} lng={stop} text="My Marker" />
-            ))}
-        </GoogleMapReact>
+        {this.state.lng.length > 0 && (
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            defaultCenter={this.props.center}
+            defaultZoom={this.props.zoom}
+          >
+            {this.state.lng.length > 0 && <AnyReactComponent lat={lat1} lng={lng1} />}
+            {this.state.lng.length > 0 && <AnyReactComponent lat={lat2} lng={lng2} />}
+            {this.state.lng.length > 0 && <AnyReactComponent lat={lat3} lng={lng3} />}
+          </GoogleMapReact>
+        )}
       </div>
     );
   }
