@@ -52,51 +52,65 @@ class ProfileView extends Component {
           {profileOwner && profileOwner.badges.length > 0 && (
             <Fragment>
               <h3>Badges</h3>
-              {profileOwner.badges.map(badge => {
-                return (
-                  <div className="badge__item" key={badge.name}>
-                    <img src={badge.imgURL} alt={badge.name} />
-                    <p>{badge.name}</p>
-                  </div>
-                );
-              })}
+              <section className="badges__list">
+                {profileOwner.badges.map(badge => {
+                  return (
+                    <div className="badge__item" key={badge.name}>
+                      <img src={badge.imgURL} alt={badge.name} />
+                      <p>{badge.name}</p>
+                    </div>
+                  );
+                })}
+              </section>
             </Fragment>
           )}
         </div>
         <div className="private__section">
           {profileOwner && loggedUser && profileOwner._id === loggedUser._id && (
             <Fragment>
-              <h3>Next Events</h3>
               {loggedUser.events.map(event => {
                 if (!event.completed) {
                   return (
-                    <Link
-                      to={`/event/${event.eventId._id}`}
-                      className="event__card"
-                      key={event.eventId._id}
-                    >
-                      <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                      <p>{event.eventId.name}</p>
-                    </Link>
+                    <Fragment>
+                      <h3>Next Events</h3>
+                      <section className="event__list">
+                        <Link
+                          to={`/event/${event.eventId._id}`}
+                          className="event__card"
+                          key={event.eventId._id}
+                        >
+                          <img src={event.eventId.imgURL} alt={event.eventId.name} />
+                          <p>{event.eventId.name}</p>
+                        </Link>
+                      </section>
+                    </Fragment>
                   );
                 }
               })}
-              <h3>Past Events</h3>
               {loggedUser.events.map(event => {
                 if (event.completed) {
                   return (
-                    <Link
-                      to={`/event/${event.eventId._id}`}
-                      className="event__card"
-                      key={event.eventId._id}
-                    >
-                      <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                      <p>{event.eventId.name}</p>
-                    </Link>
+                    <Fragment>
+                      <h3>Past Events</h3>
+                      <section className="event__list">
+                        <Link
+                          to={`/event/${event.eventId._id}`}
+                          className="event__card"
+                          key={event.eventId._id}
+                        >
+                          <img src={event.eventId.imgURL} alt={event.eventId.name} />
+                          <p>{event.eventId.name}</p>
+                        </Link>
+                      </section>
+                    </Fragment>
                   );
                 }
               })}
-              <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>
+
+              <div className="private__links">
+                <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>
+                <Link to={`/${loggedUser._id}/payment-method/list`}>View Payment Methods</Link>
+              </div>
             </Fragment>
           )}
         </div>

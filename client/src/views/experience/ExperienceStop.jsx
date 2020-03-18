@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
+import SimpleMap from './../../components/ExperienceSimpleMap';
 
 class ExperienceStop extends Component {
   constructor(props) {
@@ -70,7 +71,7 @@ class ExperienceStop extends Component {
             </div>
             <div className="experience__stop__map">
               <h3>Map</h3>
-              {/* incluir google maps */}
+              {<SimpleMap stops={event.stops} />}
             </div>
             <div className="experience__stop__buttons">
               <Link to={`/event/${event._id}/experience/intro`} className="previous__button">

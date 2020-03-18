@@ -15,6 +15,8 @@ const indexRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const userRouter = require('./routes/user');
 const eventRouter = require('./routes/event');
+const paymentMethodRouter = require('./routes/payment-method');
+const purchaseRouter = require('./routes/purchase');
 
 const app = express();
 
@@ -46,6 +48,8 @@ app.use('/', indexRouter);
 app.use('/api/authentication', authenticationRouter);
 app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
+app.use('/api/payment-method', paymentMethodRouter);
+app.use('/api/purchase', purchaseRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
