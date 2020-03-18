@@ -49,7 +49,10 @@ const schema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Badge'
       }
-    ]
+    ],
+    stripeCustomerId: {
+      type: String
+    }
   },
   {
     timestamps: {

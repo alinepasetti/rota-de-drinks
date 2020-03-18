@@ -14,7 +14,8 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import SignInView from './views/authentication/SignIn';
 import SignUpView from './views/authentication/SignUp';
-
+import PaymentMethodListView from './views/payment/PaymentMethodList';
+import PaymentMethodCreateView from './views/payment/PaymentMethodCreate';
 import { loadLoggedUserInformation } from './services/user';
 
 class App extends Component {
@@ -48,7 +49,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        
         {this.state.loaded && (
           <Fragment>
             <NavBar user={this.state.user} updateUserInformation={this.updateUserInformation} />
@@ -117,6 +117,18 @@ class App extends Component {
                 path="/event/:eventId"
                 exact
                 render={props => <EventSingleView user={this.state.user} {...props} />}
+              />
+              <ProtectedRoute
+                authorized={this.state.user}
+                redirect="/sign-in"
+                path="/:userId/payment-method/list"
+                render={props => <PaymentMethodListView user={this.state.user} {...props} />}
+              />
+              <ProtectedRoute
+                authorized={this.state.user}
+                redirect="/sign-in"
+                path="/:userId/payment-method/create"
+                render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
               />
             </Switch>
           </Fragment>

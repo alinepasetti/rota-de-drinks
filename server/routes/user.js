@@ -1,8 +1,9 @@
 'use strict';
 
 const { Router } = require('express');
-const router = new Router();
 const User = require('./../models/user');
+
+const router = new Router();
 
 router.get('/loggedUser', async (req, res, next) => {
   let user;
@@ -55,9 +56,9 @@ router.patch('/profile/:userId/edit', uploader.single('picture'), async (req, re
   }
 });
 
-// Route to associate the sabed event to the user profile
+// Route to associate the saved event to the user profile
 router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
-  let { userId, eventId } = req.params;
+  const { userId, eventId } = req.params;
   const user = await User.findByIdAndUpdate(
     userId,
     {
@@ -69,7 +70,7 @@ router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
 });
 
 router.patch('/:userId/finish-event/:eventId/:badgeId', async (req, res, next) => {
-  let { userId, eventId, badgeId } = req.params;
+  const { userId, eventId, badgeId } = req.params;
 
   let user = await User.findByIdAndUpdate(
     userId,

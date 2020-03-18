@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent, findOneEventAndAddAttendee } from './../../services/event';
 import { findOneUserAndAddEvent } from './../../services/user';
+import { createPurchase } from './../../services/purchase';
 import SimpleMap from './../../components/SimpleMap';
 
 class EventSingle extends Component {
@@ -9,25 +10,25 @@ class EventSingle extends Component {
     super(props);
     this.state = {
       event: null,
-      userSavedEvent: false
+      userBoughtEvent: false
     };
-    this.saveEvent = this.saveEvent.bind(this);
+    this.buyEvent = this.buyEvent.bind(this);
   }
   componentDidMount() {
     this.fetchData();
     const currentEventId = this.props.match.params.eventId;
     const user = this.props.user;
-    let userSavedEvent;
+    let userBoughtEvent;
     const userEvents = user ? user.events : [];
-    if (userEvents.lenght > 0) {
+    if (userEvents.length > 0) {
       userEvents.map(event => {
         if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
-          userSavedEvent = true;
+          userBoughtEvent = true;
         }
-        return userSavedEvent;
+        return userBoughtEvent;
       });
     }
-    this.setState({ userSavedEvent });
+    this.setState({ userBoughtEvent });
   }
 
   async fetchData() {
@@ -35,21 +36,26 @@ class EventSingle extends Component {
     const event = await findOneEvent(eventId);
     this.setState({ event });
   }
-  async saveEvent() {
+  async buyEvent() {
     // event id into the event function
     const eventId = this.props.match.params.eventId;
     // user id into the user function
     const userId = this.props.user._id;
-    const event = await findOneEventAndAddAttendee(eventId, userId);
-    await findOneUserAndAddEvent(userId, eventId);
-    this.setState({ event, userSavedEvent: true });
+    try {
+      const event = await findOneEventAndAddAttendee(eventId, userId);
+      await findOneUserAndAddEvent(userId, eventId);
+      this.setState({ event, userBoughtEvent: true });
+      await createPurchase(eventId);
+    } catch (error) {
+      console.log(error);
+    }
   }
-  
 
   render() {
     const user = this.props.user;
     const event = this.state.event;
-    const userHasEvent = this.state.userSavedEvent;
+    const userBoughtEvent = this.state.userBoughtEvent;
+
     return (
       <div className="event__single__page">
         {(event && (
@@ -89,9 +95,7 @@ class EventSingle extends Component {
                   </li>
                 ))}
               </ul>
-              <SimpleMap
-                stops={event.stops}
-              />
+              <SimpleMap stops={event.stops} />
             </section>
 
             {(!user && (
@@ -99,13 +103,13 @@ class EventSingle extends Component {
                 {(event.price / 100).toFixed(2)}$ | Buy
               </Link>
             )) ||
-              (userHasEvent && (
+              (userBoughtEvent && (
                 <Link to={`/event/${this.state.event._id}/experience/intro`} className="button">
                   Start Experience
                 </Link>
               )) ||
-              (!userHasEvent && (
-                <Link onClick={this.saveEvent} className="button">
+              (!userBoughtEvent && (
+                <Link onClick={this.buyEvent} className="button">
                   {(event.price / 100).toFixed(2)}$ | Buy
                 </Link>
               ))}

@@ -29,6 +29,19 @@
   h2 {
     margin: 0.5em 0;
   }
+
+  .private__links {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    a {
+      text-decoration: none;
+      color: inherit;
+      padding: 1em;
+      border: 1px solid lightgray;
+      margin-bottom: 1em;
+    }
+  }
 }
 
 .editprofile__form {

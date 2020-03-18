@@ -96,7 +96,10 @@ class ProfileView extends Component {
                   );
                 }
               })}
-              <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>
+              <div className="private__links">
+                <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>
+                <Link to={`/${loggedUser._id}/payment-method/list`}>View Payment Methods</Link>
+              </div>
             </Fragment>
           )}
         </div>
