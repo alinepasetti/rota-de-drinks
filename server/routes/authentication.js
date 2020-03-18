@@ -32,6 +32,10 @@ router.post('/sign-in', (req, res, next) => {
   let user;
   const { email, password } = req.body;
   User.findOne({ email })
+    .populate({
+      path: 'events.eventId',
+      model: 'Event'
+    })
     .then(document => {
       if (!document) {
         return Promise.reject(new Error("There's no user with that email."));

@@ -19,8 +19,10 @@ class EventSingle extends Component {
     const user = this.props.user;
     let userSavedEvent;
     const userEvents = user ? user.events : [];
-    if (userEvents.lenght > 0) {
+    console.log('user events array', userEvents, 'current event id', currentEventId);
+    if (userEvents.length > 0) {
       userEvents.map(event => {
+        console.log('each event', event.eventId._id.toString());
         if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
           userSavedEvent = true;
         }
@@ -44,12 +46,12 @@ class EventSingle extends Component {
     await findOneUserAndAddEvent(userId, eventId);
     this.setState({ event, userSavedEvent: true });
   }
-  
 
   render() {
     const user = this.props.user;
     const event = this.state.event;
     const userHasEvent = this.state.userSavedEvent;
+
     return (
       <div className="event__single__page">
         {(event && (
@@ -85,13 +87,15 @@ class EventSingle extends Component {
               <ul>
                 {event.stops.map(stop => (
                   <li key={stop.name}>
+                    <img
+                      className="map__pin"
+                      src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
+                    />
                     {stop.name} - {stop.address}
                   </li>
                 ))}
               </ul>
-              <SimpleMap
-                stops={event.stops}
-              />
+              <SimpleMap stops={event.stops} />
             </section>
 
             {(!user && (

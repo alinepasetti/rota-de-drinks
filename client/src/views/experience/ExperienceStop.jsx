@@ -89,21 +89,23 @@ class ExperienceStop extends Component {
         {event && page === 1 && (
           <Fragment>
             <header>
-              <h1>{event.name}</h1>
+              <div className="experience__title">
+                <h5>{event.name}</h5>
+                <h1>{event.stops[1].name}</h1>
+              </div>
               <img src={event.stops[1].imgURL} alt={event.name} />
             </header>
             <div className="experience__stop__information">
-              <p>
-                <strong>{event.stops[1].name}</strong>
-              </p>
               <p>Address: {event.stops[1].address}</p>
             </div>
             <div className="experience__stop__activity">
-              <h3>What's your task</h3>
-              <p>
-                <strong>{event.stops[1].activity.name}</strong>
-              </p>
-              <p>{event.stops[1].activity.instructions}</p>
+              <div>
+                <h3>What's your task</h3>
+                <p>
+                  <strong>{event.stops[1].activity.name}</strong>
+                </p>
+                <p>{event.stops[1].activity.instructions}</p>
+              </div>
               <img src={event.stops[1].activity.imgURL} alt={event.stops[1].activity.name} />
             </div>
             <div className="experience__stop__map">
@@ -131,21 +133,23 @@ class ExperienceStop extends Component {
         {event && page === 2 && (
           <Fragment>
             <header>
-              <h1>{event.name}</h1>
+              <div className="experience__title">
+                <h5>{event.name}</h5>
+                <h1>{event.stops[2].name}</h1>
+              </div>
               <img src={event.stops[2].imgURL} alt={event.name} />
             </header>
             <div className="experience__stop__information">
-              <p>
-                <strong>{event.stops[2].name}</strong>
-              </p>
               <p>Address: {event.stops[2].address}</p>
             </div>
             <div className="experience__stop__activity">
-              <h3>What's your task</h3>
-              <p>
-                <strong>{event.stops[2].activity.name}</strong>
-              </p>
-              <p>{event.stops[2].activity.instructions}</p>
+              <div>
+                <h3>What's your task</h3>
+                <p>
+                  <strong>{event.stops[2].activity.name}</strong>
+                </p>
+                <p>{event.stops[2].activity.instructions}</p>
+              </div>
               <img src={event.stops[2].activity.imgURL} alt={event.stops[2].activity.name} />
             </div>
             <div className="experience__stop__map">

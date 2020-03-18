@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = () => (
+const PrimaryMarker = () => (
   <img
     className="map__pin"
     src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
   />
+);
+const DisabledMarker = () => (
+  <img className="map__pin" src="https://image.flaticon.com/icons/png/512/23/23394.png" />
 );
 
 class SimpleMap extends Component {
@@ -18,16 +21,11 @@ class SimpleMap extends Component {
     this.stopsLat = this.stopsLat.bind(this);
   }
   static defaultProps = {
-    center: {
-      lat: 38.726946,
-      lng: -9.142685
-    },
     zoom: 11
   };
   componentDidMount() {
     this.stopsLng();
     this.stopsLat();
-    return this.setState({ latCenter: this.state.lat[0] });
   }
   stopsLng() {
     const lng = [];
@@ -51,18 +49,22 @@ class SimpleMap extends Component {
     const lng2 = this.state.lng[1];
     const lat3 = this.state.lat[2];
     const lng3 = this.state.lng[2];
+    const center = {
+      lat: Number(lat1),
+      lng: Number(lng1)
+    };
 
     return (
       <div className="simple__map">
         {this.state.lng.length > 0 && (
           <GoogleMapReact
             bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
-            defaultCenter={this.props.center}
+            defaultCenter={center}
             defaultZoom={this.props.zoom}
           >
-            {this.state.lng.length > 0 && <AnyReactComponent lat={lat1} lng={lng1} />}
-            {this.state.lng.length > 0 && <AnyReactComponent lat={lat2} lng={lng2} />}
-            {this.state.lng.length > 0 && <AnyReactComponent lat={lat3} lng={lng3} />}
+            {this.state.lng.length > 0 && <PrimaryMarker lat={lat1} lng={lng1} />}
+            {this.state.lng.length > 0 && <PrimaryMarker lat={lat2} lng={lng2} />}
+            {this.state.lng.length > 0 && <PrimaryMarker lat={lat3} lng={lng3} />}
           </GoogleMapReact>
         )}
       </div>

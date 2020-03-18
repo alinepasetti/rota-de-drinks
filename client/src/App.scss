@@ -140,7 +140,18 @@
       }
     }
   }
-
+  .map__section {
+    ul {
+      padding: 0;
+      margin-left: 1em;
+    }
+    li {
+      list-style-type: none;
+      img {
+        margin-right: 1em;
+      }
+    }
+  }
   .button {
     width: 100%;
     background-color: rgb(38, 126, 38);
@@ -220,7 +231,7 @@
     }
   }
   .experience__stop__map {
-    margin: 1em 1em 2em 1em;
+    margin: 1em 1em 4em 1em;
   }
   .experience__stop__buttons {
     width: 100%;
