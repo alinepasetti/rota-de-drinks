@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent, findOneEventAndAddAttendee } from './../../services/event';
 import { findOneUserAndAddEvent } from './../../services/user';
+import SimpleMap from './../../components/SimpleMap';
 
 class EventSingle extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class EventSingle extends Component {
     const user = this.props.user;
     let userSavedEvent;
     const userEvents = user ? user.events : [];
-    if (user) {
+    if (userEvents.lenght > 0) {
       userEvents.map(event => {
         if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
           userSavedEvent = true;
@@ -43,12 +44,12 @@ class EventSingle extends Component {
     await findOneUserAndAddEvent(userId, eventId);
     this.setState({ event, userSavedEvent: true });
   }
+  
 
   render() {
     const user = this.props.user;
     const event = this.state.event;
     const userHasEvent = this.state.userSavedEvent;
-
     return (
       <div className="event__single__page">
         {(event && (
@@ -88,6 +89,9 @@ class EventSingle extends Component {
                   </li>
                 ))}
               </ul>
+              <SimpleMap
+                stops={event.stops}
+              />
             </section>
 
             {(!user && (

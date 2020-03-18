@@ -14,6 +14,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import SignInView from './views/authentication/SignIn';
 import SignUpView from './views/authentication/SignUp';
+
 import { loadLoggedUserInformation } from './services/user';
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         {this.state.loaded && (
           <Fragment>
             <NavBar user={this.state.user} updateUserInformation={this.updateUserInformation} />
