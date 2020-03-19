@@ -13,38 +13,29 @@ class createEvent extends Component {
       price: '',
       badgeName: '',
       badgeImgURL: '',
-      stopName: '',
-      stopImgURL: '',
-      stopAddress: '',
-      stopLat: '',
-      stopLng: '',
-      activityName: '',
-      activityInstructions: '',
-      activityImgURL: '',
-      stopName2: '',
-      stopImgURL2: '',
-      stopAddress2: '',
-      stopLat2: '',
-      stopLng2: '',
-      activityName2: '',
-      activityInstructions2: '',
-      activityImgURL2: '',
-      stopName3: '',
-      stopImgURL3: '',
-      stopAddress3: '',
-      stopLat3: '',
-      stopLng3: '',
-      activityName3: '',
-      activityInstructions3: '',
-      activityImgURL3: ''
+      stops: [
+        {
+          stopName: '',
+          stopImgURL: '',
+          stopAddress: '',
+          stopLat: '',
+          stopLng: '',
+          activityName: '',
+          activityInstructions: '',
+          activityImgURL: ''
+        }
+      ]
     };
-    this.changeInput = this.changeInput.bind(this);
-    this.handleFormSubmission = this.handleFormSubmission.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleAddStop = this.handleAddStop.bind(this);
+    this.handleChangeStop = this.handleChangeStop.bind(this);
   }
 
-  async handleFormSubmission(event) {
+  async handleFormSubmit(event) {
     event.preventDefault();
     const tags = this.state.tags.split(' ');
+
     const {
       name,
       imgURL,
@@ -53,92 +44,80 @@ class createEvent extends Component {
       price,
       badgeName,
       badgeImgURL,
-      stopName,
-      stopImgURL,
-      stopAddress,
-      stopLat,
-      stopLng,
-      activityName,
-      activityInstructions,
-      activityImgURL,
-      stopName2,
-      stopImgURL2,
-      stopAddress2,
-      stopLat2,
-      stopLng2,
-      activityName2,
-      activityInstructions2,
-      activityImgURL2,
-      stopName3,
-      stopImgURL3,
-      stopAddress3,
-      stopLat3,
-      stopLng3,
-      activityName3,
-      activityInstructions3,
-      activityImgURL3
+      stops
     } = this.state;
+
     const data = {
       name,
       imgURL,
       description,
       location,
       tags,
-      price: Number(price),
+      price,
       badgeName,
       badgeImgURL,
-      stopName,
-      stopImgURL,
-      stopAddress,
-      stopLat: Number(stopLat),
-      stopLng: Number(stopLng),
-      activityName,
-      activityInstructions,
-      activityImgURL,
-      stopName2,
-      stopImgURL2,
-      stopAddress2,
-      stopLat2,
-      stopLng2,
-      activityName2,
-      activityInstructions2,
-      activityImgURL2,
-      stopName3,
-      stopImgURL3,
-      stopAddress3,
-      stopLat3,
-      stopLng3,
-      activityName3,
-      activityInstructions3,
-      activityImgURL3
+      stops
     };
+
     try {
-      await createNewEvent({
+      let newEvent = await createNewEvent({
         ...data
       });
+      console.log(newEvent);
       this.props.history.push('/');
     } catch (error) {
       console.log(error);
     }
   }
-  changeInput(event) {
+
+  handleChangeInput(event) {
     event.preventDefault();
     const inputName = event.target.name;
     const value = event.target.value;
     this.setState({ [inputName]: value });
   }
 
+  handleChangeStop(event, index) {
+    const inputName = event.target.name;
+    const value = event.target.value;
+
+    const newStops = this.state.stops.map((stop, stopIndex) => {
+      if (index !== stopIndex) return stop;
+      return { ...stop, [inputName]: value };
+    });
+
+    this.setState({ stops: newStops });
+  }
+
+  handleAddStop() {
+    this.setState({
+      stops: this.state.stops.concat([
+        {
+          stopName: '',
+          stopImgURL: '',
+          stopAddress: '',
+          stopLat: '',
+          stopLng: '',
+          activityName: '',
+          activityInstructions: '',
+          activityImgURL: ''
+        }
+      ])
+    });
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmission} className="create-event__form">
+        <form onSubmit={this.handleFormSubmit} className="create-event__form">
           <h2>About Event</h2>
           <input
+            type="text"
             name="name"
             id="name"
             placeholder="Event name"
             value={this.state.name}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <input
             type="text"
@@ -146,28 +125,30 @@ class createEvent extends Component {
             id="imgURL"
             placeholder="Event image"
             value={this.state.imgURL}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <textarea
             name="description"
             id="description"
             placeholder="Description"
             value={this.state.description}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <input
+            type="text"
             name="location"
             id="location"
             placeholder="Location"
             value={this.state.location}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <input
+            type="text"
             name="tags"
             id="tags"
             placeholder="Tags"
             value={this.state.tags}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <input
             type="number"
@@ -175,215 +156,107 @@ class createEvent extends Component {
             id="price"
             placeholder="Price"
             value={this.state.price}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
 
           <h3>Event badge</h3>
           <input
+            type="text"
             name="badgeName"
             id="badgeName"
             placeholder="Badge name"
             value={this.state.badgeName}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
           <input
+            type="text"
             name="badgeImgURL"
             id="badgeImgURL"
             placeholder="Badge image"
             value={this.state.badgeImgURL}
-            onChange={this.changeInput}
+            onChange={this.handleChangeInput}
           />
 
-          <h2>About 1st stop</h2>
-          <input
-            name="stopName"
-            id="stopName"
-            placeholder="Stop name"
-            value={this.state.stopName}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopImgURL"
-            id="stopImgURL"
-            placeholder="Image URL"
-            value={this.state.stopImgURL}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopAddress"
-            id="stopAddress"
-            placeholder="Address"
-            value={this.state.stopAddress}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLat"
-            id="stopLat"
-            placeholder="Latitude"
-            value={this.state.stopLat}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLng"
-            id="stopLng"
-            placeholder="Longitude"
-            value={this.state.stopLng}
-            onChange={this.changeInput}
-          />
+          {this.state.stops.map((stop, index) => (
+            <div className="stops">
+              <h2>About Stop #{index + 1}</h2>
+              <input
+                type="text"
+                name="stopName"
+                id="stopName"
+                placeholder={`Stop #${index + 1} Name`}
+                value={stop.stopName}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="text"
+                name="stopImgURL"
+                id="stopImgURL"
+                placeholder={`Stop #${index + 1} Image URL`}
+                value={stop.stopImgURL}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="text"
+                name="stopAddress"
+                id="stopAddress"
+                placeholder={`Stop #${index + 1} Address`}
+                value={stop.stopAddress}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="number"
+                step="any"
+                name="stopLat"
+                id="stopLat"
+                placeholder={`Stop #${index + 1} Latitude`}
+                value={stop.stopLat}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="number"
+                step="any"
+                name="stopLng"
+                id="stopLng"
+                placeholder={`Stop #${index + 1} Longitude`}
+                value={stop.stopLng}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <h3>Activity within Stop #{index + 1}</h3>
+              <input
+                type="text"
+                name="activityName"
+                id="activityName"
+                placeholder={`Activity Name`}
+                value={stop.activityName}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="text"
+                name="activityInstructions"
+                id="activityInstructions"
+                placeholder={`Activity Instructions`}
+                value={stop.activityInstructions}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
+              <input
+                type="text"
+                name="activityImgURL"
+                id="activityImgURL"
+                placeholder={`Activity Image URL`}
+                value={stop.activityImgURL}
+                onChange={event => this.handleChangeStop(event, index)}
+              />
 
-          <h3>Activity within stop 1</h3>
-          <input
-            name="activityName"
-            id="activityName"
-            placeholder="Activity Name"
-            value={this.state.activityName}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityInstructions"
-            id="activityInstructions"
-            placeholder="Instructions"
-            value={this.state.activityInstructions}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityImgURL"
-            id="activityImgURL"
-            placeholder="Activity's Image"
-            value={this.state.activityImgURL}
-            onChange={this.changeInput}
-          />
-
-          <h2>About 2nd stop</h2>
-          <input
-            name="stopName2"
-            id="stopName2"
-            placeholder="Stop name"
-            value={this.state.stopName2}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopImgURL2"
-            id="stopImgURL2"
-            placeholder="Image URL"
-            value={this.state.stopImgURL2}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopAddress2"
-            id="stopAddress2"
-            placeholder="Address"
-            value={this.state.stopAddress2}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLat2"
-            id="stopLat2"
-            placeholder="Latitude"
-            value={this.state.stopLat2}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLng2"
-            id="stopLng2"
-            placeholder="Longitude"
-            value={this.state.stopLng2}
-            onChange={this.changeInput}
-          />
-          <h3>Activity within stop 2</h3>
-          <input
-            name="activityName2"
-            id="activityName2"
-            placeholder="Activity Name"
-            value={this.state.activityName2}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityInstructions2"
-            id="activityInstructions2"
-            placeholder="Instructions"
-            value={this.state.activityInstructions2}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityImgURL2"
-            id="activityImgURL2"
-            placeholder="Activity's Image"
-            value={this.state.activityImgURL2}
-            onChange={this.changeInput}
-          />
-
-          <h2>About 3rd stop</h2>
-          <input
-            name="stopName3"
-            id="stopName3"
-            placeholder="Stop name"
-            value={this.state.stopName3}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopImgURL3"
-            id="stopImgURL3"
-            placeholder="Image URL"
-            value={this.state.stopImgURL3}
-            onChange={this.changeInput}
-          />
-          <input
-            name="stopAddress3"
-            id="stopAddress3"
-            placeholder="Address"
-            value={this.state.stopAddress3}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLat3"
-            id="stopLat3"
-            placeholder="Latitude"
-            value={this.state.stopLat3}
-            onChange={this.changeInput}
-          />
-          <input
-            type="number"
-            step="any"
-            name="stopLng3"
-            id="stopLng3"
-            placeholder="Longitude"
-            value={this.state.stopLng3}
-            onChange={this.changeInput}
-          />
-
-          <h3>Activity within stop 3</h3>
-          <input
-            name="activityName3"
-            id="activityName3"
-            placeholder="Activity Name"
-            value={this.state.activityName3}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityInstructions3"
-            id="activityInstructions3"
-            placeholder="Instructions"
-            value={this.state.activityInstructions3}
-            onChange={this.changeInput}
-          />
-          <input
-            name="activityImgURL3"
-            id="activityImgURL3"
-            placeholder="Activity's Image"
-            value={this.state.activityImgURL3}
-            onChange={this.changeInput}
-          />
+              {/* <button type="button" onClick={this.handleRemoveStop(index)} className="small">
+                -
+              </button> */}
+            </div>
+          ))}
+          <button type="button" onClick={this.handleAddStop}>
+            Add a new stop
+          </button>
+          <br />
           <button>Create event</button>
         </form>
       </div>

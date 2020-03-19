@@ -122,12 +122,14 @@ class App extends Component {
                 authorized={this.state.user}
                 redirect="/sign-in"
                 path="/:userId/payment-method/list"
+                exact
                 render={props => <PaymentMethodListView user={this.state.user} {...props} />}
               />
               <ProtectedRoute
                 authorized={this.state.user}
                 redirect="/sign-in"
                 path="/:userId/payment-method/create"
+                exact
                 render={props => <PaymentMethodCreateView user={this.state.user} {...props} />}
               />
             </Switch>
