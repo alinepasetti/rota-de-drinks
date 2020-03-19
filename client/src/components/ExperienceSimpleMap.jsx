@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import GoogleMapReact from 'google-map-react';
+import './../App.scss';
 
 const PrimaryMarker = () => (
   <img
+    alt="pin"
     className="map__pin"
     src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
   />
 );
 const DisabledMarker = () => (
-  <img className="map__pin" src="https://image.flaticon.com/icons/png/512/23/23394.png" />
+  <img alt="pin" className="map__pin" src="https://image.flaticon.com/icons/png/512/23/23394.png" />
 );
+const Wrapping = () => <Fragment></Fragment>;
 
 class SimpleMap extends Component {
   constructor(props) {
@@ -19,6 +22,7 @@ class SimpleMap extends Component {
       lat: []
     };
     this.stopsLat = this.stopsLat.bind(this);
+    this.stopsLng = this.stopsLng.bind(this);
   }
   static defaultProps = {
     zoom: 11
@@ -53,10 +57,10 @@ class SimpleMap extends Component {
       lat: Number(lat1),
       lng: Number(lng1)
     };
-
+    console.log(lat1, lat2, lat3);
     return (
       <div className="simple__map">
-        {this.state.lng.length > 0 && (
+        {this.state.lng.length > 0 && this.props.stop == 0 && (
           <GoogleMapReact
             bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
             defaultCenter={center}
@@ -64,8 +68,31 @@ class SimpleMap extends Component {
           >
             {this.state.lng.length > 0 && <PrimaryMarker lat={lat1} lng={lng1} />}
             {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
+            {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
+          </GoogleMapReact>
+        )}
+        {this.state.lng.length > 0 && this.props.stop == 1 && (
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            defaultCenter={center}
+            defaultZoom={this.props.zoom}
+          >
+            {this.state.lng.length > 0 && <DisabledMarker lat={lat1} lng={lng1} />}
+            {this.state.lng.length > 0 && <PrimaryMarker lat={lat2} lng={lng2} />}
             {this.state.lng.length > 0 && <DisabledMarker lat={lat3} lng={lng3} />}
           </GoogleMapReact>
+        )}
+        {this.state.lng.length > 0 && this.props.stop == 2 && (
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            defaultCenter={center}
+            defaultZoom={this.props.zoom}
+          >
+            {this.state.lng.length > 0 && <DisabledMarker lat={lat1} lng={lng1} />}
+            {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
+            {this.state.lng.length > 0 && <PrimaryMarker lat={lat3} lng={lng3} />}
+          </GoogleMapReact>
+        )}
         )}
       </div>
     );

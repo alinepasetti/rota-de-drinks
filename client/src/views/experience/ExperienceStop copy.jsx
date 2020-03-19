@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
 import SimpleMap from './../../components/ExperienceSimpleMap';
-import './experience.scss';
+import './../../App.scss';
 
 class ExperienceStop extends Component {
   constructor(props) {
@@ -44,41 +44,52 @@ class ExperienceStop extends Component {
   render() {
     const event = this.state.event;
     const page = this.state.page;
+    console.log(page, event.stops[page], page + 1);
 
     return (
       <div className="experience__stop__page">
-        {event && page === 0 && (
+        {event && (
           <Fragment>
             <header>
               <div className="experience__title">
                 <h5>{event.name}</h5>
-                <h1>{event.stops[0].name}</h1>
+                <h1>{event.stops[page].name}</h1>
               </div>
-              <img src={event.stops[0].imgURL} alt={event.name} />
+              <img src={event.stops[page].imgURL} alt={event.name} />
             </header>
             <div className="experience__stop__information">
-              <p>Address: {event.stops[0].address}</p>
+              <p>Address: {event.stops[page].address}</p>
             </div>
             <div className="experience__stop__activity">
               <div>
                 <h3>What's your task</h3>
                 <p>
-                  <strong>{event.stops[0].activity.name}</strong>
+                  <strong>{event.stops[page].activity.name}</strong>
                 </p>
-                <p>{event.stops[0].activity.instructions}</p>
+                <p>{event.stops[page].activity.instructions}</p>
               </div>
-              <img src={event.stops[0].activity.imgURL} alt={event.stops[0].activity.name} />
+              <img src={event.stops[page].activity.imgURL} alt={event.stops[page].activity.name} />
             </div>
             <div className="experience__stop__map">
               <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
+              {<SimpleMap stops={event.stops} stop={page} />}
             </div>
             <div className="experience__stop__buttons">
-              <Link to={`/event/${event._id}/experience/intro`} className="previous__button">
-                Back
-              </Link>
+              {(event.stops[0] && (
+                <Link to={`/event/${event._id}/experience/intro`} className="previous__button">
+                  Back
+                </Link>
+              )) || (
+                <Link
+                  to={`/event/${event._id}/experience/${event.stops[page - 1]._id}`}
+                  onClick={this.previousPage}
+                  className="previous__button"
+                >
+                  Back
+                </Link>
+              )}
               <Link
-                to={`/event/${event._id}/experience/${event.stops[1]._id}`}
+                to={`/event/${event._id}/experience/${event.stops[page + 1]._id}`}
                 onClick={this.nextPage}
                 className="next__button"
               >
@@ -87,7 +98,7 @@ class ExperienceStop extends Component {
             </div>
           </Fragment>
         )}
-        {event && page === 1 && (
+        {/*event && page === 1 && (
           <Fragment>
             <header>
               <div className="experience__title">
@@ -111,7 +122,7 @@ class ExperienceStop extends Component {
             </div>
             <div className="experience__stop__map">
               <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
+              {<SimpleMap stops={event.stops} stop={page} />}
             </div>
             <div className="experience__stop__buttons">
               <Link
@@ -155,7 +166,7 @@ class ExperienceStop extends Component {
             </div>
             <div className="experience__stop__map">
               <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
+              {<SimpleMap stops={event.stops} stop={page} />}
             </div>
             <div className="experience__stop__buttons">
               <Link
@@ -170,7 +181,7 @@ class ExperienceStop extends Component {
               </Link>
             </div>
           </Fragment>
-        )}
+        )*/}
       </div>
     );
   }

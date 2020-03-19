@@ -3,12 +3,10 @@ import GoogleMapReact from 'google-map-react';
 
 const PrimaryMarker = () => (
   <img
+    alt="pin"
     className="map__pin"
     src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
   />
-);
-const DisabledMarker = () => (
-  <img className="map__pin" src="https://image.flaticon.com/icons/png/512/23/23394.png" />
 );
 
 class SimpleMap extends Component {
@@ -19,6 +17,7 @@ class SimpleMap extends Component {
       lat: []
     };
     this.stopsLat = this.stopsLat.bind(this);
+    this.stopsLng = this.stopsLng.bind(this);
   }
   static defaultProps = {
     zoom: 11

@@ -4,15 +4,18 @@ import { findOneEvent, findOneEventAndAddAttendee } from './../../services/event
 import { findOneUserAndAddEvent } from './../../services/user';
 import { createPurchase } from './../../services/purchase';
 import SimpleMap from './../../components/SimpleMap';
+import PaymentModal from './../../components/PaymentModal';
 
 class EventSingle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       event: null,
-      userBoughtEvent: false
+      userBoughtEvent: false,
+      paymentModalOpen: false
     };
     this.buyEvent = this.buyEvent.bind(this);
+    this.handlepaymentModal = this.handlepaymentModal.bind(this);
   }
   componentDidMount() {
     this.fetchData();
@@ -45,11 +48,14 @@ class EventSingle extends Component {
     try {
       const event = await findOneEventAndAddAttendee(eventId, userId);
       await findOneUserAndAddEvent(userId, eventId);
-      this.setState({ event, userBoughtEvent: true });
+      this.setState({ event, userBoughtEvent: true, paymentModalOpen: false });
       await createPurchase(eventId);
     } catch (error) {
       console.log(error);
     }
+  }
+  handlepaymentModal() {
+    this.setState(previousState => ({ paymentModalOpen: !previousState.paymentModalOpen }));
   }
 
   render() {
@@ -93,6 +99,7 @@ class EventSingle extends Component {
                   <li key={stop.name}>
                     <img
                       className="map__pin"
+                      alt="pin"
                       src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
                     />
                     {stop.name} - {stop.address}
@@ -101,6 +108,11 @@ class EventSingle extends Component {
               </ul>
               <SimpleMap stops={event.stops} />
             </section>
+            <PaymentModal
+              paymentModalOpen={this.state.paymentModalOpen}
+              handlepaymentModal={this.handlepaymentModal}
+              buyEvent={this.buyEvent}
+            />
 
             {(!user && (
               <Link to="/sign-up" className="button">
@@ -113,7 +125,7 @@ class EventSingle extends Component {
                 </Link>
               )) ||
               (!userBoughtEvent && (
-                <Link onClick={this.buyEvent} className="button">
+                <Link onClick={this.handlepaymentModal} className="button">
                   {(event.price / 100).toFixed(2)}$ | Buy
                 </Link>
               ))}
