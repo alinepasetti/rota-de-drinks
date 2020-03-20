@@ -42,13 +42,12 @@ class EventSingle extends Component {
   }
 
   async buyEvent() {
-    // event id into the event function
     const eventId = this.props.match.params.eventId;
-    // user id into the user function
     const userId = this.props.user._id;
     try {
       const purchaseResult = await createPurchase(eventId);
-      if (purchaseResult) {
+      const status = purchaseResult.data.paymentStatus;
+      if (status === 'succeeded') {
         const event = await findOneEventAndAddAttendee(eventId, userId);
         await findOneUserAndAddEvent(userId, eventId);
         this.setState({ event, userBoughtEvent: true });
@@ -57,6 +56,7 @@ class EventSingle extends Component {
       console.log(error);
     }
   }
+
   handlepaymentModal() {
     this.setState(previousState => ({ paymentModalOpen: !previousState.paymentModalOpen }));
   }
@@ -120,7 +120,7 @@ class EventSingle extends Component {
 
             {(!user && (
               <Link to="/sign-up" className="button">
-                {(event.price / 100).toFixed(2)}$ | Buy
+                {(event.price / 100).toFixed(2)}€ | Buy
               </Link>
             )) ||
               (userBoughtEvent && (
@@ -130,7 +130,7 @@ class EventSingle extends Component {
               )) ||
               (!userBoughtEvent && (
                 <Link onClick={this.handlepaymentModal} className="button">
-                  {(event.price / 100).toFixed(2)}$ | Buy
+                  {(event.price / 100).toFixed(2)}€ | Buy
                 </Link>
               ))}
           </Fragment>
