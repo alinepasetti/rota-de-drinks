@@ -9,7 +9,8 @@ class ExperienceStop extends Component {
     super(props);
     this.state = {
       event: null,
-      page: 0
+      currentPage: 0,
+      totalPages: 0
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
@@ -22,13 +23,14 @@ class ExperienceStop extends Component {
   async fetchData() {
     const eventId = this.props.match.params.eventId;
     const event = await findOneEvent(eventId);
-    this.setState({ event });
+    const totalPages = event.stops.length;
+    this.setState({ event, totalPages });
   }
 
   nextPage() {
     this.setState(previousState => {
       return {
-        page: previousState.page + 1
+        currentPage: previousState.currentPage + 1
       };
     });
   }
@@ -36,138 +38,76 @@ class ExperienceStop extends Component {
   previousPage() {
     this.setState(previousState => {
       return {
-        page: previousState.page - 1
+        currentPage: previousState.currentPage - 1
       };
     });
   }
 
   render() {
     const event = this.state.event;
-    const page = this.state.page;
+    const currentPage = this.state.currentPage;
+    const totalPages = this.state.totalPages;
+    console.log('currentPage', currentPage);
+    console.log('totalPages', totalPages);
 
     return (
       <div className="experience__stop__page">
-        {event && page === 0 && (
+        {event && (
           <Fragment>
             <header>
               <div className="experience__title">
                 <h5>{event.name}</h5>
-                <h1>{event.stops[0].name}</h1>
+                <h1>{event.stops[currentPage].name}</h1>
               </div>
-              <img src={event.stops[0].imgURL} alt={event.name} />
+              <img src={event.stops[currentPage].imgURL} alt={event.name} />
             </header>
             <div className="experience__stop__information">
-              <p>Address: {event.stops[0].address}</p>
+              <p>Address: {event.stops[currentPage].address}</p>
             </div>
             <div className="experience__stop__activity">
               <div>
                 <h3>What's your task</h3>
                 <p>
-                  <strong>{event.stops[0].activity.name}</strong>
+                  <strong>{event.stops[currentPage].activity.name}</strong>
                 </p>
-                <p>{event.stops[0].activity.instructions}</p>
+                <p>{event.stops[currentPage].activity.instructions}</p>
               </div>
-              <img src={event.stops[0].activity.imgURL} alt={event.stops[0].activity.name} />
+              <img
+                src={event.stops[currentPage].activity.imgURL}
+                alt={event.stops[currentPage].activity.name}
+              />
             </div>
             <div className="experience__stop__map">
               <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
+              {<SimpleMap stops={event.stops} stop={currentPage} />}
             </div>
             <div className="experience__stop__buttons">
-              <Link to={`/event/${event._id}/experience/intro`} className="previous__button">
-                Back
-              </Link>
-              <Link
-                to={`/event/${event._id}/experience/${event.stops[1]._id}`}
-                onClick={this.nextPage}
-                className="next__button"
-              >
-                Next
-              </Link>
-            </div>
-          </Fragment>
-        )}
-        {event && page === 1 && (
-          <Fragment>
-            <header>
-              <div className="experience__title">
-                <h5>{event.name}</h5>
-                <h1>{event.stops[1].name}</h1>
-              </div>
-              <img src={event.stops[1].imgURL} alt={event.name} />
-            </header>
-            <div className="experience__stop__information">
-              <p>Address: {event.stops[1].address}</p>
-            </div>
-            <div className="experience__stop__activity">
-              <div>
-                <h3>What's your task</h3>
-                <p>
-                  <strong>{event.stops[1].activity.name}</strong>
-                </p>
-                <p>{event.stops[1].activity.instructions}</p>
-              </div>
-              <img src={event.stops[1].activity.imgURL} alt={event.stops[1].activity.name} />
-            </div>
-            <div className="experience__stop__map">
-              <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
-            </div>
-            <div className="experience__stop__buttons">
-              <Link
-                to={`/event/${event._id}/experience/${event.stops[0]._id}`}
-                onClick={this.previousPage}
-                className="previous__button"
-              >
-                Back
-              </Link>
-              <Link
-                to={`/event/${event._id}/experience/${event.stops[2]._id}`}
-                onClick={this.nextPage}
-                className="next__button"
-              >
-                Next
-              </Link>
-            </div>
-          </Fragment>
-        )}
-        {event && page === 2 && (
-          <Fragment>
-            <header>
-              <div className="experience__title">
-                <h5>{event.name}</h5>
-                <h1>{event.stops[2].name}</h1>
-              </div>
-              <img src={event.stops[2].imgURL} alt={event.name} />
-            </header>
-            <div className="experience__stop__information">
-              <p>Address: {event.stops[2].address}</p>
-            </div>
-            <div className="experience__stop__activity">
-              <div>
-                <h3>What's your task</h3>
-                <p>
-                  <strong>{event.stops[2].activity.name}</strong>
-                </p>
-                <p>{event.stops[2].activity.instructions}</p>
-              </div>
-              <img src={event.stops[2].activity.imgURL} alt={event.stops[2].activity.name} />
-            </div>
-            <div className="experience__stop__map">
-              <h3>Map</h3>
-              <SimpleMap stops={event.stops} stop={page} />
-            </div>
-            <div className="experience__stop__buttons">
-              <Link
-                to={`/event/${event._id}/experience/${event.stops[1]._id}`}
-                onClick={this.previousPage}
-                className="previous__button"
-              >
-                Back
-              </Link>
-              <Link to={`/event/${event._id}/experience/finish`} className="next__button">
-                Next
-              </Link>
+              {(currentPage === 0 && (
+                <Link to={`/event/${event._id}/experience/intro`} className="previous__button">
+                  Back
+                </Link>
+              )) || (
+                <Link
+                  to={`/event/${event._id}/experience/${event.stops[currentPage - 1]._id}`}
+                  onClick={this.previousPage}
+                  className="previous__button"
+                >
+                  Back
+                </Link>
+              )}
+              {(currentPage === totalPages - 1 && (
+                <Link to={`/event/${event._id}/experience/finish`} className="next__button">
+                  Next
+                </Link>
+              )) || (
+                <Link
+                  to={`/event/${event._id}/experience/${event.stops[currentPage + 1]._id}`}
+                  onClick={this.nextPage}
+                  className="next__button"
+                >
+                  Next
+                </Link>
+              )}
             </div>
           </Fragment>
         )}
