@@ -35,7 +35,7 @@ class UsersPaymentMethods extends Component {
     return (
       <Fragment>
         {page === 1 &&
-          this.props.paymentMethods &&
+          this.props.paymentMethods.length > 0 &&
           this.props.paymentMethods.map((method, index) => {
             if (this.state.selected === index) {
               return (

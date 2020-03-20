@@ -5,7 +5,7 @@ const PrimaryMarker = () => (
   <img
     alt="pin"
     className="map__pin"
-    src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
+    src="https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png"
   />
 );
 
@@ -57,7 +57,7 @@ class SimpleMap extends Component {
       <div className="simple__map">
         {this.state.lng.length > 0 && (
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_KEY }}
             defaultCenter={center}
             defaultZoom={this.props.zoom}
           >

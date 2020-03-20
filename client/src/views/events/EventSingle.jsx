@@ -104,7 +104,7 @@ class EventSingle extends Component {
                     <img
                       className="map__pin"
                       alt="pin"
-                      src="https://lh3.googleusercontent.com/proxy/N5nK6_aFs21-seXcvFDUDfbId51CuNvzfWbjSbQiEwNvFb9ZHkggOuf9OhS4szAFsGWD6iZXGecTcBeLeiHuVBOhHh-yLnjdgQqeTB98ODhQxAX640s317eK0apoYpQ"
+                      src="https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png"
                     />
                     {stop.name} - {stop.address}
                   </li>
