@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { findAllEvents } from './../../services/event';
 import EventCard from './../../components/EventCard';
+import './Events.scss';
 
 class EventList extends Component {
   constructor() {

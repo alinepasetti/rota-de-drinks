@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createNewEvent } from './../../services/event';
+import './Events.scss';
 
 class createEvent extends Component {
   constructor() {

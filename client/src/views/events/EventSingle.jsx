@@ -5,6 +5,7 @@ import { findOneUserAndAddEvent } from './../../services/user';
 import { createPurchase } from './../../services/purchase';
 import SimpleMap from './../../components/SimpleMap';
 import PaymentModal from './../../components/PaymentModal';
+import './Events.scss';
 
 class EventSingle extends Component {
   constructor(props) {

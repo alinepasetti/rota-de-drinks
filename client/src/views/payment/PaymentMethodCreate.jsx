@@ -30,7 +30,11 @@ class PaymentMethodCreateView extends Component {
     } else {
       console.log(paymentMethod);
       await createPaymentMethod(paymentMethod.id);
-      this.props.history.push(`/${loggedUser._id}/payment-method/list`);
+      if (this.props.fromModal) {
+        this.props.backToPaymentsList();
+      } else {
+        this.props.history.push(`/${loggedUser._id}/payment-method/list`);
+      }
     }
   }
 
@@ -56,6 +60,7 @@ class PaymentMethodCreateView extends Component {
               <form onSubmit={event => this.handleFormSubmission(event, stripe, elements)}>
                 {/* <label htmlFor="name">Name</label> */}
                 <CardElement options={STRIPE_ELEMENT_OPTIONS} />
+
                 <button>Add Payment Method</button>
               </form>
             )}

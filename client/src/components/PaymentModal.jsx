@@ -11,7 +11,6 @@ class PaymentModal extends Component {
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
-    // this.changeColor = this.changeColor.bind(this);
   }
 
   async nextPage() {
@@ -46,15 +45,12 @@ class PaymentModal extends Component {
     this.setState({ paymentMethods });
   }
 
-  // changeColor() {
-  //   console.log('changeee');
-  //   return 'changeeee';
-  // }
-
   render() {
     const paymentModalOpen = this.props.paymentModalOpen;
     const page = this.state.page;
     const loggedUser = this.props.user;
+    const paymentButtonDisabled = this.state.paymentMethods.length;
+
     return (
       <Fragment>
         {paymentModalOpen && (
@@ -65,12 +61,16 @@ class PaymentModal extends Component {
                 <p>Select a payment methods from your wallet</p>
                 <div>
                   <UsersPaymentMethods
-                    changeColor={true}
+                    fromModal={true}
                     paymentMethods={this.state.paymentMethods}
                     loggedUser={loggedUser._id}
                   />
                 </div>
-                <button onClick={this.nextPage}>Continue</button>
+                {(paymentButtonDisabled && <button onClick={this.nextPage}>Continue</button>) || (
+                  <button disabled onClick={this.nextPage}>
+                    Continue
+                  </button>
+                )}
               </div>
             )}
             {page === 2 && (
