@@ -68,7 +68,7 @@ class SimpleMap extends Component {
           >
             {this.state.lng.length > 0 && <PrimaryMarker lat={lat1} lng={lng1} />}
             {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
-            {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
+            {this.state.lng.length > 0 && <DisabledMarker lat={lat3} lng={lng3} />}
           </GoogleMapReact>
         )}
         {this.state.lng.length > 0 && this.props.stop == 1 && (

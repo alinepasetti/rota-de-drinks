@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { listPaymentMethods } from './../../services/payment-method';
+import UsersPaymentMethods from './../../components/UsersPaymentMethods';
+
 import './Payment.scss';
 
 class PaymentMethodListView extends Component {
@@ -23,9 +25,13 @@ class PaymentMethodListView extends Component {
   render() {
     const loggedUser = this.props.user;
     return (
-      <div>
+      <div className="payment__list__page">
         <h3>Payment Methods</h3>
-        {this.state.paymentMethods.map(method => (
+        <UsersPaymentMethods
+          paymentMethods={this.state.paymentMethods}
+          loggedUser={loggedUser._id}
+        />
+        {/*this.state.paymentMethods.map(method => (
           <div className="payment__method--card" key={method._id}>
             <img src={`/card-brands/${method.brand}.png`} alt={method.brand} />
             <span>**** **** **** {method.lastFourDigits}</span>
@@ -33,8 +39,7 @@ class PaymentMethodListView extends Component {
               {method.expirationDate.month}/{method.expirationDate.year}
             </span>
           </div>
-        ))}
-        <Link to={`/${loggedUser._id}/payment-method/create`}>Add new Payment Method</Link>
+        )) este botão estaria fora do map method, mas está aqui para que fique comentado<Link to={`/${loggedUser._id}/payment-method/create`}>Add new Payment Method</Link>*/}
       </div>
     );
   }

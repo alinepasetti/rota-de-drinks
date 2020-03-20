@@ -68,11 +68,11 @@ class ProfileView extends Component {
         <div className="private__section">
           {profileOwner && loggedUser && profileOwner._id === loggedUser._id && (
             <Fragment>
+              <h3>Next Events</h3>
               {loggedUser.events.map(event => {
                 if (!event.completed) {
                   return (
                     <Fragment>
-                      <h3>Next Events</h3>
                       <section className="event__list">
                         <Link
                           to={`/event/${event.eventId._id}`}
@@ -87,11 +87,11 @@ class ProfileView extends Component {
                   );
                 }
               })}
-              {loggedUser.events.map(event => {
-                if (event.completed) {
-                  return (
-                    <Fragment>
-                      <h3>Past Events</h3>
+              <Fragment>
+                <h3>Past Events</h3>
+                {loggedUser.events.map(event => {
+                  if (event.completed) {
+                    return (
                       <section className="event__list">
                         <Link
                           to={`/event/${event.eventId._id}`}
@@ -102,10 +102,10 @@ class ProfileView extends Component {
                           <p>{event.eventId.name}</p>
                         </Link>
                       </section>
-                    </Fragment>
-                  );
-                }
-              })}
+                    );
+                  }
+                })}
+              </Fragment>
 
               <div className="private__links">
                 <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>

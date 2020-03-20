@@ -19,37 +19,40 @@ class EventSingle extends Component {
   }
   componentDidMount() {
     this.fetchData();
+  }
+  componentDidUpdate() {
+    // this.fetchData();
+  }
+
+  async fetchData() {
     const currentEventId = this.props.match.params.eventId;
+    const event = await findOneEvent(currentEventId);
     const user = this.props.user;
     let userBoughtEvent;
     const userEvents = user ? user.events : [];
     if (userEvents.length > 0) {
       userEvents.map(event => {
-        console.log('each event', event.eventId._id.toString());
         if (event.eventId && event.eventId._id.toString() === currentEventId.toString()) {
           userBoughtEvent = true;
         }
         return userBoughtEvent;
       });
     }
-    this.setState({ userBoughtEvent });
+    this.setState({ event, userBoughtEvent });
   }
 
-  async fetchData() {
-    const eventId = this.props.match.params.eventId;
-    const event = await findOneEvent(eventId);
-    this.setState({ event });
-  }
   async buyEvent() {
     // event id into the event function
     const eventId = this.props.match.params.eventId;
     // user id into the user function
     const userId = this.props.user._id;
     try {
-      const event = await findOneEventAndAddAttendee(eventId, userId);
-      await findOneUserAndAddEvent(userId, eventId);
-      this.setState({ event, userBoughtEvent: true, paymentModalOpen: false });
-      await createPurchase(eventId);
+      const purchaseResult = await createPurchase(eventId);
+      if (purchaseResult) {
+        const event = await findOneEventAndAddAttendee(eventId, userId);
+        await findOneUserAndAddEvent(userId, eventId);
+        this.setState({ event, userBoughtEvent: true });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -112,6 +115,7 @@ class EventSingle extends Component {
               paymentModalOpen={this.state.paymentModalOpen}
               handlepaymentModal={this.handlepaymentModal}
               buyEvent={this.buyEvent}
+              user={user}
             />
 
             {(!user && (
