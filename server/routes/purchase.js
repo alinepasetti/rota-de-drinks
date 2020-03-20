@@ -45,9 +45,10 @@ router.post('/create', async (req, res, next) => {
       save_payment_method: true
     });
 
+    const paymentStatus = paymentIntent.status;
     await purchase.update({ paymentIntent: paymentIntent.id, charged: true });
 
-    res.json({ purchase });
+    res.json({ purchase, paymentStatus });
   } catch (error) {
     console.log(error);
     next(error);

@@ -11,7 +11,8 @@ const listPurchases = async () => {
 };
 
 const createPurchase = async eventId => {
-  await instance.post('/create', { eventId });
+  let result = await instance.post('/create', { eventId });
+  return result;
 };
 
 export { listPurchases, createPurchase };

@@ -30,6 +30,7 @@ class ExperienceFinish extends Component {
 
   render() {
     const event = this.state.event;
+    const userId = this.props.user._id;
 
     return (
       <div className="experience__finish__page">
@@ -39,7 +40,7 @@ class ExperienceFinish extends Component {
             <h3>You have finished this experience!!</h3>
             <img src={event.badge.imgURL} alt={event.badge.name} />
             <p>{event.badge.name}</p>
-            <Link to="/" className="button" onClick={this.finishExperience}>
+            <Link to={`/profile/${userId}`} className="button" onClick={this.finishExperience}>
               Add to my profile
             </Link>
           </Fragment>
