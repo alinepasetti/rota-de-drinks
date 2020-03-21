@@ -47,8 +47,6 @@ class ExperienceStop extends Component {
     const event = this.state.event;
     const currentPage = this.state.currentPage;
     const totalPages = this.state.totalPages;
-    console.log('currentPage', currentPage);
-    console.log('totalPages', totalPages);
 
     return (
       <div className="experience__stop__page">

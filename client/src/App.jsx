@@ -27,8 +27,17 @@ class App extends Component {
     };
     this.updateUserInformation = this.updateUserInformation.bind(this);
   }
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.user !== this.state.user) {
+      this.fetchData();
+    }
+  }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  async fetchData() {
     try {
       const loggedUser = await loadLoggedUserInformation();
       this.updateUserInformation(loggedUser);

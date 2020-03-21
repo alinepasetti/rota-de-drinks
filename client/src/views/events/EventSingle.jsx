@@ -21,9 +21,12 @@ class EventSingle extends Component {
   componentDidMount() {
     this.fetchData();
   }
-  componentDidUpdate() {
-    // this.fetchData();
-  }
+  
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.event !== this.state.event) {
+      this.fetchData();
+    }
+  } 
 
   async fetchData() {
     const currentEventId = this.props.match.params.eventId;

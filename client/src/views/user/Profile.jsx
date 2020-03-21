@@ -14,6 +14,11 @@ class ProfileView extends Component {
   componentDidMount() {
     this.fetchData();
   }
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.profileOwner !== this.state.profileOwner) {
+      this.fetchData();
+    }
+  }
 
   async fetchData() {
     const userId = this.props.match.params.userId;

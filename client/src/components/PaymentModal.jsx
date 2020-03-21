@@ -33,7 +33,13 @@ class PaymentModal extends Component {
   loadingSetTimeout() {
     setTimeout(() => {
       this.setState({ page: 3 });
-    }, 5000);
+    }, 3500);
+  }
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.paymentMethods !== this.state.paymentMethods) {
+      this.fetchData();
+    }
   }
 
   componentDidMount() {
