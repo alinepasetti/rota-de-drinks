@@ -24,8 +24,8 @@ class Home extends Component {
         {(events && (
           <Fragment>
             <header className="home__header">
-              <h1>Rota dos Drinks</h1>
-              <p>About this beautiful site</p>
+              <h1>Hey Friday</h1>
+              <p>Gather friends and badges</p>
             </header>
             <section className="event__list">
               <h2>Popular Events</h2>
@@ -33,7 +33,9 @@ class Home extends Component {
                 <EventCard key={event.name} event={event} />
               ))}
             </section>
-            <Link to="/events">See all events</Link>
+            <Link className="see__more__button" to="/events">
+              See all events
+            </Link>
           </Fragment>
         )) ||
           ''}

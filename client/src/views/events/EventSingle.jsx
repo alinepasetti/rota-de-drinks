@@ -21,12 +21,12 @@ class EventSingle extends Component {
   componentDidMount() {
     this.fetchData();
   }
-  
+
   componentDidUpdate(previousProps, previousState) {
     if (previousState.event !== this.state.event) {
       this.fetchData();
     }
-  } 
+  }
 
   async fetchData() {
     const currentEventId = this.props.match.params.eventId;
@@ -74,32 +74,28 @@ class EventSingle extends Component {
         {(event && (
           <Fragment>
             <header>
-              <h1 className="experience__title">{event.name}</h1>
               <img src={event.imgURL} alt={event.name} />
+              <h1 className="experience__title">{event.name}</h1>
             </header>
             <div className="tags__section">
               {event.tags.map(tag => (
                 <span key={tag}>#{tag}</span>
               ))}
             </div>
-            <h4>General Info</h4>
+            <h3>Who's joining</h3>
+            <section className="atendees__section">
+              {event.attendees &&
+                event.attendees.map(attendee => {
+                  return <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />;
+                })}
+            </section>
+            <h3>General Info</h3>
             <p>{event.description}</p>
             <p>
               <strong>Location:</strong> {event.location}
             </p>
-            <h4>Who's joining</h4>
-            <section className="atendees__section">
-              {event.attendees &&
-                event.attendees.map(attendee => {
-                  return (
-                    <div key={attendee._id}>
-                      <img src={attendee.picture} alt={attendee.firstName} />
-                      <p>{attendee.firstName}</p>
-                    </div>
-                  );
-                })}
-            </section>
-            <h4>What's planned</h4>
+
+            <h3>What's planned</h3>
             <section className="map__section">
               <ul>
                 {event.stops.map(stop => (
