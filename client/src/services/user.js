@@ -30,13 +30,13 @@ const editUserInformation = async data => {
 };
 
 const findOneUserAndAddEvent = async (userId, eventId) => {
-  console.log('service', userId, eventId);
+  // console.log('service', userId, eventId);
   const user = await instance.patch(`/${userId}/add-event/${eventId}`);
   return user;
 };
 
 const findOneUserAndCompleteEventToTrue = async (userId, eventId, badgeId) => {
-  console.log('service', userId, eventId, badgeId);
+  // console.log('service', userId, eventId, badgeId);
   const user = await instance.patch(`/${userId}/finish-event/${eventId}/${badgeId}`);
   return user;
 };

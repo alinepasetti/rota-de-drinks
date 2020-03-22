@@ -12,6 +12,7 @@ class ExperienceFinish extends Component {
     };
     this.finishExperience = this.finishExperience.bind(this);
   }
+
   componentDidMount() {
     this.fetchData();
   }
@@ -21,11 +22,14 @@ class ExperienceFinish extends Component {
     const event = await findOneEvent(eventId);
     this.setState({ event });
   }
+
   async finishExperience() {
     const userId = this.props.user._id;
     const eventId = this.props.match.params.eventId;
     const badgeId = this.state.event ? this.state.event.badge._id : '';
-    await findOneUserAndCompleteEventToTrue(userId, eventId, badgeId);
+    const userData = await findOneUserAndCompleteEventToTrue(userId, eventId, badgeId);
+    const user = userData.data.user;
+    this.props.updateUserInformation(user);
   }
 
   render() {

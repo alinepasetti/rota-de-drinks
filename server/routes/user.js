@@ -8,10 +8,12 @@ const router = new Router();
 router.get('/loggedUser', async (req, res, next) => {
   let user;
   req.user
-    ? (user = await User.findById(req.user._id).populate({
-        path: 'events.eventId',
-        model: 'Event'
-      }))
+    ? (user = await User.findById(req.user._id)
+        .populate({
+          path: 'events.eventId',
+          model: 'Event'
+        })
+        .populate('badges'))
     : null;
 
   res.json({ user });
@@ -65,7 +67,12 @@ router.patch('/:userId/add-event/:eventId', async (req, res, next) => {
       $push: { events: { eventId: eventId, completed: false } }
     },
     { new: true }
-  );
+  )
+    .populate({
+      path: 'events.eventId',
+      model: 'Event'
+    })
+    .populate('badges');
   res.json({ user });
 });
 
@@ -86,7 +93,12 @@ router.patch('/:userId/finish-event/:eventId/:badgeId', async (req, res, next) =
       $push: { events: { eventId: eventId, completed: true } }
     },
     { new: true }
-  );
+  )
+    .populate({
+      path: 'events.eventId',
+      model: 'Event'
+    })
+    .populate('badges');
   res.json({ user });
 });
 

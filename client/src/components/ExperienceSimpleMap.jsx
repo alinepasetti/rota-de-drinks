@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import GoogleMapReact from 'google-map-react';
 import './../App.scss';
-import REACT_APP_MAPS_KEY from './../';
 const PrimaryMarker = () => (
   <img
     alt="pin"
@@ -24,13 +23,16 @@ class SimpleMap extends Component {
     this.stopsLat = this.stopsLat.bind(this);
     this.stopsLng = this.stopsLng.bind(this);
   }
+
   static defaultProps = {
     zoom: 11
   };
+
   componentDidMount() {
     this.stopsLng();
     this.stopsLat();
   }
+
   stopsLng() {
     const lng = [];
 
@@ -39,6 +41,7 @@ class SimpleMap extends Component {
     });
     return this.setState({ lng: lng });
   }
+
   stopsLat() {
     const lat = [];
     this.props.stops.map(stop => {
@@ -46,6 +49,7 @@ class SimpleMap extends Component {
     });
     return this.setState({ lat: lat });
   }
+
   render() {
     const lat1 = this.state.lat[0];
     const lng1 = this.state.lng[0];
@@ -57,7 +61,7 @@ class SimpleMap extends Component {
       lat: Number(lat1),
       lng: Number(lng1)
     };
-    console.log(lat1, lat2, lat3);
+    // console.log(lat1, lat2, lat3);
     return (
       <div className="simple__map">
         {this.state.lng.length > 0 && this.props.stop == 0 && (
@@ -73,7 +77,7 @@ class SimpleMap extends Component {
         )}
         {this.state.lng.length > 0 && this.props.stop == 1 && (
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_KEY }}
             defaultCenter={center}
             defaultZoom={this.props.zoom}
           >
@@ -84,7 +88,7 @@ class SimpleMap extends Component {
         )}
         {this.state.lng.length > 0 && this.props.stop == 2 && (
           <GoogleMapReact
-            bootstrapURLKeys={{ key: 'AIzaSyBrJ1f_9MB0iFA2zFsHIbIK8sGWU91aQr8' }}
+            bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_KEY }}
             defaultCenter={center}
             defaultZoom={this.props.zoom}
           >
@@ -92,7 +96,6 @@ class SimpleMap extends Component {
             {this.state.lng.length > 0 && <DisabledMarker lat={lat2} lng={lng2} />}
             {this.state.lng.length > 0 && <PrimaryMarker lat={lat3} lng={lng3} />}
           </GoogleMapReact>
-        )}
         )}
       </div>
     );

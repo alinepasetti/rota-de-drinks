@@ -23,7 +23,7 @@ class EventSingle extends Component {
   }
 
   componentDidUpdate(previousProps, previousState) {
-    if (previousState.event !== this.state.event) {
+    if (previousState.userBoughtEvent !== this.state.userBoughtEvent) {
       this.fetchData();
     }
   }
@@ -53,7 +53,9 @@ class EventSingle extends Component {
       const status = purchaseResult.data.paymentStatus;
       if (status === 'succeeded') {
         const event = await findOneEventAndAddAttendee(eventId, userId);
-        await findOneUserAndAddEvent(userId, eventId);
+        const userData = await findOneUserAndAddEvent(userId, eventId);
+        const user = userData.data.user;
+        this.props.updateUserInformation(user);
         this.setState({ event, userBoughtEvent: true });
       }
     } catch (error) {

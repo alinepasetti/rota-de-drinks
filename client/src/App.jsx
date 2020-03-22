@@ -27,11 +27,12 @@ class App extends Component {
     };
     this.updateUserInformation = this.updateUserInformation.bind(this);
   }
-  componentDidUpdate(previousProps, previousState) {
-    if (previousState.user !== this.state.user) {
-      this.fetchData();
-    }
-  }
+
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousState.user._id !== this.state.user._id) {
+  //     this.fetchData();
+  //   }
+  // }
 
   componentDidMount() {
     this.fetchData();
@@ -113,7 +114,13 @@ class App extends Component {
                 exact
                 authorized={this.state.user}
                 redirect={'/sign-in'}
-                render={props => <ExperienceFinishView {...props} user={this.state.user} />}
+                render={props => (
+                  <ExperienceFinishView
+                    {...props}
+                    user={this.state.user}
+                    updateUserInformation={this.updateUserInformation}
+                  />
+                )}
               />
               <ProtectedRoute
                 path="/event/:eventId/experience/:stopId"
@@ -125,7 +132,13 @@ class App extends Component {
               <Route
                 path="/event/:eventId"
                 exact
-                render={props => <EventSingleView user={this.state.user} {...props} />}
+                render={props => (
+                  <EventSingleView
+                    user={this.state.user}
+                    updateUserInformation={this.updateUserInformation}
+                    {...props}
+                  />
+                )}
               />
               <ProtectedRoute
                 authorized={this.state.user}

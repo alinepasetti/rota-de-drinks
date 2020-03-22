@@ -12,7 +12,8 @@ function EventCard(props) {
             <span>{(props.event.price / 100).toFixed(2)}</span> €
           </p>
           <div>
-            <img src="./group.svg" /> <p>{props.event.attendees.length} people are going</p>
+            <img src="./group.svg" alt="Group icon" />
+            <p>{props.event.attendees.length} people are going</p>
           </div>
         </div>
       </div>

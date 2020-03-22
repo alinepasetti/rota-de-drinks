@@ -14,8 +14,12 @@ class ProfileView extends Component {
   componentDidMount() {
     this.fetchData();
   }
+
   componentDidUpdate(previousProps, previousState) {
-    if (previousState.profileOwner !== this.state.profileOwner) {
+    if (
+      previousState.profileOwner &&
+      previousState.profileOwner.badges !== this.state.profileOwner.badges
+    ) {
       this.fetchData();
     }
   }
@@ -81,7 +85,7 @@ class ProfileView extends Component {
               {loggedUser.events.map(event => {
                 if (!event.completed) {
                   return (
-                    <Fragment>
+                    <Fragment key={event.eventId._id}>
                       <section className="event__list">
                         <Link
                           to={`/event/${event.eventId._id}`}
@@ -101,7 +105,7 @@ class ProfileView extends Component {
                 {loggedUser.events.map(event => {
                   if (event.completed) {
                     return (
-                      <section className="event__list">
+                      <section className="event__list" key={event.eventId._id}>
                         <Link
                           to={`/event/${event.eventId._id}`}
                           className="event__card"

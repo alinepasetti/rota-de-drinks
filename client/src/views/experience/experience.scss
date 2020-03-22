@@ -1,8 +1,18 @@
-
 // experience > each stop
 .experience__stop__page {
   text-align: left;
-
+  header {
+    img {
+      border-radius: 12px;
+      max-height: 16em;
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+      @media screen and (min-width: 430px) {
+        max-height: 31em;
+      }
+    }
+  }
   .experience__stop__information {
     margin: 1em 1em 2em 1em;
   }

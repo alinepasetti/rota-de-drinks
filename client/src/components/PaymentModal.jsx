@@ -36,11 +36,12 @@ class PaymentModal extends Component {
     }, 3500);
   }
 
-  componentDidUpdate(previousProps, previousState) {
-    if (previousState.paymentMethods !== this.state.paymentMethods) {
-      this.fetchData();
-    }
-  }
+  // triggers an infinite loop
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousState.paymentMethods !== this.state.paymentMethods) {
+  //     this.fetchData();
+  //   }
+  // }
 
   componentDidMount() {
     this.fetchData();
