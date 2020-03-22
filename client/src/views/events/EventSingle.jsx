@@ -85,26 +85,29 @@ class EventSingle extends Component {
             <h3>Who's joining</h3>
             <section className="atendees__section">
               {event.attendees &&
-                event.attendees.map(attendee => {
-                  return <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />;
+                event.attendees.map((attendee, index) => {
+                  if (index <= 6) {
+                    return (
+                      <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />
+                    );
+                  }
                 })}
+              {event.attendees && event.attendees.length > 6 && (
+                <div className="img__attendees">+ {event.attendees.length - 5}</div>
+              )}
             </section>
             <h3>General Info</h3>
             <p>{event.description}</p>
-            <p>
-              <strong>Location:</strong> {event.location}
+            <p className="event__location">
+              <img src="/location.svg" /> {event.location}
             </p>
 
             <h3>What's planned</h3>
             <section className="map__section">
               <ul>
-                {event.stops.map(stop => (
+                {event.stops.map((stop, index) => (
                   <li key={stop.name}>
-                    <img
-                      className="map__pin"
-                      alt="pin"
-                      src="https://www.freepnglogos.com/uploads/pin-png/location-pin-connectsafely-37.png"
-                    />
+                    <span className="location__list">{index + 1}</span>
                     {stop.name} - {stop.address}
                   </li>
                 ))}

@@ -174,8 +174,9 @@ h1 {
 // map and pin styling
 .simple__map {
   height: 15.62em;
-  width: 90%;
+  width: 100%;
   margin: 0 auto 2em;
+  border-radius: 12px;
 }
 
 .map__pin {

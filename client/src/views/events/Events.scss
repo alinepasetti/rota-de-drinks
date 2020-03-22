@@ -1,20 +1,20 @@
 // event single page
 
 .event__single__page {
-  padding-bottom: 3.75em;
+  padding: 0 1.5em 3.75em;
   header {
     img {
       border-radius: 12px;
       max-height: 16em;
-      width: 90%;
-      margin: 0 auto;
+      width: 100%;
+
       display: block;
       @media screen and (min-width: 430px) {
         max-height: 31em;
       }
     }
     h1 {
-      margin: 1em auto 0.5em;
+      margin: 0.5em 0;
       text-align: left;
       width: 90%;
     }
@@ -22,12 +22,11 @@
   h3,
   p {
     text-align: left;
-    margin: 1em;
-    color: #6a7178;
+    margin: 0.5em 0 0;
   }
   .tags__section {
     width: 90%;
-    margin: 0 auto 2em;
+    margin: 0 0 2em;
     > span {
       margin-right: 1em;
       color: #d6336c;
@@ -41,44 +40,71 @@
   .atendees__section {
     position: relative;
     display: flex;
-    padding: 1em;
+    padding: 1em 0;
     @media screen and (min-width: 430px) {
       align-items: flex-start;
     }
     img {
+      border: 3px solid white;
+    }
+    img,
+    .img__attendees {
       position: relative;
-
+      text-align: center;
       width: 3em;
       height: 3em;
-      border: 3px solid white;
       border-radius: 50%;
       overflow: hidden;
     }
+    .img__attendees {
+      background-color: #fef0e6;
+      color: #f76707;
+      font-weight: 700;
+      padding-top: calc((3em / 2) - (1em / 2));
+    }
+  }
+  .event__location {
+    color: #f76707;
+    font-weight: bold;
+
+    margin: 2em 0;
+    > img {
+      margin-right: 0.5em;
+    }
   }
   .map__section {
+    width: 100%;
     ul {
       padding: 0;
-      margin-left: 1em;
     }
     li {
       list-style-type: none;
+      margin-bottom: 2em;
       img {
         margin-right: 1em;
       }
     }
+    .location__list {
+      border: 2px solid #ffdcc5;
+      padding: 0.25em 0.5em;
+      margin-right: 0.5em;
+      border-radius: 12px;
+      color: #f76707;
+    }
   }
   .button {
-    width: 100%;
-    background-color: rgb(38, 126, 38);
+    background-color: #f76707;
+    box-shadow: 0 4px 10px 0 rgba(247, 103, 7, 0.5);
     padding: 1em;
     border: 0;
+    border-radius: 12px;
     color: white;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.125em;
     position: fixed;
     bottom: 0;
-    left: 0;
+    box-shadow: 0 4px 10px 0 rgba(247, 103, 7, 0.5);
     text-align: center;
   }
 }
