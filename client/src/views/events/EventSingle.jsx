@@ -116,7 +116,7 @@ class EventSingle extends Component {
               </ul>
               <SimpleMap stops={event.stops} />
             </section>
-            <PaymentModal 
+            <PaymentModal
               paymentModalOpen={this.state.paymentModalOpen}
               handlepaymentModal={this.handlepaymentModal}
               buyEvent={this.buyEvent}
