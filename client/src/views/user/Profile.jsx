@@ -18,7 +18,7 @@ class ProfileView extends Component {
   componentDidUpdate(previousProps, previousState) {
     if (
       previousState.profileOwner &&
-      previousState.profileOwner.badges !== this.state.profileOwner.badges
+      previousState.profileOwner.badges.length !== this.state.profileOwner.badges.length
     ) {
       this.fetchData();
     }

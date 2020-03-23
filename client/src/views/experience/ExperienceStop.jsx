@@ -79,7 +79,7 @@ class ExperienceStop extends Component {
               <ul>
                 {event.stops.map((stop, index) => (
                   <li key={stop.name}>
-                    {(currentPage === index && (
+                    {(currentPage >= index && (
                       <span className="location__list__selected">{index + 1}</span>
                     )) || <span className="location__list">{index + 1}</span>}
                     {stop.name} - {stop.address}

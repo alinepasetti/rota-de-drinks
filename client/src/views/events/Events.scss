@@ -4,7 +4,7 @@
   margin: 75px auto 0;
   padding: 0 1.5em 6.25em;
   max-width: 53.25em;
-  font-family: Catamaran;
+  font-family: 'Catamaran';
   header {
     img {
       border-radius: 12px;
@@ -65,6 +65,8 @@
       color: #f76707;
       font-weight: 700;
       padding-top: calc((3em / 2) - (1em / 2));
+      padding-bottom: calc((3em / 2) - (1em / 2));
+      line-height: 1em;
     }
   }
   .event__location {
@@ -78,6 +80,7 @@
   }
   .map__section {
     width: 100%;
+
     ul {
       padding: 0;
       li {

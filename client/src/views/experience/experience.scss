@@ -5,15 +5,16 @@ $orange: #f76707;
 // experience > intro
 .experience__intro__page {
   margin: 75px auto 0;
-  font-family: Catamaran;
+  font-family: 'Catamaran';
   padding: 0 1.5em 6.25em;
+  max-width: 53.25em;
   header {
     margin-bottom: 2em;
     img {
+      object-fit: cover;
       border-radius: 12px;
       max-height: 16em;
       width: 100%;
-
       display: block;
       @media screen and (min-width: 430px) {
         max-height: 31em;
@@ -34,12 +35,12 @@ $orange: #f76707;
     color: $grey;
   }
   p {
-    width: 327px;
     font-family: inherit;
     font-size: 18px;
     font-weight: normal;
     line-height: 1.33;
     color: #101213;
+    margin-bottom: 1.5em;
   }
   .button {
     background-color: $green;
@@ -67,8 +68,8 @@ $orange: #f76707;
 // experience > each stop
 .experience__stop__page {
   margin: 75px auto 0;
-  font-family: Catamaran;
-  padding: 0 1.5em 6.25em;
+  font-family: 'Catamaran';
+  padding: 0 1.5em 0;
   text-align: left;
   h3 {
     color: $grey;
@@ -90,6 +91,7 @@ $orange: #f76707;
     }
     img {
       border-radius: 12px;
+      object-fit: cover;
       max-height: 16em;
       width: 100%;
       display: block;
@@ -119,7 +121,7 @@ $orange: #f76707;
       color: #101213;
     }
     img {
-      width: 50%;
+      width: 100%;
       height: 250px;
       object-fit: cover;
       border-radius: 12px;
@@ -159,7 +161,7 @@ $orange: #f76707;
 
   .experience__stop__buttons {
     width: 100%;
-    padding: 10px 0;
+    padding: 1em 0;
     text-transform: uppercase;
     font-size: 20px;
     display: flex;
@@ -219,8 +221,9 @@ $orange: #f76707;
     box-shadow: 0 4px 10px 0 rgba(55, 178, 77, 0.5);
   }
   img {
-    width: 50%;
+    max-width: 50%;
     margin: 1em auto;
+    max-height: 10em;
   }
   h3 {
     margin-top: 0;
