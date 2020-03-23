@@ -11,12 +11,14 @@ h4,
 h5,
 h6,
 p,
-a {
+a,
+button {
   font-family: 'Catamaran', sans-serif;
 }
 
 p,
-a {
+a,
+button {
   font-weight: 300;
   color: #6a7178;
 }
@@ -31,48 +33,36 @@ h6 {
   color: #101213;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+// @media (prefers-reduced-motion: no-preference) {
+//   .App-logo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+// .App-header {
+//   background-color: #282c34;
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: white;
+// }
 
-.App-link {
-  color: #61dafb;
-}
-
-h1 {
-  text-align: center;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// .App-link {
+//   color: #61dafb;
+// }
 
 // Home page
 
 .home__header {
+  margin-top: 59px;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
   height: 15em;
@@ -92,15 +82,16 @@ h1 {
     text-transform: uppercase;
   }
 }
-
-.event__list,
-.badges__list {
+.home__page {
+  h2 {
+    padding-left: 1em;
+    margin-bottom: 0;
+  }
+}
+.event__list {
   display: flex;
   flex-wrap: wrap;
-  > h2 {
-    width: 100%;
-    text-align: center;
-  }
+  margin: 0 1em;
 }
 
 .event__card {
@@ -177,6 +168,7 @@ h1 {
   width: 100%;
   margin: 0 auto 2em;
   border-radius: 12px;
+  overflow: hidden;
 }
 
 .map__pin {

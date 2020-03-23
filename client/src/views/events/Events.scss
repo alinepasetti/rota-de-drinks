@@ -1,7 +1,9 @@
 // event single page
 
 .event__single__page {
+  margin: 75px auto 0;
   padding: 0 1.5em 6.25em;
+  max-width: 53.25em;
   header {
     img {
       border-radius: 12px;
@@ -103,13 +105,21 @@
     font-size: 1.25em;
     position: fixed;
     bottom: 1.5em;
-    right: 1.5em;
-    left: 1.5em;
     box-shadow: 0 4px 10px 0 rgba(247, 103, 7, 0.5);
-    // text-align: center;
-    span {
-      text-align: right;
+    @media screen and (min-width: 900px) {
+      width: 805px;
     }
+    @media screen and (max-width: 900px) {
+      right: 1.25em;
+      left: 1.25em;
+    }
+    span {
+      position: absolute;
+      right: 1em;
+    }
+  }
+  .center {
+    text-align: center;
   }
 }
 // payment modal
@@ -247,6 +257,7 @@
 
 // Create event form
 .create-event__form {
+  margin: 59px auto 0;
   max-width: 30em;
   width: 100%;
   padding: 1em;
@@ -257,5 +268,13 @@
     border: 1px solid lightgray;
     border-radius: 3px;
     padding: 0.5em;
+  }
+}
+
+// events list page
+.event__list__page {
+  margin: 69px auto 0;
+  h1 {
+    margin-left: 1em;
   }
 }

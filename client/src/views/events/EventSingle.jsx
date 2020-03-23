@@ -116,7 +116,7 @@ class EventSingle extends Component {
               </ul>
               <SimpleMap stops={event.stops} />
             </section>
-            <PaymentModal
+            <PaymentModal 
               paymentModalOpen={this.state.paymentModalOpen}
               handlepaymentModal={this.handlepaymentModal}
               buyEvent={this.buyEvent}
@@ -129,7 +129,10 @@ class EventSingle extends Component {
               </Link>
             )) ||
               (userBoughtEvent && (
-                <Link to={`/event/${this.state.event._id}/experience/intro`} className="button">
+                <Link
+                  to={`/event/${this.state.event._id}/experience/intro`}
+                  className="button center"
+                >
                   Start Experience
                 </Link>
               )) ||

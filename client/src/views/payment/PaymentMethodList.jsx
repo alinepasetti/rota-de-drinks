@@ -13,6 +13,12 @@ class PaymentMethodListView extends Component {
     };
   }
 
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.paymentMethods.length !== this.state.paymentMethods.length) {
+      console.log('i ran');
+      this.fetchData();
+    }
+  }
   componentDidMount() {
     this.fetchData();
   }

@@ -19,7 +19,7 @@ class EventList extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="event__list__page">
         <h1>Events List</h1>
         <section className="event__list">
           {this.state.events.map(event => (

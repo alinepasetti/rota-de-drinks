@@ -20,15 +20,15 @@ class Home extends Component {
   render() {
     const events = this.state.events;
     return (
-      <div>
+      <div className="home__page">
         {(events && (
           <Fragment>
             <header className="home__header">
               <h1>Hey Friday</h1>
               <p>Gather friends and badges</p>
             </header>
+            <h2>Popular Events</h2>
             <section className="event__list">
-              <h2>Popular Events</h2>
               {this.state.events.map(event => (
                 <EventCard key={event.name} event={event} />
               ))}

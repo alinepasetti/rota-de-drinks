@@ -46,21 +46,31 @@ class ProfileView extends Component {
     return (
       <div className="profile">
         <div className="public__section">
-          <div>
+          <section className="about__user__section">
             {profileOwner && (
               <Fragment>
                 <figure className="profile__picture">
-                  <img src={profileOwner.picture} alt={profileOwner.firstName} />
+                  <img
+                    src={
+                      profileOwner.picture
+                        ? profileOwner.picture
+                        : 'https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg'
+                    }
+                    alt={profileOwner.firstName}
+                  />
                 </figure>
-                <h2>
-                  {profileOwner.firstName} {profileOwner.lastName}
-                </h2>
-                <span>{profileOwner.email}</span>
+                <div>
+                  <h2>
+                    {profileOwner.firstName} {profileOwner.lastName}
+                  </h2>
+                  <span>{profileOwner.email}</span>
+
+                  {profileOwner && profileOwner.city && <p>{profileOwner.city}</p>}
+                  {profileOwner && profileOwner.about && <p>{profileOwner.about}</p>}
+                </div>
               </Fragment>
             )}
-            {profileOwner && profileOwner.city && <p>{profileOwner.city}</p>}
-            {profileOwner && profileOwner.about && <p>{profileOwner.about}</p>}
-          </div>
+          </section>
 
           {profileOwner && profileOwner.badges.length > 0 && (
             <Fragment>
@@ -82,43 +92,42 @@ class ProfileView extends Component {
           {profileOwner && loggedUser && profileOwner._id === loggedUser._id && (
             <Fragment>
               <h3>Next Events</h3>
+              <section className="profile__event__list">
               {loggedUser.events.map(event => {
                 if (!event.completed) {
                   return (
                     <Fragment key={event.eventId._id}>
-                      <section className="event__list">
                         <Link
                           to={`/event/${event.eventId._id}`}
                           className="event__card"
                           key={event.eventId._id}
                         >
                           <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                          <p>{event.eventId.name}</p>
+                          <h3>{event.eventId.name}</h3>
                         </Link>
-                      </section>
-                    </Fragment>
-                  );
-                }
-              })}
-              <Fragment>
-                <h3>Past Events</h3>
+                        </Fragment>
+                        );
+                      }
+                    })}
+                    </section>
+
+              <h3>Past Events</h3>
+              <section className="profile__event__list">
                 {loggedUser.events.map(event => {
                   if (event.completed) {
                     return (
-                      <section className="event__list" key={event.eventId._id}>
-                        <Link
-                          to={`/event/${event.eventId._id}`}
-                          className="event__card"
-                          key={event.eventId._id}
-                        >
-                          <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                          <p>{event.eventId.name}</p>
-                        </Link>
-                      </section>
+                      <Link
+                        to={`/event/${event.eventId._id}`}
+                        className="event__card"
+                        key={event.eventId._id}
+                      >
+                        <img src={event.eventId.imgURL} alt={event.eventId.name} />
+                        <p>{event.eventId.name}</p>
+                      </Link>
                     );
                   }
                 })}
-              </Fragment>
+              </section>
 
               <div className="private__links">
                 <Link to={`/profile/${loggedUser._id}/edit`}>Edit Profile</Link>

@@ -1,5 +1,15 @@
 .nav-bar {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 0 1.25em;
+  align-items: center;
+  .nav-bar-links {
+    display: flex;
+  }
   a,
   button {
     display: flex;
@@ -7,22 +17,55 @@
     padding: 1em 0;
     margin: 0 0.5em;
     text-decoration: none;
-    color: inherit;
   }
   button {
     border: 0;
     background-color: transparent;
     font-size: inherit;
+    cursor: pointer;
+  }
+  .orange {
+    color: #f76707;
+  }
+  .logo {
+    margin: 0 auto 0 0;
+    font-size: 1.25em;
+    font-weight: 700;
+  }
+  .profile__dropdown {
+    padding: 1em 0 1em;
+    position: fixed;
+    width: 10em;
+    background-color: white;
+    border: 0.5px solid rgba(211, 211, 211, 0.384);
+    border-radius: 12px;
+    right: 1em;
+    top: 3.25em;
+  }
+  .nav-bar__hidden-links {
+    max-width: 100%;
+    width: 100%;
+    padding: 0.5em 0.75em 0.5em;
+    margin: 0;
+    transition: all 300ms ease-in;
+  }
+  .nav-bar__hidden-links:hover {
+    font-weight: 700;
+    background-color: #f76707;
+    color: white;
   }
 }
 
-// .profile__picture {
-//   width: 2em;
-//   height: 2em;
-//   border-radius: 50%;
-//   overflow: hidden;
-//   display: inline-flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-right: 0.5em;
-// }
+.nav__profile__picture,
+.profile__picture {
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5em;
+}
+.nav__profile__picture {
+  width: 2em;
+  height: 2em;
+}
