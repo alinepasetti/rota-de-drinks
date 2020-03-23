@@ -33,35 +33,20 @@ h6 {
   color: #101213;
 }
 
-// .App-logo {
-//   height: 40vmin;
-//   pointer-events: none;
-// }
-
-// @media (prefers-reduced-motion: no-preference) {
-//   .App-logo {
-//     animation: App-logo-spin infinite 20s linear;
-//   }
-// }
-
-// .App-header {
-//   background-color: #282c34;
-//   min-height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   font-size: calc(10px + 2vmin);
-//   color: white;
-// }
-
-// .App-link {
-//   color: #61dafb;
-// }
-
 // Home page
 
+.home__header__1 {
+  background-image: url('https://source.unsplash.com/1600x900/?party');
+}
+.home__header__2 {
+  background-image: url('https://source.unsplash.com/1600x900/?night');
+}
+.home__header__3 {
+  background-image: url('https://source.unsplash.com/1600x900/?dance');
+}
+
 .home__header {
+  transition: all 300ms ease-in;
   margin-top: 59px;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
@@ -71,7 +56,6 @@ h6 {
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
-  background-image: url('https://source.unsplash.com/1600x900/?party');
   background-blend-mode: multiply;
   h1,
   p {

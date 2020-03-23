@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import EventCard from './../components/EventCard';
 import { findAllEvents } from './../services/event';
+import MainBannerSlider from './../components/MainBannerSlider';
 
 class Home extends Component {
   constructor() {
@@ -23,10 +24,7 @@ class Home extends Component {
       <div className="home__page">
         {(events && (
           <Fragment>
-            <header className="home__header">
-              <h1>Hey Friday</h1>
-              <p>Gather friends and badges</p>
-            </header>
+            <MainBannerSlider />
             <h2>Popular Events</h2>
             <section className="event__list">
               {this.state.events.map(event => (

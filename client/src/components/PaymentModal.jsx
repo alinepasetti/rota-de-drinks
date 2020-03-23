@@ -36,7 +36,7 @@ class PaymentModal extends Component {
     }, 3500);
   }
 
-  // triggers an infinite loop
+  // fetches data of the updated array of payment methods
   componentDidUpdate(previousProps, previousState) {
     if (previousState.paymentMethods.length !== this.state.paymentMethods.length) {
       this.fetchData();
