@@ -29,8 +29,10 @@ class PaymentMethodCreateView extends Component {
       console.log(error);
     } else {
       console.log(paymentMethod);
-      await createPaymentMethod(paymentMethod.id);
+      const newPaymentMethod = await createPaymentMethod(paymentMethod.id);
+      console.log('newPaymentMethod', newPaymentMethod);
       if (this.props.fromModal) {
+        this.props.updatePaymentMethods(newPaymentMethod);
         this.props.backToPaymentsList();
       } else {
         this.props.history.push(`/${loggedUser._id}/payment-method/list`);

@@ -82,7 +82,11 @@ class UsersPaymentMethods extends Component {
 
         {page === 2 && (
           <Fragment>
-            <PaymentMethodCreate fromModal={true} backToPaymentsList={this.backToPaymentsList} />
+            <PaymentMethodCreate
+              fromModal={true}
+              backToPaymentsList={this.backToPaymentsList}
+              updatePaymentMethods={this.props.updatePaymentMethods}
+            />
             <button className="payment__method__button" onClick={this.backToPaymentsList}>
               Back
             </button>

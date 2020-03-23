@@ -32,7 +32,7 @@ router.post('/create', async (req, res, next) => {
         month: method.card.exp_month
       }
     });
-    res.json({});
+    res.json({ paymentMethod });
   } catch (error) {
     console.log(error);
     next(error);
