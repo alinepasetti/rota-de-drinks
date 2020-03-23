@@ -53,6 +53,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-top: 1.5em;
 
     a {
       background-color: #f76707;
@@ -84,10 +85,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+
   > div {
     width: 30%;
     padding: 1%;
     overflow: hidden;
+
     img {
       padding: 0.75em;
       border: solid 2px rgba(247, 103, 7, 0.5);
@@ -104,6 +107,12 @@
       margin: 0.35em 0;
       text-align: center;
       color: #101213;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    justify-content: center;
+    > div {
+      width: 22%;
     }
   }
 }

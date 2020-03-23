@@ -93,10 +93,10 @@ class ProfileView extends Component {
             <Fragment>
               <h3>Next Events</h3>
               <section className="profile__event__list">
-              {loggedUser.events.map(event => {
-                if (!event.completed) {
-                  return (
-                    <Fragment key={event.eventId._id}>
+                {loggedUser.events.map(event => {
+                  if (!event.completed) {
+                    return (
+                      <Fragment key={event.eventId._id}>
                         <Link
                           to={`/event/${event.eventId._id}`}
                           className="event__card"
@@ -105,11 +105,11 @@ class ProfileView extends Component {
                           <img src={event.eventId.imgURL} alt={event.eventId.name} />
                           <h3>{event.eventId.name}</h3>
                         </Link>
-                        </Fragment>
-                        );
-                      }
-                    })}
-                    </section>
+                      </Fragment>
+                    );
+                  }
+                })}
+              </section>
 
               <h3>Past Events</h3>
               <section className="profile__event__list">
@@ -122,7 +122,7 @@ class ProfileView extends Component {
                         key={event.eventId._id}
                       >
                         <img src={event.eventId.imgURL} alt={event.eventId.name} />
-                        <p>{event.eventId.name}</p>
+                        <h3>{event.eventId.name}</h3>
                       </Link>
                     );
                   }

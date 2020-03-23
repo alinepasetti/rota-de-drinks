@@ -65,7 +65,7 @@ class PaymentModal extends Component {
             <button onClick={this.props.handlepaymentModal}>x</button>
             {page === 1 && (
               <div>
-                <p>Select a payment methods from your wallet</p>
+                <h3>Select a payment methods from your wallet</h3>
                 <div>
                   <UsersPaymentMethods
                     fromModal={true}
@@ -73,7 +73,11 @@ class PaymentModal extends Component {
                     loggedUser={loggedUser._id}
                   />
                 </div>
-                {(paymentButtonDisabled && <button onClick={this.nextPage}>Continue</button>) || (
+                {(paymentButtonDisabled && (
+                  <button className="payment__method__button" onClick={this.nextPage}>
+                    Pay
+                  </button>
+                )) || (
                   <button disabled onClick={this.nextPage}>
                     Continue
                   </button>
@@ -83,7 +87,7 @@ class PaymentModal extends Component {
             {page === 2 && (
               <div>
                 {this.loadingSetTimeout()}
-                <p>Loading</p>
+                <h3>Loading</h3>
                 <div className="loadingio-spinner-spinner-7m4bdiq50c4">
                   <div className="ldio-hatmn2q2jgf">
                     <div></div>
@@ -101,13 +105,17 @@ class PaymentModal extends Component {
                   </div>
                 </div>
                 <style type="text/css"></style>
-                <button onClick={this.props.handlepaymentModal}>Cancel</button>
+                <button className="payment__method__button" onClick={this.props.handlepaymentModal}>
+                  Cancel
+                </button>
               </div>
             )}
             {page === 3 && (
               <div>
-                <p>Purchase was a success!</p>
-                <button onClick={this.props.handlepaymentModal}>Continue</button>
+                <h3>Purchase was a success!</h3>
+                <button className="payment__method__button" onClick={this.props.handlepaymentModal}>
+                  Continue
+                </button>
               </div>
             )}
           </div>

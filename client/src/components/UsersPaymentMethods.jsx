@@ -42,7 +42,7 @@ class UsersPaymentMethods extends Component {
                 <div
                   className="payment__method--card"
                   key={method._id}
-                  style={{ backgroundColor: 'gray' }}
+                  style={{ border: 'solid 2px #37b24d' }}
                   onClick={() => this.changecolor(index)}
                 >
                   <img src={`/card-brands/${method.brand}.png`} alt={method.brand} />
@@ -57,7 +57,7 @@ class UsersPaymentMethods extends Component {
                 <div
                   className="payment__method--card"
                   key={method._id}
-                  style={{ backgroundColor: 'transparent' }}
+                  style={{ border: 'solid 1px #ced4da' }}
                   onClick={() => this.changecolor(index)}
                 >
                   <img src={`/card-brands/${method.brand}.png`} alt={method.brand} />
@@ -69,14 +69,24 @@ class UsersPaymentMethods extends Component {
               );
             }
           })}
-        {(this.props.fromModal && (
-          <button onClick={this.nextPage}>Add new Payment Method</button>
-        )) || (
-          <Link to={`/${this.props.loggedUser}/payment-method/create`}>Add new Payment Method</Link>
-        )}
+        {(page === 1 && this.props.fromModal && (
+          <button className="payment__method__button secondary" onClick={this.nextPage}>
+            Add new Payment Method
+          </button>
+        )) ||
+          (page === 1 && (
+            <Link to={`/${this.props.loggedUser}/payment-method/create`}>
+              Add new Payment Method
+            </Link>
+          ))}
 
         {page === 2 && (
-          <PaymentMethodCreate fromModal={true} backToPaymentsList={this.backToPaymentsList} />
+          <Fragment>
+            <PaymentMethodCreate fromModal={true} backToPaymentsList={this.backToPaymentsList} />
+            <button className="payment__method__button" onClick={this.backToPaymentsList}>
+              Back
+            </button>
+          </Fragment>
         )}
       </Fragment>
     );
