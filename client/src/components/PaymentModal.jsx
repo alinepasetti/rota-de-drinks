@@ -37,10 +37,6 @@ class PaymentModal extends Component {
     }, 3000);
   }
 
-<<<<<<< HEAD
-  // fetches data of the updated array of payment methods
-=======
->>>>>>> 37edd91d882151ab1dcab1ebb1e4312b2b3b8c0d
   componentDidUpdate(previousProps, previousState) {
     if (previousState.paymentMethods.length !== this.state.paymentMethods.length) {
       this.fetchData();
