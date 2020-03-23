@@ -29,8 +29,7 @@ const schema = new mongoose.Schema({
   activity: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Activity'
-  },
-  next: String
+  }
 });
 
 schema.index({ location: '2dsphere' });
