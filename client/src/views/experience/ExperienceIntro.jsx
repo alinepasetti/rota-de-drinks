@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
+import './experience.scss';
 
 class ExperienceIntro extends Component {
   constructor(props) {
@@ -35,28 +36,25 @@ class ExperienceIntro extends Component {
     const userHasEvent = this.state.userHasEvent;
 
     return (
-      <div className="event__single__page">
+      <div className="experience__intro__page">
         {event && (
           <Fragment>
             <header>
               <h1 className="experience__title">{event.name}</h1>
               <img src={event.imgURL} alt={event.name} />
             </header>
-            <p>
+            <h3>
               <strong>WELCOME!</strong>
-            </p>
+            </h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua.
             </p>
-            {/* <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
-              Start
-            </Link> */}
           </Fragment>
         )}
         {(event && userHasEvent && (
           <Link to={`/event/${event._id}/experience/${event.stops[0]._id}`} className="button">
-            Start
+            Continue
           </Link>
         )) ||
           (event && !userHasEvent && (

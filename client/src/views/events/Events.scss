@@ -4,6 +4,7 @@
   margin: 75px auto 0;
   padding: 0 1.5em 6.25em;
   max-width: 53.25em;
+  font-family: Catamaran;
   header {
     img {
       border-radius: 12px;
@@ -79,20 +80,23 @@
     width: 100%;
     ul {
       padding: 0;
-    }
-    li {
-      list-style-type: none;
-      margin-bottom: 2em;
-      img {
-        margin-right: 1em;
+      li {
+        list-style-type: none;
+        margin-bottom: 2em;
+        img {
+          margin-right: 1em;
+        }
+        .location__list {
+          border: 2px solid #ffdcc5;
+          padding: 2px 12px;
+          margin-right: 0.5em;
+          border-radius: 12px;
+          color: #f76707;
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 1.5;
+        }
       }
-    }
-    .location__list {
-      border: 2px solid #ffdcc5;
-      padding: 0.25em 0.5em;
-      margin-right: 0.5em;
-      border-radius: 12px;
-      color: #f76707;
     }
   }
   .button {
@@ -302,7 +306,8 @@
 
 // events list page
 .event__list__page {
-  margin: 69px auto 0;
+  font-family: Catamaran;
+  margin: 75px auto 0;
   h1 {
     margin-left: 1em;
   }

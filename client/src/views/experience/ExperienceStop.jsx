@@ -54,29 +54,38 @@ class ExperienceStop extends Component {
           <Fragment>
             <header>
               <div className="experience__title">
-                <h5>{event.name}</h5>
+                <h3>{event.name}</h3>
                 <h1>{event.stops[currentPage].name}</h1>
               </div>
               <img src={event.stops[currentPage].imgURL} alt={event.name} />
             </header>
             <div className="experience__stop__information">
+              <img src="/location.svg" />
               <p>Address: {event.stops[currentPage].address}</p>
             </div>
             <div className="experience__stop__activity">
-              <div>
-                <h3>What's your task</h3>
-                <p>
-                  <strong>{event.stops[currentPage].activity.name}</strong>
-                </p>
-                <p>{event.stops[currentPage].activity.instructions}</p>
-              </div>
+              <h3>What's your task</h3>
+              <p>
+                <strong>{event.stops[currentPage].activity.name}</strong>
+              </p>
+              <p>{event.stops[currentPage].activity.instructions}</p>
               <img
                 src={event.stops[currentPage].activity.imgURL}
                 alt={event.stops[currentPage].activity.name}
               />
             </div>
             <div className="experience__stop__map">
-              <h3>Map</h3>
+              <h3>What's planned</h3>
+              <ul>
+                {event.stops.map((stop, index) => (
+                  <li key={stop.name}>
+                    {(currentPage === index && (
+                      <span className="location__list__selected">{index + 1}</span>
+                    )) || <span className="location__list">{index + 1}</span>}
+                    {stop.name} - {stop.address}
+                  </li>
+                ))}
+              </ul>
               {<SimpleMap stops={event.stops} stop={currentPage} />}
             </div>
             <div className="experience__stop__buttons">

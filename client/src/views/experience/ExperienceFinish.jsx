@@ -41,7 +41,7 @@ class ExperienceFinish extends Component {
         {event && (
           <Fragment>
             <h1>Congratulations! </h1>
-            <h3>You have finished this experience!!</h3>
+            <h3>You have finished this experience!</h3>
             <img src={event.badge.imgURL} alt={event.badge.name} />
             <p>{event.badge.name}</p>
             <Link to={`/profile/${userId}`} className="button" onClick={this.finishExperience}>
