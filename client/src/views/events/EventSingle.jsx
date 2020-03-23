@@ -125,7 +125,7 @@ class EventSingle extends Component {
 
             {(!user && (
               <Link to="/sign-up" className="button">
-                {(event.price / 100).toFixed(2)}€ | Buy
+                Buy ticket <span>{(event.price / 100).toFixed(2)}€</span>
               </Link>
             )) ||
               (userBoughtEvent && (
@@ -135,7 +135,7 @@ class EventSingle extends Component {
               )) ||
               (!userBoughtEvent && (
                 <Link onClick={this.handlepaymentModal} className="button">
-                  {(event.price / 100).toFixed(2)}€ | Buy
+                  Buy ticket <span>{(event.price / 100).toFixed(2)}€</span>
                 </Link>
               ))}
           </Fragment>

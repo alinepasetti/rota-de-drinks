@@ -1,7 +1,7 @@
 // event single page
 
 .event__single__page {
-  padding: 0 1.5em 3.75em;
+  padding: 0 1.5em 6.25em;
   header {
     img {
       border-radius: 12px;
@@ -40,7 +40,7 @@
   .atendees__section {
     position: relative;
     display: flex;
-    padding: 1em 0 6.25em;
+    padding: 1em 0 1.5em;
     @media screen and (min-width: 430px) {
       align-items: flex-start;
     }
@@ -97,15 +97,19 @@
     padding: 1em;
     border-radius: 12px;
     color: white;
+    font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 1.125em;
+    font-size: 1.25em;
     position: fixed;
     bottom: 1.5em;
     right: 1.5em;
     left: 1.5em;
     box-shadow: 0 4px 10px 0 rgba(247, 103, 7, 0.5);
-    text-align: center;
+    // text-align: center;
+    span {
+      text-align: right;
+    }
   }
 }
 // payment modal

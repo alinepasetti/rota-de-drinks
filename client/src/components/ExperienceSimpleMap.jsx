@@ -11,7 +11,6 @@ const PrimaryMarker = () => (
 const DisabledMarker = () => (
   <img alt="pin" className="map__pin" src="https://image.flaticon.com/icons/png/512/23/23394.png" />
 );
-const Wrapping = () => <Fragment></Fragment>;
 
 class SimpleMap extends Component {
   constructor(props) {

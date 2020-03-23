@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { findOneEvent } from './../../services/event';
 import SimpleMap from './../../components/ExperienceSimpleMap';
-import './Experience.scss';
+import './experience.scss';
 
 class ExperienceStop extends Component {
   constructor(props) {
