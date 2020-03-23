@@ -45,11 +45,12 @@ class EventSingle extends Component {
     this.setState({ event, userBoughtEvent });
   }
 
-  async buyEvent() {
+  async buyEvent(selectedPaymentMethodIndex) {
     const eventId = this.props.match.params.eventId;
     const userId = this.props.user._id;
+    console.log(selectedPaymentMethodIndex);
     try {
-      const purchaseResult = await createPurchase(eventId);
+      const purchaseResult = await createPurchase(eventId, selectedPaymentMethodIndex);
       const status = purchaseResult.data.paymentStatus;
       if (status === 'succeeded') {
         const event = await findOneEventAndAddAttendee(eventId, userId);

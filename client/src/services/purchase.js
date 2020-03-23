@@ -10,8 +10,8 @@ const listPurchases = async () => {
   return purchases;
 };
 
-const createPurchase = async eventId => {
-  let result = await instance.post('/create', { eventId });
+const createPurchase = async (eventId, selectedPaymentMethodIndex) => {
+  let result = await instance.post('/create', { eventId, selectedPaymentMethodIndex });
   return result;
 };
 

@@ -19,14 +19,16 @@ router.get('/list', async (req, res, next) => {
 });
 
 router.post('/create', async (req, res, next) => {
-  const { eventId } = req.body;
+  const { eventId, selectedPaymentMethodIndex } = req.body;
 
   try {
     const event = await Event.findOne({ _id: eventId });
     const amount = event.price;
     const currency = 'EUR';
 
-    const paymentMethod = await PaymentMethod.findOne({ owner: req.user._id });
+    // const paymentMethod = await PaymentMethod.findOne({ owner: req.user._id });
+    const allPaymentMethods = await PaymentMethod.find({ owner: req.user._id });
+    const paymentMethod = allPaymentMethods[selectedPaymentMethodIndex];
 
     const purchase = await Purchase.create({
       user: req.user._id,

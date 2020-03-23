@@ -7,15 +7,18 @@ class PaymentModal extends Component {
     super(props);
     this.state = {
       page: 1,
-      paymentMethods: []
+      paymentMethods: [],
+      selectedPaymentMethodIndex: 0
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
     this.updatePaymentMethods = this.updatePaymentMethods.bind(this);
+    this.selectedPaymentMethodIndex = this.selectedPaymentMethodIndex.bind(this);
   }
 
   async nextPage() {
-    await this.props.buyEvent();
+    const selectedPaymentMethodIndex = this.state.selectedPaymentMethodIndex;
+    await this.props.buyEvent(selectedPaymentMethodIndex);
     this.setState(previousState => {
       return {
         page: previousState.page + 1
@@ -56,6 +59,10 @@ class PaymentModal extends Component {
     this.setState({ paymentMethods });
   }
 
+  selectedPaymentMethodIndex(index) {
+    this.setState({ selectedPaymentMethodIndex: index });
+  }
+
   render() {
     const paymentModalOpen = this.props.paymentModalOpen;
     const page = this.state.page;
@@ -76,6 +83,7 @@ class PaymentModal extends Component {
                     paymentMethods={this.state.paymentMethods}
                     loggedUser={loggedUser._id}
                     updatePaymentMethods={this.updatePaymentMethods}
+                    selectedPaymentMethodIndex={this.selectedPaymentMethodIndex}
                   />
                 </div>
                 {(paymentButtonEnabled && (

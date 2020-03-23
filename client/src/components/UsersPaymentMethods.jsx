@@ -13,6 +13,7 @@ class UsersPaymentMethods extends Component {
     this.nextPage = this.nextPage.bind(this);
     this.backToPaymentsList = this.backToPaymentsList.bind(this);
   }
+
   nextPage() {
     this.setState(previousState => {
       return {
@@ -29,7 +30,9 @@ class UsersPaymentMethods extends Component {
     if (this.props.fromModal) {
       this.setState({ selected: index });
     }
+    this.props.selectedPaymentMethodIndex(index);
   }
+
   render() {
     const page = this.state.page;
     return (
