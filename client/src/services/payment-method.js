@@ -11,7 +11,8 @@ const listPaymentMethods = async () => {
 };
 
 const createPaymentMethod = async token => {
-  await instance.post('/create', { token });
+  const newPaymentMethod = await instance.post('/create', { token });
+  return newPaymentMethod.data.paymentMethod;
 };
 
 export { listPaymentMethods, createPaymentMethod };

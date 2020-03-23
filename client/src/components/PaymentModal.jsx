@@ -11,6 +11,7 @@ class PaymentModal extends Component {
     };
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
+    this.updatePaymentMethods = this.updatePaymentMethods.bind(this);
   }
 
   async nextPage() {
@@ -33,10 +34,9 @@ class PaymentModal extends Component {
   loadingSetTimeout() {
     setTimeout(() => {
       this.setState({ page: 3 });
-    }, 3500);
+    }, 3000);
   }
 
-  // triggers an infinite loop
   componentDidUpdate(previousProps, previousState) {
     if (previousState.paymentMethods.length !== this.state.paymentMethods.length) {
       this.fetchData();
@@ -52,11 +52,15 @@ class PaymentModal extends Component {
     this.setState({ paymentMethods });
   }
 
+  updatePaymentMethods(paymentMethods) {
+    this.setState({ paymentMethods });
+  }
+
   render() {
     const paymentModalOpen = this.props.paymentModalOpen;
     const page = this.state.page;
     const loggedUser = this.props.user;
-    const paymentButtonDisabled = this.state.paymentMethods.length;
+    const paymentButtonEnabled = this.state.paymentMethods.length;
 
     return (
       <Fragment>
@@ -65,21 +69,22 @@ class PaymentModal extends Component {
             <button onClick={this.props.handlepaymentModal}>x</button>
             {page === 1 && (
               <div>
-                <h3>Select a payment methods from your wallet</h3>
+                <h3>Select a payment method from your wallet</h3>
                 <div>
                   <UsersPaymentMethods
                     fromModal={true}
                     paymentMethods={this.state.paymentMethods}
                     loggedUser={loggedUser._id}
+                    updatePaymentMethods={this.updatePaymentMethods}
                   />
                 </div>
-                {(paymentButtonDisabled && (
+                {(paymentButtonEnabled && (
                   <button className="payment__method__button" onClick={this.nextPage}>
-                    Pay
+                    Pay Now
                   </button>
                 )) || (
                   <button disabled onClick={this.nextPage}>
-                    Continue
+                    Pay Now
                   </button>
                 )}
               </div>
