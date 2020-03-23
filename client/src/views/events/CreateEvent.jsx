@@ -124,7 +124,7 @@ class createEvent extends Component {
             type="text"
             name="imgURL"
             id="imgURL"
-            placeholder="Event image"
+            placeholder="Image"
             value={this.state.imgURL}
             onChange={this.handleChangeInput}
           />
@@ -254,11 +254,11 @@ class createEvent extends Component {
               </button> */}
             </div>
           ))}
-          <button type="button" onClick={this.handleAddStop}>
-            Add a new stop
+          <button type="button" onClick={this.handleAddStop} className="btn__add__stop">
+            + Add a new stop
           </button>
           <br />
-          <button>Create event</button>
+          <button className="btn__create__event">Create event</button>
         </form>
       </div>
     );

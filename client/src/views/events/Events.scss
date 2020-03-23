@@ -302,6 +302,25 @@
     border-radius: 3px;
     padding: 0.5em;
   }
+  .btn__add__stop {
+    color: #f76707;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 1em 0;
+  }
+  .btn__create__event {
+    border: 1px solid #f76707;
+    padding: 1em;
+    border-radius: 12px;
+    background-color: white;
+    color: #f76707;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    box-shadow: 0 4px 10px 0 rgba(247, 103, 7, 0.5);
+    width: 100%;
+  }
 }
 
 // events list page

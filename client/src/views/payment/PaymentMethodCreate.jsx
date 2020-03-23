@@ -52,7 +52,7 @@ class PaymentMethodCreateView extends Component {
       }
     };
     return (
-      <div>
+      <div className="payment__create__page">
         <h3>Add new Payment Method</h3>
         <Elements stripe={this.stripePromise}>
           <ElementsConsumer>
