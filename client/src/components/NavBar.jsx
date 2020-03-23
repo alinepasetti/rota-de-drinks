@@ -35,14 +35,7 @@ class NavBar extends Component {
         {(this.props.user && (
           <Fragment>
             <div onClick={this.displayDropdown} className="nav__profile__picture">
-              <img
-                src={
-                  this.props.user
-                    ? this.props.user.picture
-                    : 'https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg'
-                }
-                alt={this.props.user.firstName}
-              />
+              <img src={this.props.user.picture} alt={this.props.user.firstName} />
             </div>
             {this.state.menuOpen && (
               <div className="profile__dropdown">
