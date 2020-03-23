@@ -24,7 +24,7 @@ const schema = new mongoose.Schema(
     picture: {
       type: String,
       default:
-        'https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg'
+        'https://res.cloudinary.com/dgogwav8v/image/upload/v1584990192/rota-de-drinks/user-solid_ffuo3d.svg'
     },
     about: {
       type: String
