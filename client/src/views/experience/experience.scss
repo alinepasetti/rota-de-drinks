@@ -1,12 +1,97 @@
-// experience > each stop
-.experience__stop__page {
-  text-align: left;
+$green: #37b24d;
+$grey: #6a7178;
+$orange: #f76707;
+
+// experience > intro
+.experience__intro__page {
+  margin: 75px auto 0;
+  font-family: Catamaran;
+  padding: 0 1.5em 6.25em;
   header {
+    margin-bottom: 2em;
     img {
       border-radius: 12px;
       max-height: 16em;
+      width: 100%;
+
+      display: block;
+      @media screen and (min-width: 430px) {
+        max-height: 31em;
+      }
+    }
+    h1 {
+      margin: 0.5em 0;
+      text-align: left;
       width: 90%;
-      margin: 0 auto;
+    }
+  }
+  h3 {
+    width: 216px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.22;
+    color: $grey;
+  }
+  p {
+    width: 327px;
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.33;
+    color: #101213;
+  }
+  .button {
+    background-color: $green;
+    padding: 1em;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    position: fixed;
+    bottom: 1.5em;
+    box-shadow: 0 4px 10px 0 rgba(55, 178, 77, 0.5);
+    text-align: center;
+    @media screen and (min-width: 900px) {
+      width: 805px;
+    }
+    @media screen and (max-width: 900px) {
+      right: 1.25em;
+      left: 1.25em;
+    }
+  }
+}
+
+// experience > each stop
+.experience__stop__page {
+  margin: 75px auto 0;
+  font-family: Catamaran;
+  padding: 0 1.5em 6.25em;
+  text-align: left;
+  h3 {
+    color: $grey;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.22;
+  }
+  header {
+    h3 {
+      margin: 16px 0 8px 0;
+    }
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 1.25;
+      color: #101213;
+      text-align: left;
+      margin: 0 0 16px 0;
+    }
+    img {
+      border-radius: 12px;
+      max-height: 16em;
+      width: 100%;
       display: block;
       @media screen and (min-width: 430px) {
         max-height: 31em;
@@ -14,45 +99,95 @@
     }
   }
   .experience__stop__information {
-    margin: 1em 1em 2em 1em;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    p {
+      color: $orange;
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 1.5;
+      margin-left: 8px;
+    }
   }
   .experience__stop__activity {
-    margin: 1em 1em 2em 1em;
-    display: flex;
-    justify-content: space-between;
+    p {
+      width: 327px;
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 1.33;
+      color: #101213;
+    }
     img {
       width: 50%;
       height: 250px;
       object-fit: cover;
+      border-radius: 12px;
     }
   }
   .experience__stop__map {
-    margin: 1em 1em 4em 1em;
+    ul {
+      padding: 0;
+      li {
+        list-style-type: none;
+        margin-bottom: 32px;
+        .location__list {
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 1.5;
+          text-align: center;
+          color: $orange;
+          padding: 2px 12px;
+          border-radius: 12px;
+          border: 2px solid #ffdcc5;
+          margin-right: 16px;
+        }
+        .location__list__selected {
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 1.5;
+          text-align: center;
+          color: $green;
+          padding: 2px 12px;
+          border-radius: 12px;
+          border: 2px solid #37b24d;
+          margin-right: 16px;
+        }
+      }
+    }
   }
 
   .experience__stop__buttons {
     width: 100%;
-    border: 0;
+    padding: 10px 0;
     text-transform: uppercase;
-    font-size: 1.125em;
+    font-size: 20px;
     display: flex;
+    justify-content: space-evenly;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    // background-color: white;
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
     .previous__button {
-      padding: 1em;
-      width: 50%;
+      padding: 12px 0;
+      width: 45%;
       background-color: white;
-      color: rgb(38, 126, 38);
+      color: $orange;
       text-decoration: none;
+      font-weight: bold;
+      border-radius: 14px;
+      border: solid 1px #adb5bd;
     }
     .next__button {
-      padding: 1em;
-      width: 50%;
-      background-color: rgb(38, 126, 38);
+      padding: 12px 0;
+      width: 45%;
+      background-color: $green;
       color: white;
       text-decoration: none;
+      font-weight: bold;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px 0 rgba(55, 178, 77, 0.5);
     }
   }
 }
@@ -60,25 +195,28 @@
 // experience > finish
 
 .experience__finish__page {
+  margin: 75px auto 0;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
   .button {
     width: 90%;
-    max-width: 28.12em;
-    background-color: rgb(38, 126, 38);
+    max-width: 327px;
+    background-color: $green;
     padding: 1em;
-    border: 0;
+    border-radius: 12px;
     color: white;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 1.125em;
+    font-size: 1.25em;
+    font-weight: 700;
     text-align: center;
     position: sticky;
     bottom: 1.25em;
-    margin-top: auto;
+    position: fixed;
+    bottom: 1.5em;
+    box-shadow: 0 4px 10px 0 rgba(55, 178, 77, 0.5);
   }
   img {
     width: 50%;
