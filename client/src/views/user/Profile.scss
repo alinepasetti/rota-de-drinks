@@ -41,6 +41,9 @@
     }
     .profile__picture {
       margin: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       img {
         width: 8.56em;
         height: 8.56em;

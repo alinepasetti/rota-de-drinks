@@ -1,4 +1,5 @@
 .payment__list__page {
+  margin: 75px auto 0;
   padding: 1em;
   height: 300px;
   display: flex;
@@ -45,5 +46,24 @@
     &:last-child {
       margin-left: auto;
     }
+  }
+}
+
+.payment__create__page {
+  margin: 75px auto 0;
+  padding: 1em;
+  .payment__method__button {
+    border: 1px solid #f76707;
+    padding: 1em;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    width: 100%;
+    color: #f76707;
+    text-align: center;
+    margin: 1em auto;
+    background-color: white;
   }
 }

@@ -71,6 +71,7 @@ class EventSingle extends Component {
     const user = this.props.user;
     const event = this.state.event;
     const userBoughtEvent = this.state.userBoughtEvent;
+    const paymentModalOpen = this.state.paymentModalOpen;
     return (
       <div className="event__single__page">
         {(event && (
@@ -96,6 +97,9 @@ class EventSingle extends Component {
                 })}
               {event.attendees && event.attendees.length > 6 && (
                 <div className="img__attendees">+ {event.attendees.length - 5}</div>
+              )}
+              {event.attendees && event.attendees.length === 0 && (
+                <p>Be the first to join this event!</p>
               )}
             </section>
             <h3>General Info</h3>
@@ -123,12 +127,12 @@ class EventSingle extends Component {
               user={user}
             />
 
-            {(!user && (
+            {(!user && !paymentModalOpen && (
               <Link to="/sign-up" className="button">
                 Buy ticket <span>{(event.price / 100).toFixed(2)}€</span>
               </Link>
             )) ||
-              (userBoughtEvent && (
+              (userBoughtEvent && !paymentModalOpen && (
                 <Link
                   to={`/event/${this.state.event._id}/experience/intro`}
                   className="button center"
@@ -136,7 +140,7 @@ class EventSingle extends Component {
                   Start Experience
                 </Link>
               )) ||
-              (!userBoughtEvent && (
+              (!userBoughtEvent && !paymentModalOpen && (
                 <Link onClick={this.handlepaymentModal} className="button">
                   Buy ticket <span>{(event.price / 100).toFixed(2)}€</span>
                 </Link>
