@@ -47,6 +47,8 @@ class ExperienceStop extends Component {
     const event = this.state.event;
     const currentPage = this.state.currentPage;
     const totalPages = this.state.totalPages;
+    const lat = event ? event.stops[currentPage].location.coordinates[1].$numberDecimal : '';
+    const lng = event ? event.stops[currentPage].location.coordinates[0].$numberDecimal : '';
 
     return (
       <div className="experience__stop__page">
@@ -61,7 +63,9 @@ class ExperienceStop extends Component {
             </header>
             <div className="experience__stop__information">
               <img src="/location.svg" />
-              <p>Address: {event.stops[currentPage].address}</p>
+              <a target="_blank" href={`https://maps.google.com/?q=${lat},${lng}`}>
+                Address: {event.stops[currentPage].address}
+              </a>
             </div>
             <div className="experience__stop__activity">
               <h3>What's your task</h3>
@@ -80,7 +84,7 @@ class ExperienceStop extends Component {
                 {event.stops.map((stop, index) => (
                   <li key={stop.name}>
                     {(currentPage >= index && (
-                      <span className="location__list__selected">{index + 1}</span>
+                      <span className="location__list__selected">✓</span>
                     )) || <span className="location__list">{index + 1}</span>}
                     {stop.name} - {stop.address}
                   </li>
