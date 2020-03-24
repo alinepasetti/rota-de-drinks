@@ -29,7 +29,8 @@ class NavBar extends Component {
     return (
       <nav className="nav-bar">
         <Link to="/" className="logo">
-          Hey <span className="orange">Friday</span>
+          {/* Hey <span className="orange">Friday</span> */}
+          <img src={'/heyfriday.svg'} alt="Hey Friday logo" />
         </Link>
 
         {(this.props.user && (

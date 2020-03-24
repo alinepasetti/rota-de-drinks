@@ -47,8 +47,8 @@ class ExperienceIntro extends Component {
               <strong>WELCOME!</strong>
             </h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua.
+              Hello friend! Follow the steps to experience your event. Like any good adventure,
+              there’s a sweet reward waiting for you at the end.
             </p>
           </Fragment>
         )}
