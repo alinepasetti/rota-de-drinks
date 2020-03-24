@@ -45,11 +45,11 @@ class EventSingle extends Component {
     this.setState({ event, userBoughtEvent });
   }
 
-  async buyEvent() {
+  async buyEvent(selectedPaymentMethodIndex) {
     const eventId = this.props.match.params.eventId;
     const userId = this.props.user._id;
     try {
-      const purchaseResult = await createPurchase(eventId);
+      const purchaseResult = await createPurchase(eventId, selectedPaymentMethodIndex);
       const status = purchaseResult.data.paymentStatus;
       if (status === 'succeeded') {
         const event = await findOneEventAndAddAttendee(eventId, userId);
@@ -91,7 +91,9 @@ class EventSingle extends Component {
                 event.attendees.map((attendee, index) => {
                   if (index <= 6) {
                     return (
-                      <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />
+                      <Link to={`/profile/${attendee._id}`}>
+                        <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />
+                      </Link>
                     );
                   }
                 })}
