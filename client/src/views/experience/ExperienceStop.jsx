@@ -76,7 +76,7 @@ class ExperienceStop extends Component {
               <img
                 src={event.stops[currentPage].activity.imgURL}
                 alt={event.stops[currentPage].activity.name}
-              />
+              /> 
             </div>
             <div className="experience__stop__map">
               <h3>What's planned</h3>
