@@ -48,7 +48,6 @@ class EventSingle extends Component {
   async buyEvent(selectedPaymentMethodIndex) {
     const eventId = this.props.match.params.eventId;
     const userId = this.props.user._id;
-    console.log(selectedPaymentMethodIndex);
     try {
       const purchaseResult = await createPurchase(eventId, selectedPaymentMethodIndex);
       const status = purchaseResult.data.paymentStatus;
@@ -92,7 +91,9 @@ class EventSingle extends Component {
                 event.attendees.map((attendee, index) => {
                   if (index <= 6) {
                     return (
-                      <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />
+                      <Link to={`/profile/${attendee._id}`}>
+                        <img key={attendee._id} src={attendee.picture} alt={attendee.firstName} />
+                      </Link>
                     );
                   }
                 })}

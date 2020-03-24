@@ -64,7 +64,7 @@ class createEvent extends Component {
       let newEvent = await createNewEvent({
         ...data
       });
-      console.log(newEvent);
+      // console.log(newEvent);
       this.props.history.push('/');
     } catch (error) {
       console.log(error);

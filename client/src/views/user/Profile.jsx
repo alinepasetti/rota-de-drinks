@@ -40,8 +40,6 @@ class ProfileView extends Component {
   render() {
     const profileOwner = this.state.profileOwner;
     const loggedUser = this.props.user;
-    // console.log('profileOwner', profileOwner);
-    // console.log('loggedUser', loggedUser);
 
     return (
       <div className="profile">
@@ -50,14 +48,7 @@ class ProfileView extends Component {
             {profileOwner && (
               <Fragment>
                 <figure className="profile__picture">
-                  <img
-                    src={
-                      profileOwner.picture
-                        ? profileOwner.picture
-                        : 'https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg'
-                    }
-                    alt={profileOwner.firstName}
-                  />
+                  <img src={profileOwner.picture} alt={profileOwner.firstName} />
                 </figure>
                 <div>
                   <h2>
