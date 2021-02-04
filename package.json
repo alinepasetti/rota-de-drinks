@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/alinepasetti/rota-de-drinks/issues"
   },
-  "homepage": "https://github.com/alinepasetti/rota-de-drinks#readme"
+  "homepage": "https://github.com/alinepasetti/rota-de-drinks#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
 }
