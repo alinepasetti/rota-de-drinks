@@ -19,19 +19,19 @@ router.post('/create-new', async (req, res, next) => {
     price,
     badgeName,
     badgeImgURL,
-    stops
+    stops,
   } = req.body;
 
   const badge = await Badge.create({
     name: badgeName,
-    imgURL: badgeImgURL
+    imgURL: badgeImgURL,
   });
 
   let stop;
   const stopIds = [];
 
   await Promise.all(
-    stops.map(async item => {
+    stops.map(async (item) => {
       const stopExists = await Stop.findOne({ name: item.stopName });
 
       if (stopExists) {
@@ -41,7 +41,7 @@ router.post('/create-new', async (req, res, next) => {
         const activity = await Activity.create({
           name: item.activityName,
           instructions: item.activityInstructions,
-          imgURL: item.activityImgURL
+          imgURL: item.activityImgURL,
         });
         // console.log('activity', activity);
 
@@ -50,7 +50,7 @@ router.post('/create-new', async (req, res, next) => {
           imgURL: item.stopImgURL,
           address: item.stopAddress,
           location: { coordinates: [item.stopLng, item.stopLat] },
-          activity: activity._id
+          activity: activity._id,
         });
         stopIds.push(stop._id);
         // console.log('stop', stop);
@@ -67,7 +67,7 @@ router.post('/create-new', async (req, res, next) => {
     tags,
     price,
     badge: badge._id,
-    stops: stopIds
+    stops: stopIds,
   });
   // console.log('event', event);
 
@@ -159,7 +159,7 @@ router.get('/:eventId', async (req, res, next) => {
     .populate('badge')
     .populate({
       path: 'stops',
-      populate: { path: 'activity' }
+      populate: { path: 'activity' },
     });
   res.json({ event });
 });

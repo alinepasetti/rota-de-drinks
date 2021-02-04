@@ -52,7 +52,7 @@ class SimpleMap extends Component {
       lat: Number(lat1),
       lng: Number(lng1)
     };
-
+ 
     return (
       <div className="simple__map">
         {this.state.lng.length > 0 && (
